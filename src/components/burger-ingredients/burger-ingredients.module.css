@@ -1,0 +1,37 @@
+.main {
+  grid-area: left;
+  display: flex;
+	flex-direction: column;
+  margin: 0;
+  padding: 40px 16px 0;
+  width: auto;
+  overflow: hidden;
+  max-height: calc(100% - 60px);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  column-gap: 24px;
+  margin: 0;
+  margin-top: 40px;
+  padding: 0;
+  padding-right: 8px;
+  list-style: none;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.cards::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cards::-webkit-scrollbar-track {
+  background-color: #2F2F37;
+}
+
+.cards::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}

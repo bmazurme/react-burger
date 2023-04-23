@@ -1,0 +1,72 @@
+.main {
+  grid-area: right;
+  display: flex;
+	flex-direction: column;
+  margin: 0;
+  padding: 100px 16px 0;
+  width: auto;
+  height: 100%;
+  max-height: calc(100% - 140px);
+  overflow: hidden;
+}
+
+.items {
+  margin: 10px 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.items::-webkit-scrollbar-track {
+  background-color: #2F2F37;
+}
+
+.items::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.drag {
+  width: 24px;
+  height: 24px;
+}
+
+.top {
+  margin: 0;
+  margin-left: 38px;
+  padding: 0;
+  padding-right: 16px;
+}
+
+.bottom {
+  margin: 0;
+  margin-left: 38px;
+  padding: 0;
+  padding-right: 16px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 40px;
+  margin-right: 16px;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 66px;
+}
