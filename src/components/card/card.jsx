@@ -13,7 +13,9 @@ export default function Card({ card }) {
         <p className='text text_type_digits-default pr-2'>{card.price}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <p className={`${style.name} text text_type_main-default pb-10`}>{card.name}</p>
+      <p className={`${style.name} text text_type_main-default pb-10`}>
+        {card.name}
+      </p>
       <Counter count={1} size="default" />
     </li>
   );

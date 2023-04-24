@@ -1,0 +1,23 @@
+.nav {
+  max-width: var(--width-xl);
+  width: 100%;
+	padding: 0;
+  margin: auto;
+}
+
+.menu_main {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+	margin: 0;
+	padding: 0;
+  grid-area: menu-main;
+}
+
+.item {
+  display: flex;
+	align-items: center;
+  width: auto;
+}

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import Card from '../card';
 
-import style from './groups.module.css';
+import style from './cards-group.module.css';
 
-export default function CardGroup({ id, label, cards }) {
+export default function CardsGroup({ id, label, cards }) {
   return (
     <>
       <h2 className={`${style.title} text text_type_main-medium pb-6 pt-6`} id={id}>{label}</h2>
@@ -14,20 +14,20 @@ export default function CardGroup({ id, label, cards }) {
   );
 }
 
-const cardPropTypes = PropTypes.shape({
+const cardsPropTypes = PropTypes.shape({
   _id: PropTypes.string.isRequired,
   image: PropTypes.string,
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired
 });
 
-const cardGroupPropTypes = PropTypes.shape({
+const cardsGroupPropTypes = PropTypes.shape({
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
-  cards: PropTypes.arrayOf(cardPropTypes).isRequired,
+  cards: PropTypes.arrayOf(cardsPropTypes).isRequired,
 });
 
-CardGroup.protoType = {
-	card: cardGroupPropTypes.isRequired
+CardsGroup.protoType = {
+	card: cardsGroupPropTypes.isRequired
 }
 

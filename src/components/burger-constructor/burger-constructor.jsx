@@ -1,14 +1,16 @@
 import React from 'react';
+
 import {
   ConstructorElement, Button, CurrencyIcon, DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import style from './burger-constructor.module.css';
-import img from '../../images/bun-02.png';
 
 import categories from '../../mocks/data';
 
-function BurgerConstructor() {
+const img = 'https://code.s3.yandex.net/react/code/bun-02.png';
+
+export default function BurgerConstructor() {
   return (
     <section className={style.main}>
       <div className={style.top}>
@@ -20,7 +22,10 @@ function BurgerConstructor() {
           thumbnail={img}
         />
       </div>
-      <ul className={style.items} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <ul
+        className={style.items}
+        style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
+      >
         {categories.map((x, i) => (
           <li className={style.item} key={i}>
             <div className={`${style.drag} mr-4`}>
@@ -57,5 +62,3 @@ function BurgerConstructor() {
     </section>
   );
 }
-
-export default BurgerConstructor;

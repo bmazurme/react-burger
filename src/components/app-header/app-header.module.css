@@ -17,38 +17,3 @@
   padding: 16px 0;
   box-sizing: border-box;
 }
-
-.nav {
-  max-width: var(--width-xl);
-  width: 100%;
-	padding: 0;
-  margin: auto;
-}
-
-.menu_main {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-  align-items: center;
-  list-style: none;
-	margin: 0;
-	padding: 0;
-  grid-area: menu-main;
-}
-
-.menu_user {
-  display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-  align-items: center;
-  list-style: none;
-	margin: 0;
-	padding: 0;
-  grid-area: menu-user;
-}
-
-.item {
-  display: flex;
-	align-items: center;
-  width: auto;
-}
