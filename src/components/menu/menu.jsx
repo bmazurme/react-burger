@@ -1,26 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import MenuItem from '../menu-item';
 
 import style from './menu.module.css';
 
-export default function Menu() {
+export default function Menu({ links, extraClass }) {
   return (
     <nav className={style.nav}>
-      <ul className={style.menu_main}>
-        <li className={`${style.item} pl-5 pr-5 pb-4 pt-4`}>
-          <BurgerIcon type="primary" />
-          <span className="text text_type_main-default pl-2">
-            Конструктор
-          </span>
-        </li>
-        <li className={`${style.item} pl-5 pr-5 pb-4 pt-4 ml-2`}>
-          <ListIcon type="secondary" />
-          <span className="text text_type_main-default pl-2 text_color_inactive">
-            Лента заказов
-          </span>
-        </li>
+      <ul className={extraClass}>
+        {links.map((x) => (
+          <MenuItem
+            key={x.id}
+            id={x.id}
+            label={x.label}
+            active={x.active}
+            extraClass={x.extraClass}
+          />
+        ))}
       </ul>
     </nav>
   );
+}
+
+const linkPropTypes = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+  active: PropTypes.bool,
+  extraClass: PropTypes.string,
+});
+
+Menu.protoType = {
+  links: PropTypes.arrayOf(linkPropTypes),
+  extraClass: PropTypes.string,
 }

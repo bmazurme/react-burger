@@ -13,7 +13,7 @@ function Content({ header, children }) {
 }
 
 Content.protoType = {
-	header: PropTypes.boolean,
+	header: PropTypes.bool,
   children: PropTypes.node.isRequired,
 }
 

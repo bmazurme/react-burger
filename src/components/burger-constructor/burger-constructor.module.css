@@ -12,10 +12,9 @@
 
 .items {
   margin: 10px 0;
-  padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 8px;
+  padding: 0 8px 0 0;
 }
 
 .items::-webkit-scrollbar {
@@ -42,31 +41,11 @@
 }
 
 .top {
-  margin: 0;
-  margin-left: 38px;
-  padding: 0;
-  padding-right: 16px;
+  margin: 0 0 0 38px;
+  padding: 0 16px 0 0;
 }
 
 .bottom {
-  margin: 0;
-  margin-left: 38px;
-  padding: 0;
-  padding-right: 16px;
-}
-
-.footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 40px;
-  margin-right: 16px;
-}
-
-.price {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-right: 66px;
+  margin: 0 0 0 38px;
+  padding: 0 16px 0 0;
 }
