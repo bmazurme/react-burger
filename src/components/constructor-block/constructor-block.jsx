@@ -5,16 +5,21 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 
 export default function ConstructorBlock(props) {
   const { position, style } = props;
+  console.log(props);
 
   return (position
     ? <div className={style.top}>
-        <ConstructorElement {...props} type={position === 'top' ? 'top' : 'bottom'} />
+        <ConstructorElement
+          {...props}
+          type={position === 'top' ? 'top' : 'bottom'}
+          text={`${props.name} (${position === 'top' ? 'верх' : 'низ'})`}
+        />
       </div>
     : <li className={style.item}>
         <div className={`${style.drag} mr-4`}>
           <DragIcon type="primary" />
         </div>
-        <ConstructorElement {...props} thumbnail={props.image} />
+        <ConstructorElement {...props} thumbnail={props.image} text={props.name} />
       </li>);
 }
 
