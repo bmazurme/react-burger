@@ -1,18 +1,38 @@
 import React from 'react';
 
-import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+  Logo, BurgerIcon, ListIcon, ProfileIcon,
+} from '@ya.praktikum/react-developer-burger-ui-components';
 import Menu from '../menu';
 
-import withExtraClass from '../../hocs/withExtraClass';
+import withExtraClass from '../../hocs/with-extra-class';
 
 import style from './app-header.module.css';
 
 const mainLinks = [
-  { id: 0, label: 'Конструктор', active: true, extraClass: '' },
-  { id: 1, label: 'Лента заказов', active: false, extraClass: 'ml-2' },
+  {
+    id: 0,
+    label: 'Конструктор',
+    active: true,
+    extraClass: '',
+    icon: BurgerIcon,
+  },
+  {
+    id: 1,
+    label: 'Лента заказов',
+    active: false,
+    extraClass: 'ml-2',
+    icon: ListIcon,
+  },
 ];
 const userLinks = [
-  { id: 0, label: 'Личный кабинет', active: false, extraClass: '' },
+  {
+    id: 0,
+    label: 'Личный кабинет',
+    active: false,
+    extraClass: '',
+    icon: ProfileIcon,
+  },
 ];
 
 const MainMenu = withExtraClass(style.main_menu)(Menu);

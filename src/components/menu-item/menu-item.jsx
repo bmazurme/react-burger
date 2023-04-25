@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-
 import style from './menu-item.module.css';
 
-export default function MenuItem({ id, label, extraClass, active }) {
+export default function MenuItem({ label, extraClass, active, icon }) {
+  const Icon = ({ component: Component, active }) => (<Component type={active ? 'primary' : 'secondary'} />);
+
   return (
     <li className={`${style.item} pl-5 pr-5 pb-4 pt-4 ${extraClass && extraClass}`}>
       <a href="/" className={style.link}>
-        <BurgerIcon type={`${active ? 'primary' : 'secondary'}`} />
+        <Icon active={active} component={icon} />
         <span className={`text text_type_main-default pl-2 ${!active && 'text_color_inactive'}`}>
           {label}
         </span>
@@ -23,4 +23,5 @@ MenuItem.protoType = {
   label: PropTypes.string.isRequired,
   active: PropTypes.bool,
   extraClass: PropTypes.string,
+  icon: PropTypes.node.isRequired,
 }

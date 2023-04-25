@@ -9,15 +9,7 @@ export default function Menu({ links, extraClass }) {
   return (
     <nav className={style.nav}>
       <ul className={extraClass}>
-        {links.map((x) => (
-          <MenuItem
-            key={x.id}
-            id={x.id}
-            label={x.label}
-            active={x.active}
-            extraClass={x.extraClass}
-          />
-        ))}
+        {links.map((x) => (<MenuItem key={x.id} {...x} />))}
       </ul>
     </nav>
   );
@@ -28,6 +20,7 @@ const linkPropTypes = PropTypes.shape({
   label: PropTypes.string.isRequired,
   active: PropTypes.bool,
   extraClass: PropTypes.string,
+  icon: PropTypes.node.isRequired,
 });
 
 Menu.protoType = {
