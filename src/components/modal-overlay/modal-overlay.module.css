@@ -1,0 +1,13 @@
+.overlay {
+  --background-overlay: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: var(--background-overlay);
+	z-index: 100;
+}

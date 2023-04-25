@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import style from './card.module.css';
+import { cardPropTypes } from '../../utils/types';
 
-export default function Card({ card }) {
+export default function Card(card) {
   return (
     <li key={card._id} className={`${style.card} pl-4`}>
       <img className={`${style.image}`} src={card.image} alt={card.name} />
@@ -20,13 +20,6 @@ export default function Card({ card }) {
     </li>
   );
 }
-
-const cardPropTypes = PropTypes.shape({
-  _id: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  price: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
-});
 
 Card.protoType = {
 	card: cardPropTypes.isRequired
