@@ -1,5 +1,8 @@
 .overlay {
+<<<<<<< Updated upstream
   --background-overlay: rgba(0, 0, 0, 0.6);
+=======
+>>>>>>> Stashed changes
   display: flex;
   justify-content: center;
   align-items: center;

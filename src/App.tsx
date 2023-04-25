@@ -8,10 +8,14 @@ import IngredientDetails from './components/ingredient-details';
 import MainPage from './pages/main';
 
 export default function App() {
+<<<<<<< Updated upstream
   const [isPopupOpen, setIsPopupOpen] = useState(true);
   const closePopup = () => {
     setIsPopupOpen(false);
   };
+=======
+  // store
+>>>>>>> Stashed changes
   // error-boundary-wrapper
   // routes
   return (

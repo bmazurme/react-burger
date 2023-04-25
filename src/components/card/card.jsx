@@ -7,7 +7,7 @@ import { cardPropTypes } from '../../utils/types';
 
 export default function Card(card) {
   return (
-    <li key={card._id} className={`${style.card} pl-4`}>
+    <li key={card._id} className={`${style.card} pl-4`} onClick={() => card.onClickIngredient(card)}>
       <img className={`${style.image}`} src={card.image} alt={card.name} />
       <div className={`${style.price} pt-1 pb-2`}>
         <p className='text text_type_digits-default pr-2'>{card.price}</p>

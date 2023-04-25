@@ -5,7 +5,6 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 
 export default function ConstructorBlock(props) {
   const { position, style } = props;
-  console.log(props);
 
   return (position
     ? <div className={style.top}>

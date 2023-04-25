@@ -1,5 +1,8 @@
 .container {
+<<<<<<< Updated upstream
   --header-bg-color: #1C1C21;
+=======
+>>>>>>> Stashed changes
   width: 720px;
   min-height: 480px;
   display: flex;
@@ -12,6 +15,10 @@
 .close {
   position: absolute;
 	justify-self: flex-end;
+<<<<<<< Updated upstream
+=======
+	margin: 0;
+>>>>>>> Stashed changes
 	padding: 0;
 	z-index: 3;
 	width: 24px;
@@ -21,4 +28,8 @@
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
