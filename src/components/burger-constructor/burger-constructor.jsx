@@ -35,7 +35,7 @@ export default function BurgerConstructor({ cards }) {
       </ul>
       <ConstructorBlock {...currentBun} position="bottom" style={style} />
       <ConstructorFooter openPopup={openPopup} />
-      {isPopupOpen && <Modal onClose={closePopup} children={<OrderDetails />} />}
+      {isPopupOpen && <Modal isOpen={isPopupOpen} onClose={closePopup} children={<OrderDetails />} />}
     </section>
   );
 }
