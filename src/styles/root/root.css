@@ -7,6 +7,7 @@
   --width-2xl: 1536px;
   --header-bg-color: #1C1C21;
   --background-color: #131316;
+  --background-overlay: rgba(0, 0, 0, 0.6);
   --color: #fff;
   height: 100vh;
   background-color: var(--background-color);
