@@ -11,12 +11,19 @@ export default function useQuery(props) {
 
   useEffect(() => {
     async function getData(props) {
-      const { currentUrl, property } = buildProperties({ baseUrl: BASE_URL, props });
+      const { currentUrl, options } = buildProperties({ baseUrl: BASE_URL, props });
 
       try {
-        const result = await fetch(currentUrl, property);
-        const data = await result.json();
-        setState({ data: data.data, hasError: false, isLoading: false });
+        const response = await fetch(currentUrl, options);
+        // const onSuccess = () => ... with mutation ...
+        // ... res.json().then((err) => Promise.reject(err) ...
+        if (response.ok) {
+          const { data } = await response.json();
+          setState({ data, hasError: false, isLoading: false });
+        } else {
+          console.log('error response', response.status);
+          setState({ data: [], hasError: true, isLoading: false });
+        }
       } catch (e) {
         console.log('error api query', e);
         setState({ data: [], hasError: true, isLoading: false });

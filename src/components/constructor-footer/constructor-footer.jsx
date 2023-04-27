@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -16,4 +17,8 @@ export default function ConstructorFooter({ openPopup }) {
       </Button>
     </div>
   );
+}
+
+ConstructorFooter.protoType = {
+  openPopup: PropTypes.func.isRequired,
 }

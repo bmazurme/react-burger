@@ -21,6 +21,7 @@ const cardsGroupPropTypes = PropTypes.shape({
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
+  onClickIngredient: PropTypes.func.isRequired,
 });
 
 Group.protoType = {

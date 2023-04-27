@@ -2,8 +2,9 @@ import React from 'react';
 
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import style from './card.module.css';
 import { cardPropTypes } from '../../utils/types';
+
+import style from './card.module.css';
 
 export default function Card(card) {
   return (
