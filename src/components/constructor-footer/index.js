@@ -1,3 +1,3 @@
-import ConstructorFooter from './ConstructorFooter';
+import ConstructorFooter from './constructor-footer';
 
 export default ConstructorFooter;

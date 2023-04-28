@@ -5,10 +5,10 @@ import AppHeader from '../app-header';
 
 function Content({ header, children }) {
   return (
-    <div className="root">
-      {header &&  <AppHeader />}
+    <>
+      {header && <AppHeader />}
       {children}
-    </div>
+    </>
   );
 }
 

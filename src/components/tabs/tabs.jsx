@@ -5,7 +5,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
 export default function Tabs({ tabs, current, setCurrent }) {
   return (
-    <div style={{ display: 'flex', marginTop: 20 }}>
+    <div style={{ display: 'flex', marginTop: 20, alignSelf: 'center' }}>
       {tabs.map(({ id, label }, i) => (
         <Tab
           key={i}

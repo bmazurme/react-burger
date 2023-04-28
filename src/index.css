@@ -4,5 +4,5 @@
 /* root */
 @import "./styles/root/root.css";
 
-/* content */
-@import "./styles/content/content.css";
+/* modal */
+@import "./styles/modal/modal.css";

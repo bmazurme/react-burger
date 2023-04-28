@@ -7,4 +7,10 @@ const cardPropTypes = PropTypes.shape({
   name: PropTypes.string.isRequired
 });
 
-export { cardPropTypes };
+const propsTypes = PropTypes.shape({
+  url: PropTypes.string,
+  method: PropTypes.string,
+  body: PropTypes.object,
+});
+
+export { cardPropTypes, propsTypes };
