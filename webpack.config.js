@@ -25,20 +25,20 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf|ico)$/,
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf|ico|json)$/,
         type: 'asset/resource',
       },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      PUBLIC_URL: 'static',
       template: './public/index.html',
       filename: './index.html',
       favicon: './public/favicon.ico',
+      manifest: './public/manifest.json',
     }),
     new InterpolateHtmlPlugin({
-      PUBLIC_URL: 'static' // can modify `static` to another name or get it from `process`
+      PUBLIC_URL: '' // can modify `static` to another name or get it from `process`
     }),
     new MiniCssExtractPlugin(),
   ],
