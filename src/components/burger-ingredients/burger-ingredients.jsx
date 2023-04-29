@@ -23,8 +23,8 @@ export default function BurgerIngredients({ cards }) {
     setIsPopupOpen(false);
   };
 
-  const onClickIngredient = (current) => {
-    setCurrentIngredient(current);
+  const onClickIngredient = (ingredient) => {
+    setCurrentIngredient(ingredient);
     setIsPopupOpen(true);
   };
 
@@ -40,19 +40,19 @@ export default function BurgerIngredients({ cards }) {
 
   return (
     <section className={`${style.main}`}>
-      <h2 className={`text text_type_main-large`}>Соберите бургер</h2>
+      <h2 className="text text_type_main-large">Соберите бургер</h2>
       <Tabs tabs={tabs} current={current} setCurrent={onToggleTab} />
       <Groups groups={groups} cards={cards} onClickIngredient={onClickIngredient} />
-      {<Modal
+      <Modal
         isOpen={isPopupOpen}
         title="Детали ингредиента"
         onClose={closePopup}
         children={<IngredientDetails currentIngredient={currentIngredient} />}
-      />}
+      />
     </section>
   );
 }
 
 BurgerIngredients.protoType = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
-}
+};

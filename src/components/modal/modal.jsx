@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -15,7 +17,9 @@ export default function Modal({
 
   const handleEscape = (e) => {
     if (e.type === 'keydown' && e.code === 'Escape') {
-      OVERLAY_CLOSE_ON && onClose();
+      if (OVERLAY_CLOSE_ON) {
+        onClose();
+      }
     }
   };
 
@@ -29,17 +33,19 @@ export default function Modal({
     };
   });
 
-	return ReactDOM.createPortal(
+  return ReactDOM.createPortal(
     <ModalOverlay isOpen={isOpen} closeModal={closeModal}>
-      {isOpen && <div className={style.container} onClick={(e) => e.stopPropagation()}>
+      {isOpen && (
+      <div className={style.container} onClick={(e) => e.stopPropagation()}>
         {title && <h2 className={"text text_type_main-large mt-10 ml-10 pt-3'}"}>{title}</h2>}
         <button type="button" className={style.close}>
           <CloseIcon type="primary" onClick={onClose} />
         </button>
         {children}
-      </div>}
+      </div>
+      )}
     </ModalOverlay>,
-    reactModals
+    reactModals,
   );
 }
 
@@ -48,4 +54,4 @@ Modal.protoType = {
   title: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-}
+};

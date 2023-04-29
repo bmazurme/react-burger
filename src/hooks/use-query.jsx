@@ -10,6 +10,7 @@ export default function useQuery(props) {
   const [state, setState] = useState({ data: [], hasError: true, isLoading: true });
 
   useEffect(() => {
+    // eslint-disable-next-line no-shadow
     async function getData(props) {
       const { currentUrl, options } = buildProperties({ baseUrl: BASE_URL, props });
 
@@ -31,7 +32,7 @@ export default function useQuery(props) {
     }
 
     getData(props);
-  }, [])
+  }, []);
 
   return (state);
 }
@@ -39,4 +40,4 @@ export default function useQuery(props) {
 useQuery.protoType = {
   baseUrl: PropTypes.string.isRequired,
   props: PropTypes.objectOf(propsTypes),
-}
+};

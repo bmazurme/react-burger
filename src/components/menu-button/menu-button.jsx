@@ -22,13 +22,15 @@ export default function MenuButton({ links, onClick }) {
   return (
     <>
       <button type="button" className={style.button} onClick={toggleMenu}>
-        {!isOpen ? <MenuIcon type="primary"/> : <CloseIcon type="primary" />}
+        {!isOpen ? <MenuIcon type="primary" /> : <CloseIcon type="primary" />}
       </button>
-      {isOpen &&
+      {isOpen
+        && (
         <div className={style.menu}>
           <h2 className={`${style.title} text text_type_main-medium`}>Меню</h2>
           <UserMenu links={links} onClick={onClick} />
-        </div>}
+        </div>
+        )}
     </>
   );
 }
@@ -36,4 +38,4 @@ export default function MenuButton({ links, onClick }) {
 MenuButton.protoType = {
   links: PropTypes.arrayOf(linkPropTypes),
   onClick: PropTypes.func.isRequired,
-}
+};

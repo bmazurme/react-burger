@@ -1,18 +1,14 @@
-const path = require('path');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = {
-  entry: "./src/index.jsx",
-  output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "bundle.js",
-    publicPath: '/',
-  },
-  resolve: {
-    extensions: ['.jsx', '.js', 'tsx', 'ts'],
-  },
+module.exports = merge(common, {
+  mode: 'production',
   module: {
     rules: [
       {
@@ -38,19 +34,18 @@ module.exports = {
       manifest: './public/manifest.json',
     }),
     new InterpolateHtmlPlugin({
-      PUBLIC_URL: '' // can modify `static` to another name or get it from `process`
+      PUBLIC_URL: 'static'
     }),
     new MiniCssExtractPlugin(),
+    new CopyPlugin({
+      patterns: [
+        { from: "public", to: "static" },
+        { from: "src/server", to: "server" },
+      ],
+    }),
   ],
-  devServer: {
-    static: {
-      directory: path.join(__dirname, '/public'),
-    },
-    watchFiles: ['src/**/*.jsx'],
-    compress: true,
-    hot: true,
-    open: true,
-    port: 3000,
-    historyApiFallback: true,
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
-};
+});

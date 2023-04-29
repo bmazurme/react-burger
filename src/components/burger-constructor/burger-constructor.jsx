@@ -28,9 +28,9 @@ export default function BurgerConstructor({ cards }) {
   return (
     <section className={style.main}>
       <ConstructorBlock {...currentBun} position="top" style={style} />
-      <ul className={style.items} style={blockStyle} >
+      <ul className={style.items} style={blockStyle}>
         {cards.map((x, i) => (
-          <ConstructorBlock key={i} { ...x } style={style} />
+          <ConstructorBlock key={i} {...x} style={style} />
         ))}
       </ul>
       <ConstructorBlock {...currentBun} position="bottom" style={style} />
@@ -42,4 +42,4 @@ export default function BurgerConstructor({ cards }) {
 
 BurgerConstructor.protoType = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
-}
+};

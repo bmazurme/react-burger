@@ -1,23 +1,24 @@
-import { Component } from 'react';
+/* eslint-disable react/destructuring-assignment */
+import React, { Component } from 'react';
 
 import style from './error-boundary.module.css';
 
 function ErrorMessageBox() {
   return (
-		<div className={`${style.container}`}>
+    <div className={`${style.container}`}>
       <h2 className={`${style.title} text text_type_digits-large`}>
         APP
         <span className={`${style.span} text text_type_digits-large pb-8`}>
           ERROR
         </span>
       </h2>
-			<p className="text text_type_main-medium pb-8">
+      <p className="text text_type_main-medium pb-8">
         Something went wrong.
       </p>
       <p className="text text_type_main-default text_color_inactive pb-2">
         Try to reload App
       </p>
-		</div>
+    </div>
   );
 }
 
@@ -42,6 +43,6 @@ export default class ErrorBoundary extends Component {
       return <ErrorMessageBox />;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
