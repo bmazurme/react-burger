@@ -11,7 +11,7 @@
 ### About
 - [X] Sprint 1
   - [X] Step 1
-  - [ ] Step 2
+  - [X] Step 2
 
 ### Demo
 ...
