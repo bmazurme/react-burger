@@ -5,6 +5,7 @@ const cardPropTypes = PropTypes.shape({
   image: PropTypes.string,
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  dragRef: PropTypes.any,
 });
 
 const propsTypes = PropTypes.shape({

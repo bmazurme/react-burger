@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+
+import { useDrag } from 'react-dnd';
 
 import Groups from '../groups';
 import Tabs from '../tabs';
@@ -14,6 +16,7 @@ const groups = [{ id: 'bun', label: 'Булки' }, { id: 'main', label: 'Нач
 const tabs = groups.map((x, i) => ({ id: i.toString(), label: x.label }));
 
 export default function BurgerIngredients({ cards }) {
+  // const dragRef = useRef();
   const [current, setCurrent] = useState('0');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentIngredient, setCurrentIngredient] = useState(null);
@@ -42,7 +45,11 @@ export default function BurgerIngredients({ cards }) {
     <section className={`${style.main}`}>
       <h2 className="text text_type_main-large">Соберите бургер</h2>
       <Tabs tabs={tabs} current={current} setCurrent={onToggleTab} />
-      <Groups groups={groups} cards={cards} onClickIngredient={onClickIngredient} />
+      <Groups
+        groups={groups}
+        cards={cards}
+        onClickIngredient={onClickIngredient}
+      />
       <Modal
         isOpen={isPopupOpen}
         title="Детали ингредиента"

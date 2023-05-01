@@ -5,7 +5,7 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 
 export default function ConstructorBlock(props) {
   const {
-    position, style, name, image,
+    position, style, name, image, removeElement, index,
   } = props;
 
   return (position
@@ -23,7 +23,12 @@ export default function ConstructorBlock(props) {
         <div className={`${style.drag} mr-4`}>
           <DragIcon type="primary" />
         </div>
-        <ConstructorElement {...props} thumbnail={image} text={name} />
+        <ConstructorElement
+          {...props}
+          thumbnail={image}
+          text={name}
+          handleClose={() => removeElement(index)}
+        />
       </li>
     ));
 }
@@ -35,4 +40,5 @@ ConstructorBlock.protoType = {
   name: PropTypes.string.isRequired,
   position: PropTypes.string,
   style: PropTypes.object.isRequired,
+  removeElement: PropTypes.func,
 };

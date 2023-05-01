@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,6 +5,10 @@ import { ArrowUpIcon, ArrowDownIcon } from '@ya.praktikum/react-developer-burger
 import MenuItemLinks from '../menu-item-links';
 
 import style from './menu-item.module.css';
+
+function Icon({ component: Component, active }) {
+  return <Component type={active ? 'primary' : 'secondary'} />;
+}
 
 export default function MenuItem({
   id, label, extraClass, active, icon, links, onClick,
@@ -17,10 +20,6 @@ export default function MenuItem({
     onClick(currId);
     setIsOpen(!isOpen);
   };
-
-  function Icon({ component: Component, activeLink }) {
-    return <Component type={activeLink ? 'primary' : 'secondary'} />;
-  }
 
   useEffect(() => {
     if (!isOpen) {

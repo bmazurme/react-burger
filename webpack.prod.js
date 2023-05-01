@@ -1,11 +1,12 @@
 const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { SourceMapDevToolPlugin } = require('webpack');
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -14,17 +15,22 @@ module.exports = merge(common, {
       {
         test: /\.js$|jsx/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf|ico|json)$/,
         type: 'asset/resource',
       },
-    ]
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -34,14 +40,17 @@ module.exports = merge(common, {
       manifest: './public/manifest.json',
     }),
     new InterpolateHtmlPlugin({
-      PUBLIC_URL: 'static'
+      PUBLIC_URL: 'static',
     }),
     new MiniCssExtractPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: "public", to: "static" },
-        { from: "src/server", to: "server" },
+        { from: 'public', to: 'static' },
+        { from: 'src/server', to: 'server' },
       ],
+    }),
+    new SourceMapDevToolPlugin({
+      filename: '[file].map',
     }),
   ],
   optimization: {

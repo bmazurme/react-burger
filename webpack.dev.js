@@ -1,10 +1,11 @@
 const { merge } = require('webpack-merge');
 const path = require('path');
-const common = require('./webpack.common.js');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const { SourceMapDevToolPlugin } = require('webpack');
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -13,25 +14,32 @@ module.exports = merge(common, {
       {
         test: /\.js$|jsx/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", { loader: "css-loader", options: {
-          modules: {
-            mode: "local",
-            auto: true,
-            exportGlobals: true,
-            localIdentName: "[name]__[local]--[hash:base64:5]",
+        use: ['style-loader', {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              mode: 'local',
+              auto: true,
+              exportGlobals: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
           },
-        },
-      }],
+        }],
       },
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf|ico|json)$/,
         type: 'asset/resource',
       },
-    ]
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -41,9 +49,12 @@ module.exports = merge(common, {
       manifest: './public/manifest.json',
     }),
     new InterpolateHtmlPlugin({
-      PUBLIC_URL: '' // can modify `static` to another name or get it from `process`
+      PUBLIC_URL: '',
     }),
     new MiniCssExtractPlugin(),
+    new SourceMapDevToolPlugin({
+      filename: '[file].map',
+    }),
   ],
   devServer: {
     static: {
