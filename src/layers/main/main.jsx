@@ -21,31 +21,23 @@ export default function Main() {
   const [items, setItems] = useState([]);
   // preloader
 
-  // const moveCardHandler = (dragIndex, hoverIndex) => {
-  //   const dragItem = items[dragIndex];
-
-  //   if (dragItem) {
-  //     setItems((prevState) => {
-  //       const coppiedStateArray = [...prevState];
-  //       const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
-  //       coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
-
-  //       return coppiedStateArray;
-  //     });
-  //   }
-  // };
-
   return (
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <main className={style.main}>
         <BurgerIngredients cards={cards} />
-        {(blocks === 2) && <BurgerConstructor cards={items} setItems={setItems} />}
+        {(blocks === 2)
+        && (
+        <BurgerConstructor
+          items={items}
+          setItems={setItems}
+        />
+        )}
       </main>
     </DndProvider>
   );
 }
 
 Main.protoType = {
-  cards: PropTypes.arrayOf(cardPropTypes).isRequired,
-  // setItems: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(cardPropTypes).isRequired,
+  setItems: PropTypes.func.isRequired,
 };

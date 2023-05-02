@@ -15,6 +15,7 @@ export default function Card(card) {
     image,
     name,
     price,
+    type,
     onClickIngredient,
   } = card;
   const [count, setCounter] = useState(0);
@@ -24,7 +25,7 @@ export default function Card(card) {
   };
 
   const [{ opacity }, dragRef] = useDrag(() => ({
-    type: 'card',
+    type,
     item: card,
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1,
