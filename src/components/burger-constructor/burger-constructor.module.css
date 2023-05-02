@@ -11,10 +11,23 @@
 }
 
 .items {
-  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  /* margin: 10px 0; */
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0 8px 0 0;
+  /* padding-right: 30px;
+  padding-left: 30px; */
+  min-height: 60px;
+  border-radius: 20px;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  /* box-sizing: border-box; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  max-height: 400px;
 }
 
 .items::-webkit-scrollbar {
@@ -33,6 +46,31 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 10px;
+}
+.item:first-child {
+  margin-top: 0;
+}
+.item:last-child {
+  margin-bottom: 0;
+}
+
+/* .empty {
+  min-height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+} */
+
+.border {
+  border: 2px dashed #8585AD;
+  margin: 10px 20px 10px 40px;
 }
 
 .drag {

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDrop } from 'react-dnd';
@@ -12,11 +13,11 @@ import mockCards from '../../mocks/data';
 
 import style from './burger-constructor.module.css';
 
-const blockStyle = { display: 'flex', flexDirection: 'column', gap: '10px' };
+// const blockStyle = { display: 'flex', flexDirection: 'column', gap: '10px' };
 
 export default function BurgerConstructor({ cards, setItems }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const card = cards[0] ? cards[0] : mockCards[0];
+  const card = mockCards[0];
   const currentBun = {
     ...card,
     thumbnail: card.image,
@@ -41,7 +42,7 @@ export default function BurgerConstructor({ cards, setItems }) {
   const getBackgroundColor = () => {
     if (isOver) {
       if (canDrop) {
-        return 'rgb(188,251,255)';
+        return '#00cccc';
       } if (!canDrop) {
         return 'rgb(255,188,188)';
       }
@@ -57,10 +58,14 @@ export default function BurgerConstructor({ cards, setItems }) {
   };
 
   return (
-    <section className={style.main} ref={ref} style={{ backgroundColor: getBackgroundColor() }}>
+    <section className={style.main}>
       <ConstructorBlock {...currentBun} position="top" style={style} />
-      <ul className={style.items} style={blockStyle}>
-        {cards.map((x, i) => (
+      <ul
+        className={`${style.items} ${cards.length === 0 && style.border}`}
+        style={{ backgroundColor: getBackgroundColor() }}
+        ref={ref}
+      >
+        {cards.length === 0 ? '+' : cards.map((x, i) => (
           <ConstructorBlock key={i} {...x} style={style} removeElement={removeElement} />
         ))}
       </ul>
