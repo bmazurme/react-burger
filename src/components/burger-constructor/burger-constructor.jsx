@@ -7,6 +7,7 @@ import ConstructorFooter from '../constructor-footer';
 import OrderDetails from '../order-details';
 import Modal from '../modal';
 
+import getBackgroundColor from '../../utils/get-background-color';
 import { cardPropTypes } from '../../utils/types';
 
 import style from './burger-constructor.module.css';
@@ -31,55 +32,28 @@ export default function BurgerConstructor({ items, setItems }) {
   const getBorder = () => (isOver ? '2px dashed honeydew' : '');
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
-  const removeElement = (id) => setItems(
-    items
-      .filter((x) => x.id !== id)
-      .map((x, i) => ({ ...x, id: i })),
-  );
-
-  const getBackgroundColor = () => {
-    if (isOver) {
-      if (canDrop) {
-        return 'honeydew';
-      }
-
-      return 'mistyrose';
-    }
-
-    return '';
-  };
 
   return (
     <section className={style.main}>
-      <ConstructorBlock
-        {...currentBun}
-        position="top"
-        style={style}
-        setCurrent={setCurrentBun}
-      />
+      <ConstructorBlock {...currentBun} position="top" setCurrent={setCurrentBun} />
       <ul
         className={`${style.items} ${items.length === 0 && style.border}`}
-        style={{ backgroundColor: getBackgroundColor(), border: getBorder() }}
+        style={{ backgroundColor: getBackgroundColor(isOver, canDrop), border: getBorder() }}
         ref={refMain}
       >
-        {items.length === 0 ? <span className={style.description}>+</span> : items.map((x, i) => (
-          <ConstructorBlock
-            key={i}
-            {...x}
-            style={style}
-            items={items}
-            index={i}
-            setItems={setItems}
-            removeElement={removeElement}
-          />
-        ))}
+        {items.length === 0
+          ? <span className={`${style.description} text text_type_main-small`}>+ ингредиент</span>
+          : items.map((item, i) => (
+            <ConstructorBlock
+              key={i}
+              {...item}
+              items={items}
+              index={i}
+              setItems={setItems}
+            />
+          ))}
       </ul>
-      <ConstructorBlock
-        {...currentBun}
-        position="bottom"
-        style={style}
-        setCurrent={setCurrentBun}
-      />
+      <ConstructorBlock {...currentBun} position="bottom" setCurrent={setCurrentBun} />
       <ConstructorFooter openPopup={openPopup} />
       <Modal isOpen={isPopupOpen} onClose={closePopup} children={<OrderDetails />} />
     </section>

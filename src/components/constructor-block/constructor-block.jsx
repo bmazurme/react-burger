@@ -5,13 +5,18 @@ import { useDrop, useDrag } from 'react-dnd';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import bunStyle from './constructor-block.module.css';
+import getBackgroundColor from '../../utils/get-background-color';
+
+import style from './constructor-block.module.css';
 
 export default function ConstructorBlock(props) {
   const ref = useRef(null);
   const {
-    position, style, name, image, removeElement, index, setItems, items, setCurrent,
+    position, name, image, index, setItems, items, setCurrent,
   } = props;
+  const removeElement = (id) => setItems(
+    items.filter((x) => x.id !== id).map((x, i) => ({ ...x, id: i })),
+  );
 
   const moveCardHandler = (dragIndex, hoverIndex) => {
     const dragItem = items[dragIndex];
@@ -78,7 +83,7 @@ export default function ConstructorBlock(props) {
   });
 
   const [{ isOver, canDrop }, refBunTop] = useDrop({
-    accept: ['bun'],
+    accept: ['bun', 'main', 'sauce'],
     drop: (c) => {
       setCurrent({ ...c, thumbnail: c.image, isLocked: true });
 
@@ -91,18 +96,6 @@ export default function ConstructorBlock(props) {
     canDrop: ({ type }) => type === 'bun',
   });
 
-  const getBackgroundColor = () => {
-    if (isOver) {
-      if (canDrop) {
-        return 'honeydew';
-      }
-
-      return 'mistyrose';
-    }
-
-    return '';
-  };
-
   drag(drop(ref));
 
   return (
@@ -110,16 +103,16 @@ export default function ConstructorBlock(props) {
       ? (
         <div
           ref={refBunTop}
-          className={`${position === 'top' ? bunStyle.top : bunStyle.bottom} ${!name && bunStyle.border}`}
-          style={{ backgroundColor: getBackgroundColor() }}
+          className={`${position === 'top' ? style.top : style.bottom} ${!name && style.border}`}
+          style={{ backgroundColor: getBackgroundColor(isOver, canDrop) }}
         >
           {
           !name
-            ? <span className={style.description}>+</span>
+            ? <span className={`${style.description} text text_type_main-small`}>+ булку</span>
             : (
               <ConstructorElement
                 {...props}
-                type={position === 'top' ? 'top' : 'bottom'}
+                type={position}
                 text={`${name} (${position === 'top' ? 'верх' : 'низ'})`}
               />
             )
@@ -128,7 +121,7 @@ export default function ConstructorBlock(props) {
       )
       : (
         <li className={style.item} style={{ opacity }} ref={ref}>
-          <div className={`${style.drag} mr-4`}>
+          <div className={`${style.drag} mr-2`}>
             <DragIcon type="primary" />
           </div>
           <ConstructorElement
@@ -147,7 +140,5 @@ ConstructorBlock.protoType = {
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   position: PropTypes.string,
-  style: PropTypes.object.isRequired,
-  removeElement: PropTypes.func,
   setCurrent: PropTypes.func.isRequired,
 };
