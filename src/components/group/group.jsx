@@ -13,11 +13,7 @@ export default function Group({
     <>
       <h2 className={`${style.title} text text_type_main-medium pb-6 pt-6`} id={id}>{label}</h2>
       {cards.filter((x) => x.type === id).map((card, i) => (
-        <Card
-          {...card}
-          onClickIngredient={onClickIngredient}
-          key={i}
-        />
+        <Card key={i} {...card} onClickIngredient={onClickIngredient} />
       ))}
     </>
   );

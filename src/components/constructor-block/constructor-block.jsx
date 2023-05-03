@@ -1,18 +1,16 @@
-/* eslint-disable no-param-reassign */
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDrop, useDrag } from 'react-dnd';
 
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import ElementBun from '../element-bun';
+import ElementMain from '../element-main';
 
-import getBackgroundColor from '../../utils/get-background-color';
-
-import style from './constructor-block.module.css';
-
+// https://react-dnd.github.io/react-dnd/about
+// https://react-dnd.github.io/react-dnd/examples/sortable/simple
 export default function ConstructorBlock(props) {
   const ref = useRef(null);
   const {
-    position, name, image, index, setItems, items, setCurrent,
+    position, name, index, setItems, items, setCurrent,
   } = props;
   const removeElement = (id) => setItems(
     items.filter((x) => x.id !== id).map((x, i) => ({ ...x, id: i })),
@@ -100,37 +98,19 @@ export default function ConstructorBlock(props) {
 
   return (
     position
-      ? (
-        <div
-          ref={refBunTop}
-          className={`${position === 'top' ? style.top : style.bottom} ${!name && style.border}`}
-          style={{ backgroundColor: getBackgroundColor(isOver, canDrop) }}
-        >
-          {
-          !name
-            ? <span className={`${style.description} text text_type_main-small`}>+ булку</span>
-            : (
-              <ConstructorElement
-                {...props}
-                type={position}
-                text={`${name} (${position === 'top' ? 'верх' : 'низ'})`}
-              />
-            )
-        }
-        </div>
-      )
+      ? (<ElementBun
+          {...props}
+          isOver={isOver}
+          canDrop={canDrop}
+          refBunTop={refBunTop}
+        />)
       : (
-        <li className={style.item} style={{ opacity }} ref={ref}>
-          <div className={`${style.drag} mr-2`}>
-            <DragIcon type="primary" />
-          </div>
-          <ConstructorElement
-            {...props}
-            thumbnail={image}
-            text={name}
-            handleClose={() => removeElement(index)}
-          />
-        </li>
+        <ElementMain
+          {...props}
+          opacity={opacity}
+          refMain={ref}
+          removeElement={removeElement}
+        />
       ));
 }
 

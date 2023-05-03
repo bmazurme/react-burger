@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import img from '../../images/done.svg';
 import style from './order-details.module.css';
 
-export default function OrderDetails() {
+export default function OrderDetails({ number }) {
   return (
     <div className={`${style.container}`}>
       <h2 className="text text_type_digits-large mt-20 pt-15 pb-8">
-        034536
+        {number}
       </h2>
       <p className="text text_type_main-medium pb-15">
         идентификатор заказа
@@ -22,3 +23,7 @@ export default function OrderDetails() {
     </div>
   );
 }
+
+OrderDetails.protoType = {
+  number: PropTypes.number.isRequired,
+};

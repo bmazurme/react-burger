@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Groups from '../groups';
 import Tabs from '../tabs';
 import Modal from '../modal';
+import Groups from '../groups';
 import IngredientDetails from '../ingredient-details';
 
 import { cardPropTypes } from '../../utils/types';
