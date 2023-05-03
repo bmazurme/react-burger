@@ -20,7 +20,11 @@ export default function ElementBun(props) {
     >
       {
         !name
-          ? <span className={`${style.description} text text_type_main-small`}>+ булку</span>
+          ? (
+            <span className={`${style.description} text text_type_main-small text_color_inactive`}>
+              + булку
+            </span>
+          )
           : (
             <ConstructorElement
               {...props}

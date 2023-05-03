@@ -33,7 +33,11 @@ export default function ConstructorBlocks({ items, setItems }) {
       ref={refMain}
     >
       {items.length === 0
-        ? <span className={`${style.description} text text_type_main-small`}>+ ингредиент</span>
+        ? (
+          <span className={`${style.description} text text_type_main-small text_color_inactive`}>
+            + ингредиент
+          </span>
+        )
         : items.map((item, i) => (
           <ConstructorBlock
             key={i}
