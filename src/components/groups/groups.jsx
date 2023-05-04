@@ -31,4 +31,4 @@ Groups.protoType = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
   groups: PropTypes.arrayOf(groupPropTypes),
   onClickIngredient: PropTypes.func.isRequired,
-}
+};

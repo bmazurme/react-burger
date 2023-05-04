@@ -9,9 +9,9 @@
 ![CSS3](https://img.shields.io/badge/-CSS3-black?style=flat-square&logo=css3)
 
 ### About
-- [ ] Sprint 1
+- [X] Sprint 1
   - [X] Step 1
-  - [ ] Step 2
+  - [X] Step 2
 
 ### Demo
 ...
@@ -23,7 +23,11 @@ Install dependencies: `npm install`
 
 Build project: `npm run build`
 
-Run dev mode: `npm run start`
+Run dev mode: `npm run dev`
+
+Run prod mode: `npm run start`
+
+Clear: `npm run clear`
 
 #### Implemented features:
 - [ ] Routing
@@ -35,6 +39,7 @@ Run dev mode: `npm run start`
 ##### Sprint 1 / Step 1
 - [X] App
   - [X] AppHeader
+    - [X] MenuButton
   - [X] BurgerConstructor
   - [X] BurgerIngredients
     - [X] CardGroup
@@ -50,8 +55,13 @@ Run dev mode: `npm run start`
 - [ ] withUser
 
 ### hooks:
+- [X] useWindowDimensions
 - [X] useQuery
 - [ ] useUser
+
+Webpack dev, prod config
+
+Eslint
 
 ### Links
 * [Link to figma](https://www.figma.com/file/zFGN2O5xktHl9VmoOieq5E/React-_-%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8_external_link)

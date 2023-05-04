@@ -1,32 +1,58 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import { useDrag } from 'react-dnd';
+import { useSelector } from 'react-redux';
 
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
+import { selectBurger } from '../../store/slices/burger-slice';
 import { cardPropTypes } from '../../utils/types';
 
 import style from './card.module.css';
 
 export default function Card(card) {
+  const {
+    _id,
+    image,
+    name,
+    price,
+    type,
+    onClickIngredient,
+  } = card;
+  const { bun = null, mainOrSauce = [] } = useSelector(selectBurger);
+  const onClick = () => onClickIngredient(card);
+  const count = [bun, ...mainOrSauce].filter((x) => x?._id === _id).length;
+
+  const [{ opacity }, dragRef] = useDrag(() => ({
+    type,
+    item: card,
+    collect: (monitor) => ({ opacity: monitor.isDragging() ? 0.5 : 1 }),
+  }));
+
   return (
-    <li key={card._id} className={`${style.card} pl-4`} onClick={() => card.onClickIngredient(card)}>
+    <li
+      ref={dragRef}
+      style={{ opacity }}
+      className={`${style.card} pl-4`}
+      onClick={onClick}
+    >
       <img
         className={`${style.image}`}
-        src={card.image}
-        alt={card.name}
+        src={image}
+        alt={name}
         loading="lazy"
       />
       <div className={`${style.price} pt-1 pb-2`}>
-        <p className='text text_type_digits-default pr-2'>{card.price}</p>
+        <p className="text text_type_digits-default pr-2">{price}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <p className={`${style.name} text text_type_main-default pb-10`}>
-        {card.name}
-      </p>
-      <Counter count={1} size="default" />
+      <p className={`${style.name} text text_type_main-default pb-10`}>{name}</p>
+      {count > 0 && <Counter count={count} size="default" />}
     </li>
   );
 }
 
 Card.protoType = {
-	card: cardPropTypes.isRequired
-}
+  card: cardPropTypes.isRequired,
+};

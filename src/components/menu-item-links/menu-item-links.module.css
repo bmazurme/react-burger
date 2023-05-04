@@ -1,0 +1,29 @@
+.sublinks {
+  margin: 0;
+  padding: 0 10px 10px 32px;
+  list-style: none;
+}
+
+.sublink {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.sublink:last-child {
+  padding-bottom: 0;
+}
+
+@media screen and (min-width: 1023px) {
+  .sublinks {
+    border-radius: 10px;
+    background-color: var(--header-bg-color);
+    position: absolute;
+    top: 40px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 639px) {
+  .item {
+    width: 100%;
+  }
+}

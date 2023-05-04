@@ -1,31 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import ElementBun from '../element-bun';
+import ElementMain from '../element-main';
 
 export default function ConstructorBlock(props) {
-  const { position, style } = props;
+  const { position } = props;
 
-  return (position
-    ? <div className={style.top}>
-        <ConstructorElement
-          {...props}
-          type={position === 'top' ? 'top' : 'bottom'}
-          text={`${props.name} (${position === 'top' ? 'верх' : 'низ'})`}
-        />
-      </div>
-    : <li className={style.item}>
-        <div className={`${style.drag} mr-4`}>
-          <DragIcon type="primary" />
-        </div>
-        <ConstructorElement {...props} thumbnail={props.image} text={props.name} />
-      </li>);
+  return (position ? <ElementBun position={position} /> : <ElementMain {...props} />);
 }
 
 ConstructorBlock.protoType = {
+  _id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   position: PropTypes.string,
-  style: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-}
+};
