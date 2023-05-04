@@ -32,6 +32,7 @@
     "start": "node ./dist/server/server.js",
     "build": "webpack --mode production --config webpack.prod.js",
     "eslint": "npx eslint ./src",
+    "stlint": "npx stylelint '**/*.css' --fix",
     "clear": "rm -rf dist/",
     "test": "test"
   },
@@ -70,6 +71,8 @@
     "interpolate-html-plugin": "4.0.0",
     "source-map-loader": "4.0.1",
     "style-loader": "3.3.2",
+    "stylelint": "15.6.1",
+    "stylelint-config-standard-scss": "9.0.0",
     "terser-webpack-plugin": "5.3.7",
     "webpack-cli": "5.0.2",
     "webpack-merge": "5.8.0"

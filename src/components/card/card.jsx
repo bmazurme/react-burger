@@ -18,10 +18,10 @@ export default function Card(card) {
     name,
     price,
     type,
-    onClickIngredient,
+    onClick,
   } = card;
   const { bun = null, mainOrSauce = [] } = useSelector(selectBurger);
-  const onClick = () => onClickIngredient(card);
+  const onClickCard = () => onClick(card);
   const count = [bun, ...mainOrSauce].filter((x) => x?._id === _id).length;
 
   const [{ opacity }, dragRef] = useDrag(() => ({
@@ -35,7 +35,7 @@ export default function Card(card) {
       ref={dragRef}
       style={{ opacity }}
       className={`${style.card} pl-4`}
-      onClick={onClick}
+      onClick={onClickCard}
     >
       <img
         className={`${style.image}`}

@@ -6,18 +6,12 @@ import { cardPropTypes } from '../../utils/types';
 
 import style from './groups.module.css';
 
-export default function Groups({ cards, groups, onClickIngredient }) {
+export default function Groups(props) {
+  const { groups } = props;
+  
   return (
     <ul className={style.groups}>
-      {groups.map(({ id, label }, i) => (
-        <Group
-          id={id}
-          label={label}
-          cards={cards}
-          onClickIngredient={onClickIngredient}
-          key={i}
-        />
-      ))}
+      {groups.map((group, i) => <Group {...group} {...props} key={i} />)}
     </ul>
   );
 }
@@ -30,5 +24,5 @@ const groupPropTypes = PropTypes.shape({
 Groups.protoType = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
   groups: PropTypes.arrayOf(groupPropTypes),
-  onClickIngredient: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
