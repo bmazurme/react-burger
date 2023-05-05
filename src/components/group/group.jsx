@@ -7,11 +7,11 @@ import { cardPropTypes } from '../../utils/types';
 import style from './group.module.css';
 
 export default function Group({
-  id, label, cards, onClick,
+  id, label, cards, onClick, refCurr,
 }) {
   return (
     <>
-      <h2 className={`${style.title} text text_type_main-medium pb-6 pt-6`} id={id}>{label}</h2>
+      <h2 ref={refCurr} className={`${style.title} text text_type_main-medium pb-6 pt-6`} id={id}>{label}</h2>
       {cards.filter((x) => x.type === id).map((card, i) => <Card key={i} {...card} onClick={onClick} />)}
     </>
   );

@@ -12,6 +12,7 @@
 - [X] Sprint 1
   - [X] Step 1
   - [X] Step 2
+- [ ] Sprint 2
 
 ### Demo
 ...
@@ -30,10 +31,12 @@ Run prod mode: `npm run start`
 Clear: `npm run clear`
 
 #### Implemented features:
+- [X] Drag-n-drop
 - [ ] Routing
 - [ ] API
   - [X] BurgerIngredients
 - [ ] Store
+  - [X] Burger
 
 #### Components:
 ##### Sprint 1 / Step 1
