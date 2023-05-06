@@ -42,7 +42,12 @@ export default function BurgerIngredients({ cards }) {
     <section className={`${style.main}`}>
       <h2 className="text text_type_main-large">Соберите бургер</h2>
       <Tabs tabs={tabs} current={current} setCurrent={onToggleTab} />
-      <Groups groups={groups} cards={cards} onClick={onClickIngredient} />
+      <Groups
+        groups={groups}
+        cards={cards}
+        onClick={onClickIngredient}
+        setCurrent={setCurrent}
+      />
       <Modal
         isOpen={isPopupOpen}
         title="Детали ингредиента"

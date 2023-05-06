@@ -41,7 +41,7 @@ export default function Card(card) {
         className={`${style.image}`}
         src={image}
         alt={name}
-        loading="lazy"
+        // loading="lazy"
       />
       <div className={`${style.price} pt-1 pb-2`}>
         <p className="text text_type_digits-default pr-2">{price}</p>

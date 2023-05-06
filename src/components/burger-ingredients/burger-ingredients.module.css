@@ -8,4 +8,5 @@
   width: auto;
   overflow: hidden;
   max-height: calc(100% - 60px);
+  scroll-behavior: smooth;
 }
