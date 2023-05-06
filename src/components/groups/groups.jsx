@@ -11,7 +11,6 @@ export default function Groups(props) {
   const refs1 = useRef();
   const refs2 = useRef();
   const refs3 = useRef();
-  ///const refs = Array(groups.length).fill(useRef());
   const refs = [refs1, refs2, refs3];
   const groupsWithRef = groups.map((x, i) => ({ ...x, refCurr: refs[i] }));
 
