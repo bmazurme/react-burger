@@ -20,4 +20,4 @@ export default function buildProperties({ baseUrl, props }) {
 buildProperties.protoType = {
   baseUrl: PropTypes.string.isRequired,
   props: PropTypes.objectOf(propsTypes),
-}
+};

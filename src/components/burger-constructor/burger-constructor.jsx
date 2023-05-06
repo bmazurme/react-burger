@@ -1,45 +1,48 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext, useEffect } from 'react';
 
 import ConstructorBlock from '../constructor-block';
+import ConstructorBlocks from '../constructor-blocks';
 import ConstructorFooter from '../constructor-footer';
-import Modal from '../modal';
 import OrderDetails from '../order-details';
+import Modal from '../modal';
 
-import { cardPropTypes } from '../../utils/types';
-import mockCards from '../../mocks/data';
+import useMutation from '../../hooks/use-mutation';
+import { BurgerContext } from '../../context/burger-context';
 
 import style from './burger-constructor.module.css';
 
-const blockStyle = { display: 'flex', flexDirection: 'column', gap: '10px' };
-
-export default function BurgerConstructor({ cards }) {
+export default function BurgerConstructor() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const card = cards[0] ? cards[0] : mockCards[0];
-  const currentBun = {
-    ...card,
-    thumbnail: card.image,
-    isLocked: true,
-  };
-
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
+  const { burger } = useContext(BurgerContext);
+  const { bun, mainOrSauce } = burger;
+  const { state, postOrder } = useMutation({ url: 'orders' });
+
+  const onClick = async () => {
+    const data = { 
+      ingredients: [bun, ...mainOrSauce]
+        .filter((x) => x?._id)
+        .map((x) => x?._id),
+    };
+
+    if (data.ingredients.length > 0) {
+      await postOrder({ url: 'orders', method: 'POST', body: data });
+      openPopup();
+    }
+  };
 
   return (
     <section className={style.main}>
-      <ConstructorBlock {...currentBun} position="top" style={style} />
-      <ul className={style.items} style={blockStyle} >
-        {cards.map((x, i) => (
-          <ConstructorBlock key={i} { ...x } style={style} />
-        ))}
-      </ul>
-      <ConstructorBlock {...currentBun} position="bottom" style={style} />
-      <ConstructorFooter openPopup={openPopup} />
-      <Modal isOpen={isPopupOpen} onClose={closePopup} children={<OrderDetails />} />
+      <ConstructorBlock position="top" />
+      <ConstructorBlocks />
+      <ConstructorBlock position="bottom" />
+      <ConstructorFooter openPopup={onClick} />
+      <Modal
+        isOpen={isPopupOpen}
+        onClose={closePopup}
+        children={<OrderDetails number={state.data?.order?.number} />}
+      />
     </section>
   );
-}
-
-BurgerConstructor.protoType = {
-  cards: PropTypes.arrayOf(cardPropTypes).isRequired,
 }

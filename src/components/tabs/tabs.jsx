@@ -29,4 +29,4 @@ Tabs.protoType = {
   tabs: PropTypes.arrayOf(tabPropTypes).isRequired,
   current: PropTypes.string.isRequired,
   setCurrent: PropTypes.func,
-}
+};

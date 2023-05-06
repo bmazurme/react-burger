@@ -6,8 +6,16 @@
   column-gap: 40px;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 10px;
   max-width: var(--width-xl);
   max-height: calc(100vh - 88px);
   height: 100%;
+}
+
+@media screen and (width >= 320px) and (width <= 1023px) {
+  .main {
+    display: flex;
+    justify-content: center;
+    max-width: 640px;
+  }
 }

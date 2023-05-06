@@ -19,8 +19,7 @@
 .list {
 	list-style: none;
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
 	margin: 0;
 	padding-left: 0;
 	padding-right: 0;

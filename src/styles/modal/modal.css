@@ -1,4 +1,4 @@
 .modal {
-  --header-bg-color: #1C1C21;
-	--background-overlay: rgba(0, 0, 0, 0.6);
+  --header-bg-color: #1c1c21;
+	--background-overlay: rgb(0 0 0 / 60%);
 }

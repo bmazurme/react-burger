@@ -1,7 +1,23 @@
 .item {
   display: flex;
-	align-items: center;
+	align-items: start;
+  min-width: 178px;
   width: auto;
+  padding: 10px 0;
+  margin: 0;
+  box-sizing: border-box;
+  flex-direction: column;
+  position: relative;
+}
+
+.container {
+  display: flex;
+	align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .link {
@@ -16,4 +32,10 @@
 .link:active, .link:hover {
   text-decoration: none;
   color: var(--color);
+}
+
+@media screen and (width >= 320px) and (width <= 639px) {
+  .item {
+    width: 100%;
+  }
 }

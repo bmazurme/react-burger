@@ -1,50 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import {
-  Logo, BurgerIcon, ListIcon, ProfileIcon,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import Logo from '../logo';
 import Menu from '../menu';
+import MenuButton from '../menu-button';
 
 import withExtraClass from '../../hocs/with-extra-class';
 
-import style from './app-header.module.css';
+import mainLinks from '../../mocks/main-links';
 
-const mainLinks = [
-  {
-    id: 0,
-    label: 'Конструктор',
-    active: true,
-    extraClass: '',
-    icon: BurgerIcon,
-  },
-  {
-    id: 1,
-    label: 'Лента заказов',
-    active: false,
-    extraClass: 'ml-2',
-    icon: ListIcon,
-  },
-];
-const userLinks = [
-  {
-    id: 0,
-    label: 'Личный кабинет',
-    active: false,
-    extraClass: '',
-    icon: ProfileIcon,
-  },
-];
+import style from './app-header.module.css';
 
 const MainMenu = withExtraClass(style.main_menu)(Menu);
 const UserMenu = withExtraClass(style.user_menu)(Menu);
 
 export default function AppHeader() {
+  const [links, setLinks] = useState(mainLinks);
+  const onClick = (id) => setLinks(links
+    .map((item) => (id === item.id ? { ...item, active: true } : { ...item, active: false })));
+
   return (
     <header className={style.header}>
       <div className={style.container}>
-        <MainMenu links={mainLinks} />
+        <nav className={style.main_menu}>
+          <MainMenu links={links.slice(0, 2)} onClick={onClick} />
+        </nav>
         <Logo />
-        <UserMenu links={userLinks} />
+        <nav className={style.user_menu}>
+          <UserMenu links={links.slice(2)} onClick={onClick} />
+        </nav>
+        <MenuButton links={links} onClick={onClick} />
       </div>
     </header>
   );

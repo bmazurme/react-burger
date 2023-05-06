@@ -13,8 +13,8 @@ function Content({ header, children }) {
 }
 
 Content.protoType = {
-	header: PropTypes.bool,
+  header: PropTypes.bool,
   children: PropTypes.node.isRequired,
-}
+};
 
 export default Content;
