@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import ConstructorBlock from '../constructor-block';
 import ConstructorBlocks from '../constructor-blocks';
@@ -12,12 +12,9 @@ import { BurgerContext } from '../../context/burger-context';
 import style from './burger-constructor.module.css';
 
 export default function BurgerConstructor() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const openPopup = () => setIsPopupOpen(true);
-  const closePopup = () => setIsPopupOpen(false);
   const { burger } = useContext(BurgerContext);
   const { bun, mainOrSauce } = burger;
-  const { state, postOrder } = useMutation({ url: 'orders' });
+  const { state, post, clear } = useMutation({ url: 'orders' });
 
   const onClick = async () => {
     const data = { 
@@ -27,8 +24,7 @@ export default function BurgerConstructor() {
     };
 
     if (data.ingredients.length > 0) {
-      await postOrder({ url: 'orders', method: 'POST', body: data });
-      openPopup();
+      await post({ url: 'orders', method: 'POST', body: data });
     }
   };
 
@@ -38,11 +34,13 @@ export default function BurgerConstructor() {
       <ConstructorBlocks />
       <ConstructorBlock position="bottom" />
       <ConstructorFooter openPopup={onClick} />
-      <Modal
-        isOpen={isPopupOpen}
-        onClose={closePopup}
-        children={<OrderDetails number={state.data?.order?.number} />}
-      />
+
+      {state.data?.order?.number &&
+        <Modal
+          isOpen={state.data?.order?.number}
+          onClose={clear}
+          children={<OrderDetails number={state.data?.order?.number} />}
+        />}
     </section>
   );
 }

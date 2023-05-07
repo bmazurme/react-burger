@@ -6,11 +6,13 @@ import Modal from '../modal';
 import Groups from '../groups';
 import IngredientDetails from '../ingredient-details';
 
+import { MAIN, BUN, SAUCE } from '../../utils/constants';
+
 import { cardPropTypes } from '../../utils/types';
 
 import style from './burger-ingredients.module.css';
 
-const groups = [{ id: 'bun', label: 'Булки' }, { id: 'main', label: 'Начинки' }, { id: 'sauce', label: 'Соусы' }];
+const groups = [{ id: BUN, label: 'Булки' }, { id: MAIN, label: 'Начинки' }, { id: SAUCE, label: 'Соусы' }];
 const tabs = groups.map((x, i) => ({ id: i.toString(), label: x.label }));
 
 export default function BurgerIngredients({ cards }) {
@@ -48,12 +50,15 @@ export default function BurgerIngredients({ cards }) {
         onClick={onClickIngredient}
         setCurrent={setCurrent}
       />
-      <Modal
-        isOpen={isPopupOpen}
-        title="Детали ингредиента"
-        onClose={closePopup}
-        children={<IngredientDetails currentIngredient={currentIngredient} />}
-      />
+      {isPopupOpen &&
+        <Modal
+          isOpen={isPopupOpen}
+          title="Детали ингредиента"
+          onClose={closePopup}
+          children={<IngredientDetails currentIngredient={currentIngredient} />}
+        />
+      }
+
     </section>
   );
 }

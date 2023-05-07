@@ -9,7 +9,7 @@ import { BASE_URL } from '../utils/config';
 export default function useMutation(props) {
   const [state, setState] = useState({ data: [], hasError: false, isLoading: false });
 
-  const postOrder = async (body) => {
+  const post = async (body) => {
     const { currentUrl, options } = buildProperties({ baseUrl: BASE_URL, props: body });
 
     try {
@@ -19,7 +19,7 @@ export default function useMutation(props) {
         const data = await response.json();
         setState({ data, hasError: false, isLoading: false });
       } else {
-        console.log('error response', response.status);
+        // console.log('error response', response.status);
         setState({ data: [], hasError: true, isLoading: false });
       }
     } catch (e) {
@@ -29,7 +29,9 @@ export default function useMutation(props) {
 
   };
 
-  return ({ state, postOrder });
+  const clear = () => setState({ data: [], hasError: false, isLoading: false });
+
+  return ({ state, post, clear });
 }
 
 useMutation.protoType = {
