@@ -40,7 +40,7 @@ Clear: `npm run clear`
 - [ ] API
   - [X] BurgerIngredients
 - [ ] Store
-  - [ ] Burger
+  - [X] Burger
 
 #### Components:
 ##### Sprint 1 / Step 1
@@ -63,8 +63,8 @@ Clear: `npm run clear`
 
 ### hooks:
 - [X] useWindowDimensions
-- [X] useQuery
-- [X] useMutation
+- [X] useQuery - > rtk
+- [X] useMutation - > rtk
 - [ ] useUser
 
 Webpack dev, prod config

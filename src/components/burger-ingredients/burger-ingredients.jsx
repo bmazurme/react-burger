@@ -6,9 +6,9 @@ import Modal from '../modal';
 import Groups from '../groups';
 import IngredientDetails from '../ingredient-details';
 
-import { MAIN, BUN, SAUCE } from '../../utils/constants';
-
 import { cardPropTypes } from '../../utils/types';
+
+import { MAIN, BUN, SAUCE } from '../../utils/constants';
 
 import style from './burger-ingredients.module.css';
 
@@ -56,9 +56,7 @@ export default function BurgerIngredients({ cards }) {
           title="Детали ингредиента"
           onClose={closePopup}
           children={<IngredientDetails currentIngredient={currentIngredient} />}
-        />
-      }
-
+        />}
     </section>
   );
 }

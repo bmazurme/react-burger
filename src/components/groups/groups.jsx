@@ -20,7 +20,7 @@ export default function Groups(props) {
     const groupBun = refs1.current.scrollHeight;
     const groupMain = refs2.current.scrollHeight;
     const groupSauce = refs3.current.scrollHeight;
-    
+
     if (scroll < groupBun) {
       setCurrent('0');
     } else if (scroll >= groupBun && scroll + scrollViewHeight * 0.5 < groupBun + groupMain) {

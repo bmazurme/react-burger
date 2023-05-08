@@ -1,4 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 import ConstructorBlock from '../constructor-block';
 import ConstructorBlocks from '../constructor-blocks';
@@ -6,15 +8,16 @@ import ConstructorFooter from '../constructor-footer';
 import OrderDetails from '../order-details';
 import Modal from '../modal';
 
-import useMutation from '../../hooks/use-mutation';
-import { BurgerContext } from '../../context/burger-context';
+import { selectBurger, setNumber } from '../../store/slices/burger-slice';
+import { usePostOrderMutation } from '../../store/api/order-api/endpoints';
 
 import style from './burger-constructor.module.css';
 
 export default function BurgerConstructor() {
-  const { burger } = useContext(BurgerContext);
-  const { bun, mainOrSauce } = burger;
-  const { state, post, clear } = useMutation({ url: 'orders' });
+  const dispatch = useDispatch();
+  const closePopup = () => dispatch(setNumber(null));;
+  const { bun, mainOrSauce, number } = useSelector(selectBurger);
+  const [postOrder] = usePostOrderMutation();
 
   const onClick = async () => {
     const data = { 
@@ -23,9 +26,8 @@ export default function BurgerConstructor() {
         .map((x) => x?._id),
     };
 
-    if (data.ingredients.length > 0) {
-      await post({ url: 'orders', method: 'POST', body: data });
-    }
+    const { data: result } = await postOrder(data);
+    dispatch(setNumber(result?.order?.number));
   };
 
   return (
@@ -33,13 +35,12 @@ export default function BurgerConstructor() {
       <ConstructorBlock position="top" />
       <ConstructorBlocks />
       <ConstructorBlock position="bottom" />
-      <ConstructorFooter openPopup={onClick} />
-
-      {state.data?.order?.number &&
+      <ConstructorFooter onClick={onClick} />
+      {number && 
         <Modal
-          isOpen={state.data?.order?.number}
-          onClose={clear}
-          children={<OrderDetails number={state.data?.order?.number} />}
+          isOpen={number}
+          onClose={closePopup}
+          children={<OrderDetails number={number} />}
         />}
     </section>
   );

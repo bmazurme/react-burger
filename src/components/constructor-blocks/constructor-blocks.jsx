@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
-import { BurgerContext } from '../../context/burger-context';
 import ConstructorBlock from '../constructor-block';
+
+import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
 import getBackgroundColor from '../../utils/get-background-color';
 import filterObject from '../../utils/filter-object';
 
@@ -13,15 +15,13 @@ import {
 import style from './constructor-blocks.module.css';
 
 export default function ConstructorBlocks() {
-  const { burger, setBurger } = useContext(BurgerContext);
+  const dispatch = useDispatch();
+  const burger = useSelector(selectBurger);
   const { mainOrSauce: items = [] } = burger;
   const [{ isOver, canDrop }, refMain] = useDrop({
     accept: [MAIN, SAUCE, BUN, COLUMN],
     drop: (c) => {
-      setBurger({
-        ...burger,
-        mainOrSauce: [filterObject(c), ...items].map((x, i) => ({ ...x, index: i }))
-      });
+      dispatch(setMainOrSauce({ ...filterObject(c) }));
 
       return c;
     },

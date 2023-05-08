@@ -1,18 +1,17 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useContext } from 'react';
+import React from 'react';
 import { useDrag } from 'react-dnd';
-import { BurgerContext } from '../../context/burger-context';
+import { useSelector } from 'react-redux';
 
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
+import { selectBurger } from '../../store/slices/burger-slice';
 import { cardPropTypes } from '../../utils/types';
 
 import style from './card.module.css';
 
 export default function Card(card) {
-  const { burger } = useContext(BurgerContext);
-
   const {
     _id,
     image,
@@ -21,7 +20,7 @@ export default function Card(card) {
     type,
     onClick,
   } = card;
-  const { bun = null, mainOrSauce = [] } = burger;
+  const { bun = null, mainOrSauce = [] } = useSelector(selectBurger);
   const onClickCard = () => onClick(card);
   const count = [bun, ...mainOrSauce].filter((x) => x?._id === _id).length;
 
