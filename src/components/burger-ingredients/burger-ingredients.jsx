@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Groups from '../groups';
 import Tabs from '../tabs';
 import Modal from '../modal';
+import Groups from '../groups';
 import IngredientDetails from '../ingredient-details';
+
+import { MAIN, BUN, SAUCE } from '../../utils/constants';
 
 import { cardPropTypes } from '../../utils/types';
 
 import style from './burger-ingredients.module.css';
 
-const groups = [{ id: 'bun', label: 'Булки' }, { id: 'main', label: 'Начинки' }, { id: 'sauce', label: 'Соусы' }];
+const groups = [{ id: BUN, label: 'Булки' }, { id: MAIN, label: 'Начинки' }, { id: SAUCE, label: 'Соусы' }];
 const tabs = groups.map((x, i) => ({ id: i.toString(), label: x.label }));
 
 export default function BurgerIngredients({ cards }) {
@@ -23,8 +25,8 @@ export default function BurgerIngredients({ cards }) {
     setIsPopupOpen(false);
   };
 
-  const onClickIngredient = (current) => {
-    setCurrentIngredient(current);
+  const onClickIngredient = (ingredient) => {
+    setCurrentIngredient(ingredient);
     setIsPopupOpen(true);
   };
 
@@ -40,19 +42,27 @@ export default function BurgerIngredients({ cards }) {
 
   return (
     <section className={`${style.main}`}>
-      <h2 className={`text text_type_main-large`}>Соберите бургер</h2>
+      <h2 className="text text_type_main-large">Соберите бургер</h2>
       <Tabs tabs={tabs} current={current} setCurrent={onToggleTab} />
-      <Groups groups={groups} cards={cards} onClickIngredient={onClickIngredient} />
-      {<Modal
-        isOpen={isPopupOpen}
-        title="Детали ингредиента"
-        onClose={closePopup}
-        children={<IngredientDetails currentIngredient={currentIngredient} />}
-      />}
+      <Groups
+        groups={groups}
+        cards={cards}
+        onClick={onClickIngredient}
+        setCurrent={setCurrent}
+      />
+      {isPopupOpen &&
+        <Modal
+          isOpen={isPopupOpen}
+          title="Детали ингредиента"
+          onClose={closePopup}
+          children={<IngredientDetails currentIngredient={currentIngredient} />}
+        />
+      }
+
     </section>
   );
 }
 
 BurgerIngredients.protoType = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
-}
+};

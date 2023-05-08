@@ -1,4 +1,23 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.ingredients {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  column-gap: 24px;
+  margin: 0;
+  padding: 0 8px 0 0;
+  list-style: none;
+  height: 100%;
+}
+
 .title {
-  grid-column-start: 1;
-  grid-column-end: 3;
+  width: 100%;
+  padding: 40px 8px 40px 0;
 }
