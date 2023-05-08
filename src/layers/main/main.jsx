@@ -21,8 +21,6 @@ export default function Main() {
   const { data: rawData } = data;
   const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
-  console.log(cards);
-
   return (isLoading
     ? <Preloader />
     : (<DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>

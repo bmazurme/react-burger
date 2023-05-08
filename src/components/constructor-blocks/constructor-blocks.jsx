@@ -8,6 +8,10 @@ import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
 import getBackgroundColor from '../../utils/get-background-color';
 import filterObject from '../../utils/filter-object';
 
+import {
+  MAIN, BUN, SAUCE, COLUMN,
+} from '../../utils/constants';
+
 import style from './constructor-blocks.module.css';
 
 export default function ConstructorBlocks() {
@@ -15,7 +19,7 @@ export default function ConstructorBlocks() {
   const burger = useSelector(selectBurger);
   const { mainOrSauce: items = [] } = burger;
   const [{ isOver, canDrop }, refMain] = useDrop({
-    accept: ['main', 'sauce', 'bun', 'column'],
+    accept: [MAIN, SAUCE, BUN, COLUMN],
     drop: (c) => {
       dispatch(setMainOrSauce({ ...filterObject(c) }));
 
@@ -25,7 +29,7 @@ export default function ConstructorBlocks() {
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
-    canDrop: ({ type }) => type === 'main' || type === 'sauce',
+    canDrop: ({ type }) => type === MAIN || type === SAUCE,
   });
   const getBorder = () => (isOver ? '2px dashed honeydew' : '');
   const getClass = () => `${style.description} text text_type_main-small text_color_inactive`;

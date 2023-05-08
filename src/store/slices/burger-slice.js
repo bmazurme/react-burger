@@ -5,6 +5,7 @@ const initialState = {
     bun: null,
     mainOrSauce: [],
     price: 0,
+    number: null,
   },
 };
 
@@ -54,10 +55,16 @@ const slice = createSlice({
       state,
       { payload: data },
     ) => ({ ...state, data: { ...state.data, mainOrSauce: [...data] } }),
+    setNumber: (
+      state,
+      { payload: data },
+    ) => ({ ...state, data: { ...state.data, number: data } }),
   },
 });
 
-export const { setBun, setMainOrSauce, removeIngredient, setItems } = slice.actions;
+export const {
+  setBun, setMainOrSauce, removeIngredient, setItems, setNumber
+} = slice.actions;
 
 export default slice.reducer;
 

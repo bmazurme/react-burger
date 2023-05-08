@@ -3,6 +3,9 @@ import { configureStore } from '@reduxjs/toolkit';
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from '@reduxjs/toolkit/query';
 
+import { compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
 import burgerSlice from './slices/burger-slice';
 // import orderSlice from './slices/order-slice';
 import userSlice from './slices/user-slice';
@@ -12,6 +15,14 @@ import { orderApi } from './api/order-api/create-api';
 import { userApi } from './api/user-api/create-api';
 
 export * from './api/ingredient-api/endpoints';
+
+const composeEnhancers =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
+
+export const enhancer = composeEnhancers(applyMiddleware(thunk));
+
 
 export const store = configureStore({
   reducer: {
@@ -28,6 +39,7 @@ export const store = configureStore({
       userApi.middleware,
       orderApi.middleware,
     ),
+  devTools:[ enhancer({ realtime: true }) ]
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

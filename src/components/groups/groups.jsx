@@ -21,8 +21,6 @@ export default function Groups(props) {
     const groupMain = refs2.current.scrollHeight;
     const groupSauce = refs3.current.scrollHeight;
 
-    console.log(scroll, groupBun, groupMain, groupSauce, groupBun + groupMain, groupBun + groupMain + groupSauce - scrollViewHeight);
-
     if (scroll < groupBun) {
       setCurrent('0');
     } else if (scroll >= groupBun && scroll + scrollViewHeight * 0.5 < groupBun + groupMain) {

@@ -9,6 +9,8 @@ import { setBun, selectBurger } from '../../store/slices/burger-slice';
 import getBackgroundColor from '../../utils/get-background-color';
 import filterObject from '../../utils/filter-object';
 
+import { MAIN, BUN, SAUCE } from '../../utils/constants';
+
 import style from './element-bun.module.css';
 
 export default function ElementBun(props) {
@@ -19,7 +21,7 @@ export default function ElementBun(props) {
   const getClass = () => `${style.description} text text_type_main-small text_color_inactive`;
 
   const [{ isOver, canDrop }, refBunTop] = useDrop({
-    accept: ['bun', 'main', 'sauce'],
+    accept: [BUN, MAIN, SAUCE],
     drop: (c) => {
       dispatch(setBun({ ...filterObject(c), isLocked: true }));
 
@@ -29,7 +31,7 @@ export default function ElementBun(props) {
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
-    canDrop: ({ type }) => type === 'bun',
+    canDrop: ({ type }) => type === BUN,
   });
 
   return (
