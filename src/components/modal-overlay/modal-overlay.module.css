@@ -12,10 +12,12 @@
 	visibility: hidden;
 	opacity: 0;
 	transition: 0.8s ease-out;
+	overflow: hidden;
 }
 
 .overlay_open {
 	visibility: visible;
 	opacity: 1;
 	transition: 0.8s ease-out;
+	overflow: visible;
 }

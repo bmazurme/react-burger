@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import { v4 as uuidv4 } from 'uuid';
 
 import ConstructorBlock from '../constructor-block';
 
@@ -42,7 +43,7 @@ export default function ConstructorBlocks() {
     >
       {items.length === 0
         ? <span className={getClass()}>+ ингредиент</span>
-        : items.map((item, i) => (<ConstructorBlock key={i} {...item} index={i} />))}
+        : items.map((item, i) => (<ConstructorBlock key={uuidv4()} {...item} index={i} />))}
     </ul>
   );
 }

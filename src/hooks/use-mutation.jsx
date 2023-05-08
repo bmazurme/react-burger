@@ -34,7 +34,7 @@ export default function useMutation(props) {
   return ({ state, post, clear });
 }
 
-useMutation.protoType = {
+useMutation.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   props: PropTypes.objectOf(propsTypes),
 };

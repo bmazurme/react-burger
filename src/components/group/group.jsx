@@ -13,7 +13,7 @@ export default function Group({
     <li className={style.group} ref={refCurr}>
       <h2 className={`${style.title} text text_type_main-medium pb-6 pt-6`} id={id}>{label}</h2>
       <ul className={style.ingredients}>
-        {cards.filter((x) => x.type === id).map((card, i) => <Card key={i} {...card} onClick={onClick} />)}
+        {cards.filter((x) => x.type === id).map((card) => <Card key={card._id} {...card} onClick={onClick} />)}
       </ul>
     </li>
   );
@@ -24,8 +24,9 @@ const cardsGroupPropTypes = PropTypes.shape({
   label: PropTypes.string,
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
   onClick: PropTypes.func.isRequired,
+  refCurr: PropTypes.any.isRequired,
 });
 
-Group.protoType = {
-  card: cardsGroupPropTypes.isRequired,
+Group.propTypes = {
+  card: cardsGroupPropTypes,
 };

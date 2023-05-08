@@ -7,6 +7,7 @@ import Groups from '../groups';
 import IngredientDetails from '../ingredient-details';
 
 import { cardPropTypes } from '../../utils/types';
+import { useModal } from '../../hooks/use-modal';
 
 import { MAIN, BUN, SAUCE } from '../../utils/constants';
 
@@ -17,17 +18,17 @@ const tabs = groups.map((x, i) => ({ id: i.toString(), label: x.label }));
 
 export default function BurgerIngredients({ cards }) {
   const [current, setCurrent] = useState('0');
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentIngredient, setCurrentIngredient] = useState(null);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const closePopup = () => {
     setCurrentIngredient(null);
-    setIsPopupOpen(false);
+    closeModal();
   };
 
   const onClickIngredient = (ingredient) => {
     setCurrentIngredient(ingredient);
-    setIsPopupOpen(true);
+    openModal();
   };
 
   const onScroll = (id) => {
@@ -50,9 +51,9 @@ export default function BurgerIngredients({ cards }) {
         onClick={onClickIngredient}
         setCurrent={setCurrent}
       />
-      {isPopupOpen &&
+      {currentIngredient &&
         <Modal
-          isOpen={isPopupOpen}
+          isOpen={isModalOpen}
           title="Детали ингредиента"
           onClose={closePopup}
           children={<IngredientDetails currentIngredient={currentIngredient} />}
@@ -61,6 +62,6 @@ export default function BurgerIngredients({ cards }) {
   );
 }
 
-BurgerIngredients.protoType = {
+BurgerIngredients.propTypes = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
 };

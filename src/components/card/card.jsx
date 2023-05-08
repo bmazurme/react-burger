@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
 import { useSelector } from 'react-redux';
 
@@ -20,6 +21,7 @@ export default function Card(card) {
     type,
     onClick,
   } = card;
+
   const { bun = null, mainOrSauce = [] } = useSelector(selectBurger);
   const onClickCard = () => onClick(card);
   const count = [bun, ...mainOrSauce].filter((x) => x?._id === _id).length;
@@ -53,6 +55,11 @@ export default function Card(card) {
   );
 }
 
-Card.protoType = {
-  card: cardPropTypes.isRequired,
+Card.propTypes = {
+  _id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

@@ -47,6 +47,6 @@ export default function ElementBun(props) {
   );
 }
 
-ElementBun.protoType = {
+ElementBun.propTypes = {
   position: PropTypes.string,
 };

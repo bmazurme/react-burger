@@ -49,7 +49,7 @@ export default function Modal({
   );
 }
 
-Modal.protoType = {
+Modal.propTypes = {
   isOpen: PropTypes.bool,
   title: PropTypes.string,
   onClose: PropTypes.func.isRequired,

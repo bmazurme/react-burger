@@ -10,10 +10,10 @@ export default function ConstructorBlock(props) {
   return (position ? <ElementBun position={position} /> : <ElementMain {...props} />);
 }
 
-ConstructorBlock.protoType = {
-  _id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+ConstructorBlock.propTypes = {
+  _id: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.number,
+  name: PropTypes.string,
   position: PropTypes.string,
 };

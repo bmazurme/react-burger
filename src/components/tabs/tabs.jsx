@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
+import style from './tabs.module.css';
+
 export default function Tabs({ tabs, current, setCurrent }) {
   return (
-    <div style={{ display: 'flex', marginTop: 20, alignSelf: 'center' }}>
+    <div className={style.tabs}>
       {tabs.map(({ id, label }, i) => (
         <Tab
-          key={i}
+          key={uuidv4()}
           value={id}
           active={current === id}
           onClick={() => setCurrent(id)}
@@ -25,7 +28,7 @@ const tabPropTypes = PropTypes.shape({
   label: PropTypes.string.isRequired,
 });
 
-Tabs.protoType = {
+Tabs.propTypes = {
   tabs: PropTypes.arrayOf(tabPropTypes).isRequired,
   current: PropTypes.string.isRequired,
   setCurrent: PropTypes.func,

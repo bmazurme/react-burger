@@ -43,11 +43,11 @@ export default function MenuItem({
   );
 }
 
-MenuItem.protoType = {
+MenuItem.propTypes = {
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   active: PropTypes.bool,
   extraClass: PropTypes.string,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
 };
