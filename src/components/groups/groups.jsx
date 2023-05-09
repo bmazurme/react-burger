@@ -33,7 +33,7 @@ export default function Groups(props) {
 
   return (
     <ul className={style.groups} onScroll={onScroll}>
-      {groupsWithRef.map((group) => <Group {...group} {...props} key={uuidv4()} />)}
+      {groupsWithRef.map((group) => <Group {...group} {...props} key={group.id} />)}
     </ul>
   );
 }

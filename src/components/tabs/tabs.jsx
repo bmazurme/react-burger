@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -11,7 +10,7 @@ export default function Tabs({ tabs, current, setCurrent }) {
     <div className={style.tabs}>
       {tabs.map(({ id, label }, i) => (
         <Tab
-          key={uuidv4()}
+          key={id}
           value={id}
           active={current === id}
           onClick={() => setCurrent(id)}

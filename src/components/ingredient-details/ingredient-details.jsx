@@ -15,7 +15,7 @@ export default function IngredientDetails({ currentIngredient: ingredient }) {
       <p className="text text_type_main-medium pr-25 pl-25 pb-2 pt-6">{ingredient?.name}</p>
       <ul className={`${style.list} pt-8`}>
         {components.map((x) => (
-          <li key={uuidv4()} className={`${style.item} pr-6 pl-6`}>
+          <li key={x.id} className={`${style.item} pr-6 pl-6`}>
             <p className={`${style.text} text text_type_main-default text_color_inactive pb-2`}>
               {x.name}
             </p>

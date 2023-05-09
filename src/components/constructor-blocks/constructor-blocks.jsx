@@ -22,9 +22,10 @@ export default function ConstructorBlocks() {
   const [{ isOver, canDrop }, refMain] = useDrop({
     accept: [MAIN, SAUCE, BUN, COLUMN],
     drop: (c) => {
-      dispatch(setMainOrSauce({ ...filterObject(c) }));
+      const elementWithUniqueId = { ...filterObject(c), uniqueId: uuidv4() };
+      dispatch(setMainOrSauce(elementWithUniqueId));
 
-      return c;
+      return elementWithUniqueId;
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -43,7 +44,7 @@ export default function ConstructorBlocks() {
     >
       {items.length === 0
         ? <span className={getClass()}>+ ингредиент</span>
-        : items.map((item, i) => (<ConstructorBlock key={uuidv4()} {...item} index={i} />))}
+        : items.map((item, i) => (<ConstructorBlock key={item.uniqueId} {...item} index={i} />))}
     </ul>
   );
 }
