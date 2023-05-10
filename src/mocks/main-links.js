@@ -21,7 +21,11 @@ const mainLinks = [
     active: false,
     extraClass: '',
     icon: ProfileIcon,
-    links: [{ label: 'Профиль' }, { label: 'История заказов' }, { label: 'Выход' }],
+    links: [
+      { id: 'l01', label: 'Профиль' },
+      { id: 'l02', label: 'История заказов' },
+      { id: 'l03', label: 'Выход' },
+    ],
   },
 ];
 

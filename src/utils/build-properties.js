@@ -17,7 +17,7 @@ export default function buildProperties({ baseUrl, props }) {
   return { currentUrl, options };
 }
 
-buildProperties.protoType = {
+buildProperties.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   props: PropTypes.objectOf(propsTypes),
 };

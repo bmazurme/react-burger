@@ -1,8 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import { v4 as uuidv4 } from 'uuid';
 
-import { BurgerContext } from '../../context/burger-context';
 import ConstructorBlock from '../constructor-block';
+
+import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
 import getBackgroundColor from '../../utils/get-background-color';
 import filterObject from '../../utils/filter-object';
 
@@ -13,17 +16,16 @@ import {
 import style from './constructor-blocks.module.css';
 
 export default function ConstructorBlocks() {
-  const { burger, setBurger } = useContext(BurgerContext);
+  const dispatch = useDispatch();
+  const burger = useSelector(selectBurger);
   const { mainOrSauce: items = [] } = burger;
   const [{ isOver, canDrop }, refMain] = useDrop({
     accept: [MAIN, SAUCE, BUN, COLUMN],
     drop: (c) => {
-      setBurger({
-        ...burger,
-        mainOrSauce: [filterObject(c), ...items].map((x, i) => ({ ...x, index: i }))
-      });
+      const elementWithUniqueId = { ...filterObject(c), uniqueId: uuidv4() };
+      dispatch(setMainOrSauce(elementWithUniqueId));
 
-      return c;
+      return elementWithUniqueId;
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -42,7 +44,7 @@ export default function ConstructorBlocks() {
     >
       {items.length === 0
         ? <span className={getClass()}>+ ингредиент</span>
-        : items.map((item, i) => (<ConstructorBlock key={i} {...item} index={i} />))}
+        : items.map((item, i) => (<ConstructorBlock key={item.uniqueId} {...item} index={i} />))}
     </ul>
   );
 }

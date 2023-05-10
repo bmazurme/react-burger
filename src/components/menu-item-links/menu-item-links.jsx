@@ -6,13 +6,19 @@ import style from './menu-item-links.module.css';
 export default function MenuItemLinks({ links }) {
   return (
     <ul className={style.sublinks}>
-      {links.map(({ label }, i) => (
-        <li className={`${style.sublink} text text_type_main-default`} key={i}>{label}</li>
+      {links.map(({ id, label }) => (
+        <li className={`${style.sublink} text text_type_main-default`} key={id}>
+          {label}
+        </li>
       ))}
     </ul>
   );
 }
 
-MenuItemLinks.protoType = {
-  label: PropTypes.string.isRequired,
+const menuItemLinks = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+});
+
+MenuItemLinks.propTypes = {
+  links: PropTypes.arrayOf(menuItemLinks).isRequired,
 };

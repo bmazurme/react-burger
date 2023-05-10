@@ -37,7 +37,7 @@ export default function useQuery(props) {
   return (state);
 }
 
-useQuery.protoType = {
+useQuery.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   props: PropTypes.objectOf(propsTypes),
 };

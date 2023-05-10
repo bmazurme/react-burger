@@ -9,7 +9,6 @@ export default function ModalOverlay({ children, closeModal, isOpen }) {
   return (
     <div
       className={`${style.overlay} ${isOpen && style.overlay_open}`}
-      style={{ overflow: 'hidden' }}
       onClick={closeModal}
     >
       {children}
@@ -17,8 +16,8 @@ export default function ModalOverlay({ children, closeModal, isOpen }) {
   );
 }
 
-ModalOverlay.protoType = {
+ModalOverlay.propTypes = {
   isOpen: PropTypes.bool,
-  onClose: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
