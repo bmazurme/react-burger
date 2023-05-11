@@ -26,21 +26,32 @@
 ...
 
 ### Installation
-Clone `https://github.com/bmazurme/react-burger`
+```bash
 
-Install dependencies: `npm install`
+# clone
+$ git clone https://github.com/bmazurme/react-burger
 
-Build project: `npm run build`
+# install dependencies
+$ npm install
 
-Run dev mode: `npm run dev`
+# build project
+$ npm run build
 
-Run prod mode: `npm run start`
+# run dev mode
+$ npm run dev
 
-Run eslint: `npm run eslint`
+# run prod mode
+$ npm run start
 
-Run stylelint: `npm run stlint`
+# run eslint
+$ npm run eslint
 
-Clear: `npm run clear`
+# run stylelint
+$ npm run stlint
+
+# clear
+$ npm run clear
+```
 
 #### Implemented features:
 - [X] Drag-n-drop
@@ -82,3 +93,4 @@ Eslint
 ### Links
 * [Link to figma](https://www.figma.com/file/zFGN2O5xktHl9VmoOieq5E/React-_-%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8_external_link)
 * [React Developer Burger UI Components](https://yandex-practicum.github.io/react-developer-burger-ui-components/docs/)
+

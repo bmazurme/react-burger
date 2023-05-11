@@ -16,7 +16,6 @@ import style from './burger-constructor.module.css';
 
 export default function BurgerConstructor() {
   const dispatch = useDispatch();
-  
   const { bun, mainOrSauce, number } = useSelector(selectBurger);
   const [postOrder, { isLoading, isError }] = usePostOrderMutation();
   const { isModalOpen, openModal, closeModal } = useModal();
