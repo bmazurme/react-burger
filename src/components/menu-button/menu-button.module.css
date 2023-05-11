@@ -13,6 +13,21 @@
   z-index: 999;
 }
 
+.link {
+  border: 0;
+  background-color: rgba(0,0,0,0);
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.desktop {
+  text-decoration: none;
+  color: var(--color);
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
 .menu {
   display: none;
   flex-direction: column;
@@ -36,11 +51,14 @@
 }
 
 .mobile {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin: 0;
-  padding: 20px 0 0;
+  padding: 0;
   box-sizing: border-box;
+}
+.user_links {
+
 }
 
 @media screen and (width >= 320px) and (width <= 1023px) {
@@ -50,5 +68,15 @@
 
   .menu {
     display: flex;
+  }
+
+  .mobile {
+    display: flex;
+  }
+  .desktop {
+    display: none;
+  }
+  .user_links {
+    display: none;
   }
 }

@@ -43,7 +43,7 @@ export default function Forgot() {
       </Button>
 
       <span className="text text_type_main-default pl-2 text_color_inactive">
-      Вспомнили пароль? <NavLink to={Urls.SIGN.IN}>Войти</NavLink>
+        Вспомнили пароль? <NavLink to={Urls.SIGN.IN}>Войти</NavLink>
       </span>
     </div>);
 }

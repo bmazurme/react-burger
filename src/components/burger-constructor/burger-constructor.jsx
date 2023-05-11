@@ -5,8 +5,8 @@ import ConstructorBlock from '../constructor-block';
 import ConstructorBlocks from '../constructor-blocks';
 import ConstructorFooter from '../constructor-footer';
 import OrderDetails from '../order-details';
-import Modal from '../modal';
 import Preloader from '../preloader';
+import Modal from '../modal';
 
 import { selectBurger, setNumber } from '../../store/slices/burger-slice';
 import { usePostOrderMutation } from '../../store/api/order-api/endpoints';

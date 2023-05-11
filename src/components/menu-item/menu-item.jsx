@@ -1,52 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { ArrowUpIcon, ArrowDownIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import MenuItemLinks from '../menu-item-links';
+import Icon from '../icon';
 
 import style from './menu-item.module.css';
 
-function Icon({ component: Component, active }) {
-  return <Component type={active ? 'primary' : 'secondary'} />;
-}
-
 export default function MenuItem({
-  id, label, extraClass, active, icon, links, onClick, url,
+  id, label, extraClass, icon, links, url,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = (currId, e) => {
-    // e.preventDefault();
-    onClick(currId);
-    setIsOpen(!isOpen);
-  };
-
-  useEffect(() => {
-    if (!isOpen) {
-      setIsOpen(true);
-    }
-  }, [active]);
+  const [isOpen, setIsOpen] = useState(null);
+  const handleClick = (currId) => setIsOpen(currId !== isOpen ? currId : null);
 
   return (
-    <li className={`${style.item} ${extraClass && extraClass}`}>
+    <li className={`${style.item} ${extraClass && extraClass}`} onClick={() => handleClick(id)}>
       <div className={style.container}>
-        {url
-          ? <NavLink to={url} className={style.link} onClick={(e) => handleClick(id, e)}>
-              <Icon active={active} component={icon} />
-              <span className={`text text_type_main-default pl-2 ${!active && 'text_color_inactive'}`}>
-              {label}
-            </span>
-            </NavLink>
-          : <div className={style.link} onClick={(e) => handleClick(id, e)}>
-             <Icon active={active} component={icon} />
-             <span className={`text text_type_main-default pl-2 ${!active && 'text_color_inactive'}`}>
-              {label}
-             </span>
-            </div>}
-        {links && active && (isOpen ? <ArrowUpIcon type="primary" /> : <ArrowDownIcon type="primary" />)}
+        <NavLink to={url} className={style.link}>
+          {({ isActive }) => (
+            <>
+              <Icon active={links ? false : isActive} component={icon} />
+              <span className={`text text_type_main-default pl-2 ${(!isActive || links) && 'text_color_inactive'}`}>
+                {label}
+              </span>
+            </>
+          )}
+        </NavLink>
+        {links?.length && (isOpen === id ? <ArrowUpIcon type="primary" /> : <ArrowDownIcon type="primary" />)}
       </div>
-      {links && isOpen && active && <MenuItemLinks links={links} />}
+      {links && (isOpen === id) && <MenuItemLinks links={links} />}
     </li>
   );
 }
@@ -54,8 +37,8 @@ export default function MenuItem({
 MenuItem.propTypes = {
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
-  active: PropTypes.bool,
   extraClass: PropTypes.string,
   icon: PropTypes.any.isRequired,
-  onClick: PropTypes.func.isRequired,
+  links: PropTypes.arrayOf(PropTypes.object),
+  url: PropTypes.string,
 };

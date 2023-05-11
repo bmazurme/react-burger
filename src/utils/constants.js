@@ -16,7 +16,7 @@ export const Urls = {
   QUEUE: '/queue',
   HISTORY: '/history',
   PROFILE: {
-    INDEX: '/profile,'
+    INDEX: '/profile'
   },
   404: '*',
 };

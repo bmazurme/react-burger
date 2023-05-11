@@ -5,7 +5,6 @@ const mainLinks = [
   {
     id: 0,
     label: 'Конструктор',
-    active: true,
     extraClass: 'mr-2',
     icon: BurgerIcon,
     url: Urls.BASE,
@@ -13,15 +12,13 @@ const mainLinks = [
   {
     id: 1,
     label: 'Лента заказов',
-    active: false,
     extraClass: '',
     icon: ListIcon,
     url: Urls.QUEUE,
   },
   {
-    id: 3,
+    id: 2,
     label: 'Личный кабинет',
-    active: false,
     extraClass: '',
     icon: ProfileIcon,
     links: [

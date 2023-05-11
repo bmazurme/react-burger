@@ -30,6 +30,10 @@
   cursor: pointer;
 }
 
+.inactive {
+  color: #8585AD;
+}
+
 .link:active, .link:hover {
   text-decoration: none;
   color: var(--color);

@@ -6,7 +6,6 @@ import { useDrop } from 'react-dnd';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { setBun, selectBurger } from '../../store/slices/burger-slice';
-
 import {
   MAIN, BUN, SAUCE, filterObject, getBackgroundColor,
 } from '../../utils';

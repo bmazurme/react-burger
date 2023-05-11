@@ -17,9 +17,9 @@
 - [X] Sprint 1
   - [X] Step 1
   - [X] Step 2
-- [ ] Sprint 2
+- [X] Sprint 2
   - [X] Step 1
-  - [ ] Step 2
+  - [X] Step 2
 - [ ] Sprint 3
 
 ### Demo

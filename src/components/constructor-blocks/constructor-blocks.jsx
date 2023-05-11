@@ -6,10 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import ConstructorBlock from '../constructor-block';
 
 import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
-import { filterObject, getBackgroundColor } from '../../utils';
-
 import {
-  MAIN, BUN, SAUCE, COLUMN,
+  MAIN, BUN, SAUCE, COLUMN, filterObject, getBackgroundColor,
 } from '../../utils';
 
 import style from './constructor-blocks.module.css';

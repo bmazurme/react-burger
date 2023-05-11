@@ -5,6 +5,7 @@ import { useDrop, useDrag } from 'react-dnd';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { removeIngredient, selectBurger, setItems } from '../../store/slices/burger-slice';
+import { COLUMN } from '../../utils';
 
 import style from './element-main.module.css';
 // https://react-dnd.github.io/react-dnd/about
@@ -28,7 +29,7 @@ export default function ElementMain(props) {
   };
 
   const [, drop] = useDrop({
-    accept: ['column'],
+    accept: [COLUMN],
     hover(item, monitor) {
       if (!ref.current) {
         return;
@@ -70,7 +71,7 @@ export default function ElementMain(props) {
   });
 
   const [{ opacity }, drag] = useDrag({
-    type: 'column',
+    type: COLUMN,
     item: { index, name },
     collect: (monitor) => ({ opacity: monitor.isDragging() ? 0.1 : 1 }),
   });

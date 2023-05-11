@@ -2,14 +2,31 @@
   margin: 0;
   padding: 0 10px 10px 32px;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
 
 .sublink {
   margin: 0;
   padding: 10px 0;
-  color: white;
+  text-decoration: none;
+  text-align: left;
+  color: var(--color);
+}
+.inactive {
+  color: #8585AD;
+}
+
+.sublink:visited {
   text-decoration: none;
 }
+
+.sublink:active, .sublink:hover {
+  text-decoration: none;
+  color: var(--color);
+}
+
 
 .sublink:last-child {
   padding-bottom: 0;

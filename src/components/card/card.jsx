@@ -43,7 +43,7 @@ export default function Card(card) {
         className={`${style.image}`}
         src={image}
         alt={name}
-        // loading="lazy"
+        loading="lazy"
       />
       <div className={`${style.price} pt-1 pb-2`}>
         <p className="text text_type_digits-default pr-2">{price}</p>
@@ -56,10 +56,5 @@ export default function Card(card) {
 }
 
 Card.propTypes = {
-  _id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  card: PropTypes.shape(cardPropTypes),
 };
