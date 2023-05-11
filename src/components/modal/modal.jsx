@@ -7,8 +7,10 @@ import PropTypes from 'prop-types';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay';
 
+import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON } from '../../utils';
+
 import style from './modal.module.css';
-import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON } from '../../utils/config';
+
 
 export default function Modal({
   title, children, onClose, isOpen,
@@ -49,7 +51,7 @@ export default function Modal({
   );
 }
 
-Modal.protoType = {
+Modal.propTypes = {
   isOpen: PropTypes.bool,
   title: PropTypes.string,
   onClose: PropTypes.func.isRequired,

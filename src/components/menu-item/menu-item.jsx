@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import { ArrowUpIcon, ArrowDownIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import MenuItemLinks from '../menu-item-links';
@@ -11,12 +12,12 @@ function Icon({ component: Component, active }) {
 }
 
 export default function MenuItem({
-  id, label, extraClass, active, icon, links, onClick,
+  id, label, extraClass, active, icon, links, onClick, url,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (currId, e) => {
-    e.preventDefault();
+    // e.preventDefault();
     onClick(currId);
     setIsOpen(!isOpen);
   };
@@ -30,12 +31,19 @@ export default function MenuItem({
   return (
     <li className={`${style.item} ${extraClass && extraClass}`}>
       <div className={style.container}>
-        <a href="/" className={style.link} onClick={(e) => handleClick(id, e)}>
-          <Icon active={active} component={icon} />
-          <span className={`text text_type_main-default pl-2 ${!active && 'text_color_inactive'}`}>
-            {label}
-          </span>
-        </a>
+        {url
+          ? <NavLink to={url} className={style.link} onClick={(e) => handleClick(id, e)}>
+              <Icon active={active} component={icon} />
+              <span className={`text text_type_main-default pl-2 ${!active && 'text_color_inactive'}`}>
+              {label}
+            </span>
+            </NavLink>
+          : <div className={style.link} onClick={(e) => handleClick(id, e)}>
+             <Icon active={active} component={icon} />
+             <span className={`text text_type_main-default pl-2 ${!active && 'text_color_inactive'}`}>
+              {label}
+             </span>
+            </div>}
         {links && active && (isOpen ? <ArrowUpIcon type="primary" /> : <ArrowDownIcon type="primary" />)}
       </div>
       {links && isOpen && active && <MenuItemLinks links={links} />}
@@ -43,11 +51,11 @@ export default function MenuItem({
   );
 }
 
-MenuItem.protoType = {
+MenuItem.propTypes = {
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   active: PropTypes.bool,
   extraClass: PropTypes.string,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
 };

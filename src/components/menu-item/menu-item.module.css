@@ -27,6 +27,7 @@
   color: var(--color);
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .link:active, .link:hover {
@@ -34,7 +35,7 @@
   color: var(--color);
 }
 
-@media screen and (width >= 320px) and (width <= 639px) {
+@media screen and (min-width: 320px) and (max-width: 639px) {
   .item {
     width: 100%;
   }

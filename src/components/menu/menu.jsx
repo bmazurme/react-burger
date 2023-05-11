@@ -8,12 +8,12 @@ import { linkPropTypes } from '../../utils/types';
 export default function Menu({ links, extraClass, onClick }) {
   return (
     <ul className={extraClass}>
-      {links.map((x, i) => (<MenuItem key={i} {...x} onClick={onClick} />))}
+      {links.map((x) => (<MenuItem key={x.id} {...x} onClick={onClick} />))}
     </ul>
   );
 }
 
-Menu.protoType = {
+Menu.propTypes = {
   links: PropTypes.arrayOf(linkPropTypes),
   extraClass: PropTypes.string,
   onClick: PropTypes.func.isRequired,

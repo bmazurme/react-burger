@@ -1,4 +1,4 @@
-export default function filterObject(obj) {
+export function filterObject(obj) {
   const newObj = {};
 
   for (const key in obj) {

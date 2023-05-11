@@ -1,0 +1,5 @@
+.tabs {
+  display: flex;
+  margin-top: 20;
+  align-self: center;
+}

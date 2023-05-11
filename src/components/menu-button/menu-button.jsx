@@ -35,7 +35,7 @@ export default function MenuButton({ links, onClick }) {
   );
 }
 
-MenuButton.protoType = {
+MenuButton.propTypes = {
   links: PropTypes.arrayOf(linkPropTypes),
   onClick: PropTypes.func.isRequired,
 };

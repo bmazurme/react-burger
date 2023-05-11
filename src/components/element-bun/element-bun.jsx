@@ -1,31 +1,29 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { BurgerContext } from '../../context/burger-context';
-import getBackgroundColor from '../../utils/get-background-color';
-import filterObject from '../../utils/filter-object';
+import { setBun, selectBurger } from '../../store/slices/burger-slice';
 
-import { MAIN, BUN, SAUCE } from '../../utils/constants';
+import {
+  MAIN, BUN, SAUCE, filterObject, getBackgroundColor,
+} from '../../utils';
 
 import style from './element-bun.module.css';
 
 export default function ElementBun(props) {
-  const { burger, setBurger} = useContext(BurgerContext);
   const { position } = props;
-  const { bun = null } = burger; 
+  const dispatch = useDispatch();
+  const { bun = null } = useSelector(selectBurger);
   const getName = `${bun?.name} (${position === 'top' ? 'верх' : 'низ'})`;
   const getClass = () => `${style.description} text text_type_main-small text_color_inactive`;
 
   const [{ isOver, canDrop }, refBunTop] = useDrop({
     accept: [BUN, MAIN, SAUCE],
     drop: (c) => {
-      setBurger({ 
-        ...burger,
-        bun: { ...filterObject(c), isLocked: true }
-      });
+      dispatch(setBun({ ...filterObject(c), isLocked: true }));
 
       return c;
     },
@@ -49,6 +47,6 @@ export default function ElementBun(props) {
   );
 }
 
-ElementBun.protoType = {
+ElementBun.propTypes = {
   position: PropTypes.string,
 };

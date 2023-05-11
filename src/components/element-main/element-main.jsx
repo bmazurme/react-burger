@@ -1,28 +1,20 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop, useDrag } from 'react-dnd';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-
-import { BurgerContext } from '../../context/burger-context';
+import { removeIngredient, selectBurger, setItems } from '../../store/slices/burger-slice';
 
 import style from './element-main.module.css';
-
 // https://react-dnd.github.io/react-dnd/about
 // https://react-dnd.github.io/react-dnd/examples/sortable/simple
 export default function ElementMain(props) {
   const { index, name } = props;
   const ref = useRef(null);
-  const { burger, setBurger } = useContext(BurgerContext);
-  const { mainOrSauce: items = [] } = burger;
-
-  const removeElement = (ind) => {
-    setBurger({
-      ...burger,
-      mainOrSauce: burger.mainOrSauce.filter((x) => x.index !== ind)
-      .map((x, i) => ({ ...x, index: i }))
-    });
-  };
+  const dispatch = useDispatch();
+  const { mainOrSauce: items = [] } = useSelector(selectBurger);
+  const removeElement = (ind) => dispatch(removeIngredient(ind));
 
   const moveCardHandler = (dragIndex, hoverIndex) => {
     const dragItem = items[dragIndex];
@@ -31,10 +23,7 @@ export default function ElementMain(props) {
       const coppiedStateArray = [...items];
       const prevItem = coppiedStateArray.splice(hoverIndex, 1, dragItem);
       coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
-      setBurger({
-        ...burger,
-        mainOrSauce: coppiedStateArray.map((x, i) => ({ ...x, index: i })),
-      });
+      dispatch(setItems(coppiedStateArray));
     }
   };
 
@@ -98,9 +87,9 @@ export default function ElementMain(props) {
   );
 }
 
-ElementMain.protoType = {
+ElementMain.propTypes = {
   _id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
 };

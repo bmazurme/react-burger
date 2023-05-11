@@ -24,6 +24,6 @@ export default function OrderDetails({ number }) {
   );
 }
 
-OrderDetails.protoType = {
+OrderDetails.propTypes = {
   number: PropTypes.number.isRequired,
 };

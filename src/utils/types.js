@@ -2,10 +2,14 @@ import PropTypes from 'prop-types';
 
 const cardPropTypes = PropTypes.shape({
   _id: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  price: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   dragRef: PropTypes.any,
+  calories: PropTypes.number.isRequired,
+  proteins: PropTypes.number.isRequired,
+  fat: PropTypes.number.isRequired,
+  carbohydrates: PropTypes.number.isRequired,
 });
 
 const propsTypes = PropTypes.shape({
@@ -23,7 +27,7 @@ const linkPropTypes = PropTypes.shape({
   label: PropTypes.string.isRequired,
   active: PropTypes.bool,
   extraClass: PropTypes.string,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.any.isRequired,
   links: PropTypes.arrayOf(profileLinkTypes),
 });
 

@@ -10,4 +10,4 @@ const getBackgroundColor = (isOver, canDrop) => {
   return '';
 };
 
-export default getBackgroundColor;
+export { getBackgroundColor };

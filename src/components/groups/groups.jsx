@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 
 import Group from '../group';
-import { cardPropTypes } from '../../utils/types';
+import { cardPropTypes } from '../../utils';
 
 import style from './groups.module.css';
 
@@ -20,7 +21,7 @@ export default function Groups(props) {
     const groupBun = refs1.current.scrollHeight;
     const groupMain = refs2.current.scrollHeight;
     const groupSauce = refs3.current.scrollHeight;
-    
+
     if (scroll < groupBun) {
       setCurrent('0');
     } else if (scroll >= groupBun && scroll + scrollViewHeight * 0.5 < groupBun + groupMain) {
@@ -32,7 +33,7 @@ export default function Groups(props) {
 
   return (
     <ul className={style.groups} onScroll={onScroll}>
-      {groupsWithRef.map((group, i) => <Group {...group} {...props} key={i} />)}
+      {groupsWithRef.map((group) => <Group {...group} {...props} key={group.id} />)}
     </ul>
   );
 }
@@ -42,7 +43,7 @@ const groupPropTypes = PropTypes.shape({
   label: PropTypes.string.isRequired,
 });
 
-Groups.protoType = {
+Groups.propTypes = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
   groups: PropTypes.arrayOf(groupPropTypes),
   onClick: PropTypes.func.isRequired,

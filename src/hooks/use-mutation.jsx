@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import buildProperties from '../utils/build-properties';
-
-import { propsTypes } from '../utils/types';
-import { BASE_URL } from '../utils/config';
+import { BASE_URL, propsTypes, buildProperties } from '../utils';
 
 export default function useMutation(props) {
   const [state, setState] = useState({ data: [], hasError: false, isLoading: false });
@@ -34,7 +31,7 @@ export default function useMutation(props) {
   return ({ state, post, clear });
 }
 
-useMutation.protoType = {
+useMutation.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   props: PropTypes.objectOf(propsTypes),
 };

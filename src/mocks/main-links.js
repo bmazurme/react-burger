@@ -1,4 +1,5 @@
 import { BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Urls } from '../utils';
 
 const mainLinks = [
   {
@@ -7,6 +8,7 @@ const mainLinks = [
     active: true,
     extraClass: 'mr-2',
     icon: BurgerIcon,
+    url: Urls.BASE,
   },
   {
     id: 1,
@@ -14,6 +16,7 @@ const mainLinks = [
     active: false,
     extraClass: '',
     icon: ListIcon,
+    url: Urls.QUEUE,
   },
   {
     id: 3,
@@ -21,7 +24,11 @@ const mainLinks = [
     active: false,
     extraClass: '',
     icon: ProfileIcon,
-    links: [{ label: 'Профиль' }, { label: 'История заказов' }, { label: 'Выход' }],
+    links: [
+      { id: 'l01', label: 'Профиль', url: Urls.PROFILE.INDEX, },
+      { id: 'l02', label: 'История заказов', url: Urls.HISTORY },
+      { id: 'l03', label: 'Выход', url: Urls.SIGN.OUT },
+    ],
   },
 ];
 

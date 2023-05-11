@@ -4,15 +4,23 @@
 ![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-black?style=flat-square&logo=typescript)
 ![React](https://img.shields.io/badge/-React-black?style=flat-square&logo=react)
+![React-Router](https://img.shields.io/badge/-ReactRouter-black?style=flat-square&logo=reactrouter)
 ![Redux](https://img.shields.io/badge/-Redux-black?style=flat-square&logo=redux)
+![Express](https://img.shields.io/badge/-Express-black?style=flat-square&logo=express)
 ![HTML5](https://img.shields.io/badge/-HTML5-black?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/-CSS3-black?style=flat-square&logo=css3)
+
+- react-dnd
+- uuidv4
 
 ### About
 - [X] Sprint 1
   - [X] Step 1
   - [X] Step 2
 - [ ] Sprint 2
+  - [X] Step 1
+  - [ ] Step 2
+- [ ] Sprint 3
 
 ### Demo
 ...
@@ -40,7 +48,7 @@ Clear: `npm run clear`
 - [ ] API
   - [X] BurgerIngredients
 - [ ] Store
-  - [ ] Burger
+  - [X] Burger
 
 #### Components:
 ##### Sprint 1 / Step 1
@@ -63,8 +71,8 @@ Clear: `npm run clear`
 
 ### hooks:
 - [X] useWindowDimensions
-- [X] useQuery
-- [X] useMutation
+- [X] useQuery - > rtk
+- [X] useMutation - > rtk
 - [ ] useUser
 
 Webpack dev, prod config
