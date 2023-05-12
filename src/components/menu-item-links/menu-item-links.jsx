@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames/bind';
 
 import style from './menu-item-links.module.css';
 
@@ -10,7 +11,11 @@ export default function MenuItemLinks({ links }) {
       {links.map(({ id, label, url }) => (
         <NavLink
           to={url}
-          className={({ isActive }) => `${style.sublink} text text_type_main-default ${!isActive && style.inactive}`}
+          className={({ isActive }) => classNames(
+            style.sublink,
+            'text text_type_main-default',
+            { [style.inactive]: !isActive }
+          )}
           key={id}
         >
           {label}

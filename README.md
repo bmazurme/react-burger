@@ -12,6 +12,7 @@
 
 - react-dnd
 - uuidv4
+- classnames
 
 ### About
 - [X] Sprint 1
