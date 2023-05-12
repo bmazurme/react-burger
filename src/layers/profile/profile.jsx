@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import Preloader from '../../components/preloader';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
@@ -15,5 +16,60 @@ export default function Profile() {
   const { data: rawData } = data;
   const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
-  return (isLoading ? <Preloader /> : <>data</>);
+  const [value, setValue] = useState('')
+  const inputRef = useRef(null)
+  const onIconClick = () => {
+    setTimeout(() => inputRef.current.focus(), 0)
+    alert('Icon Click Callback')
+  }
+
+  return (isLoading
+    ? <Preloader /> 
+    : <div className={style.container}>
+        <h2 className="text text_type_main-large mb-6">Профиль</h2>
+        <Input
+          type={'text'}
+          placeholder={'Имя'}
+          onChange={e => setValue(e.target.value)}
+          // icon={'CurrencyIcon'}
+          value={value}
+          name={'name'}
+          error={false}
+          ref={inputRef}
+          onIconClick={onIconClick}
+          errorText={'Ошибка'}
+          size={'default'}
+          extraClass="ml-1 mb-6"
+        />
+        <Input
+          type={'text'}
+          placeholder={'E-mail'}
+          onChange={e => setValue(e.target.value)}
+          // icon={'CurrencyIcon'}
+          value={value}
+          name={'name'}
+          error={false}
+          ref={inputRef}
+          onIconClick={onIconClick}
+          errorText={'Ошибка'}
+          size={'default'}
+          extraClass="ml-1 mb-6"
+        />
+        <Input
+          type={'text'}
+          placeholder={'Пароль'}
+          onChange={e => setValue(e.target.value)}
+          icon={'ShowIcon'}
+          value={value}
+          name={'name'}
+          error={false}
+          ref={inputRef}
+          onIconClick={onIconClick}
+          errorText={'Ошибка'}
+          size={'default'}
+          extraClass="ml-1 mb-6"
+        />
+В этом разделе вы можете
+изменить свои персональные данные
+    </div>);
 }
