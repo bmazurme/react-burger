@@ -9,6 +9,7 @@ export function getComponents(current) {
   return componentDictionary
     .map(({ label, name }, i) => ({
       id: `ingredient-${current[name]}-${i}`,
-      name: label, value: current ? current[name] : '-',
+      name: label,
+      value: current ? current[name] : '-',
     }));
 }

@@ -23,7 +23,6 @@ export default function useMutation(props) {
       console.log('error api query', e);
       setState({ data: [], hasError: true, isLoading: false });
     }
-
   };
 
   const clear = () => setState({ data: [], hasError: false, isLoading: false });

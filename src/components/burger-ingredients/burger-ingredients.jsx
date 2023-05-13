@@ -52,13 +52,15 @@ export default function BurgerIngredients({ cards }) {
         onClick={onClickIngredient}
         setCurrent={setCurrent}
       />
-      {currentIngredient &&
+      {currentIngredient
+        && (
         <Modal
           isOpen={isModalOpen}
           title="Детали ингредиента"
           onClose={closePopup}
           children={<IngredientDetails currentIngredient={currentIngredient} />}
-        />}
+        />
+        )}
     </section>
   );
 }

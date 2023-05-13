@@ -11,7 +11,6 @@ import { ESC_CLOSE_ON, OVERLAY_CLOSE_ON } from '../../utils';
 
 import style from './modal.module.css';
 
-
 export default function Modal({
   title, children, onClose, isOpen,
 }) {

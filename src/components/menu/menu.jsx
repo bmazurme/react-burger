@@ -9,7 +9,8 @@ export default function Menu({ links, extraClass }) {
   return (
     <ul className={extraClass}>
       {links.map((x) => (<MenuItem key={x.id} {...x} />))}
-    </ul>);
+    </ul>
+  );
 }
 
 Menu.propTypes = {

@@ -23,11 +23,13 @@ export default function Main() {
 
   return (isLoading
     ? <Preloader />
-    : (<DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+    : (
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
         <main className={style.main}>
           <BurgerIngredients cards={cards} />
           {(blocks === 2) && (<BurgerConstructor />)}
         </main>
-      </DndProvider>)
+      </DndProvider>
+    )
   );
 }

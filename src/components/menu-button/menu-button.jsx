@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import { MenuIcon, CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -20,19 +22,21 @@ export default function MenuButton({ links }) {
   const { pathname } = useLocation();
   const toggleMenu = () => setIsOpen(!isOpen);
   const active = useMemo(() => links[2].links.some(({ url }) => url === pathname), [pathname]);
-  
+
   return (
     <>
       <button type="button" onClick={toggleMenu} className={style.link}>
         <div className={style.desktop}>
           <Icon active={active} component={links[2].icon} />
-            <span className={classNames('text text_type_main-default pl-2', { 'text_color_inactive': !active })}>
-              {links[2].label}
-            </span>
+          <span className={classNames('text text_type_main-default pl-2', { text_color_inactive: !active })}>
+            {links[2].label}
+          </span>
         </div>
-        {isOpen && <div className={style.user_links}>
+        {isOpen && (
+        <div className={style.user_links}>
           <MenuItemLinks links={links[2].links} onClick={toggleMenu} />
-        </div>}
+        </div>
+        )}
       </button>
       <div className={style.mobile}>
         <button type="button" className={style.button} onClick={toggleMenu}>
@@ -43,7 +47,8 @@ export default function MenuButton({ links }) {
             <div className={style.menu} onClick={(e) => e.preventDefault()}>
               <h2 className={`${style.title} text text_type_main-medium`}>Меню</h2>
               <UserMenu links={[...links].reverse()} onClick={toggleMenu} />
-            </div>)}
+            </div>
+          )}
       </div>
     </>
   );

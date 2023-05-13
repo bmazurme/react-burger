@@ -21,7 +21,7 @@ export default function BurgerConstructor() {
   const { isModalOpen, openModal, closeModal } = useModal();
 
   const onClick = async () => {
-    const data = { 
+    const data = {
       ingredients: [bun, ...mainOrSauce]
         .filter((x) => x?._id)
         .map((x) => x?._id),
@@ -36,8 +36,8 @@ export default function BurgerConstructor() {
 
   const closePopup = () => {
     dispatch(setNumber(null));
-    closeModal()
-  }
+    closeModal();
+  };
 
   return (
     <section className={style.main}>
@@ -45,12 +45,14 @@ export default function BurgerConstructor() {
       <ConstructorBlocks />
       <ConstructorBlock position="bottom" />
       <ConstructorFooter onClick={onClick} />
-      {isModalOpen && 
+      {isModalOpen
+        && (
         <Modal
           isOpen={isModalOpen}
           onClose={closePopup}
           children={<OrderDetails number={number} />}
-        />}
+        />
+        )}
       {isLoading && <Preloader />}
     </section>
   );

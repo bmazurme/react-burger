@@ -17,69 +17,71 @@ export default function Signup() {
   const { data: rawData } = data;
   const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
-  const [value, setValue] = useState('')
-  const inputRef = useRef(null)
+  const [value, setValue] = useState('');
+  const inputRef = useRef(null);
   const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0)
-    alert('Icon Click Callback')
-  }
+    setTimeout(() => inputRef.current.focus(), 0);
+    alert('Icon Click Callback');
+  };
 
-  return (<div className={style.container}>
-    <h2 className="text text_type_main-large mb-6">Регистрация</h2>
-    <Input
-      type={'text'}
-      placeholder={'Имя'}
-      onChange={e => setValue(e.target.value)}
+  return (
+    <div className={style.container}>
+      <h2 className="text text_type_main-large mb-6">Регистрация</h2>
+      <Input
+        type="text"
+        placeholder="Имя"
+        onChange={(e) => setValue(e.target.value)}
       // icon={'CurrencyIcon'}
-      value={value}
-      name={'name'}
-      error={false}
-      ref={inputRef}
-      onIconClick={onIconClick}
-      errorText={'Ошибка'}
-      size={'default'}
-      extraClass="ml-1 mb-6"
-    />
-    <Input
-      type={'text'}
-      placeholder={'E-mail'}
-      onChange={e => setValue(e.target.value)}
+        value={value}
+        name="name"
+        error={false}
+        ref={inputRef}
+        onIconClick={onIconClick}
+        errorText="Ошибка"
+        size="default"
+        extraClass="ml-1 mb-6"
+      />
+      <Input
+        type="text"
+        placeholder="E-mail"
+        onChange={(e) => setValue(e.target.value)}
       // icon={'CurrencyIcon'}
-      value={value}
-      name={'name'}
-      error={false}
-      ref={inputRef}
-      onIconClick={onIconClick}
-      errorText={'Ошибка'}
-      size={'default'}
-      extraClass="ml-1 mb-6"
-    />
-    <Input
-      type={'text'}
-      placeholder={'Пароль'}
-      onChange={e => setValue(e.target.value)}
-      icon={'ShowIcon'}
-      value={value}
-      name={'name'}
-      error={false}
-      ref={inputRef}
-      onIconClick={onIconClick}
-      errorText={'Ошибка'}
-      size={'default'}
-      extraClass="ml-1 mb-6"
-    />
+        value={value}
+        name="name"
+        error={false}
+        ref={inputRef}
+        onIconClick={onIconClick}
+        errorText="Ошибка"
+        size="default"
+        extraClass="ml-1 mb-6"
+      />
+      <Input
+        type="text"
+        placeholder="Пароль"
+        onChange={(e) => setValue(e.target.value)}
+        icon="ShowIcon"
+        value={value}
+        name="name"
+        error={false}
+        ref={inputRef}
+        onIconClick={onIconClick}
+        errorText="Ошибка"
+        size="default"
+        extraClass="ml-1 mb-6"
+      />
       <Button
         htmlType="button"
         type="primary"
         size="medium"
         extraClass="mb-20"
-        // onClick={onClick}
-        // disabled={disabled}
       >
         Зарегистрироваться
       </Button>
       <span className="text text_type_main-default pl-2 mb-4 text_color_inactive">
-        Уже зарегистрированы? <NavLink to={Urls.SIGN.IN}>Войти</NavLink>
+        Уже зарегистрированы?
+        {' '}
+        <NavLink to={Urls.SIGN.IN}>Войти</NavLink>
       </span>
-  </div>);
+    </div>
+  );
 }

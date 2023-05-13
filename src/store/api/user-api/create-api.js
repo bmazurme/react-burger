@@ -5,7 +5,7 @@ import { baseQuery } from '../base-query';
 // Define a service using a base URL and expected endpoints
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: baseQuery,
+  baseQuery,
   tagTypes: ['user'],
   endpoints: () => ({}),
 });

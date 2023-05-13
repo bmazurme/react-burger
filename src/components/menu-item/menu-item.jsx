@@ -1,3 +1,6 @@
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -15,7 +18,8 @@ export default function MenuItem({
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(null);
   const handleClick = (currId) => setIsOpen(currId !== isOpen ? currId : null);
-  const active = useMemo(() => links?.some((x) => x.url === pathname) ? true : pathname === url, [pathname]);
+  // eslint-disable-next-line max-len
+  const active = useMemo(() => (links?.some((x) => x.url === pathname) ? true : pathname === url), [pathname]);
 
   return (
     <li className={`${style.item} ${extraClass && extraClass}`} onClick={() => handleClick(id)}>
@@ -23,8 +27,9 @@ export default function MenuItem({
         <NavLink to={url} className={style.link}>
           <Icon active={active} component={icon} />
           <span
-            className={classNames('text text_type_main-default pl-2',
-            { 'text_color_inactive': !active },
+            className={classNames(
+              'text text_type_main-default pl-2',
+              { text_color_inactive: !active },
             )}
           >
             {label}

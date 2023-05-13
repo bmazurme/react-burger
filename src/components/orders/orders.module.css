@@ -1,0 +1,37 @@
+.main {
+  grid-area: left;
+  display: flex;
+	flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 40px 0 0;
+  overflow: hidden;
+  max-height: calc(100% - 60px);
+}
+
+.orders {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  list-style: none;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  padding-right: 8px;
+  scroll-behavior: smooth;
+}
+
+.orders::-webkit-scrollbar {
+  width: 8px;
+}
+
+.orders::-webkit-scrollbar-track {
+  background-color: #2f2f37;
+}
+
+.orders::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+}

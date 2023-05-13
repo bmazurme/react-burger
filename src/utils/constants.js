@@ -1,7 +1,7 @@
 export const MAIN = 'main';
 export const BUN = 'bun';
 export const SAUCE = 'sauce';
-export const COLUMN = 'column'
+export const COLUMN = 'column';
 
 export const Urls = {
   BASE: '/',
@@ -13,10 +13,13 @@ export const Urls = {
     OUT: '/signout',
   },
   RESET: '/reset',
-  QUEUE: '/queue',
+  QUEUE: {
+    INDEX: '/queue',
+    ID: '/queue/:id',
+  },
   HISTORY: '/history',
   PROFILE: {
-    INDEX: '/profile'
+    INDEX: '/profile',
   },
   404: '*',
 };

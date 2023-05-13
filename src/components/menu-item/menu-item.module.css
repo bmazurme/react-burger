@@ -31,7 +31,7 @@
 }
 
 .inactive {
-  color: #8585AD;
+  color: #8585ad;
 }
 
 .link:active, .link:hover {
@@ -39,7 +39,7 @@
   color: var(--color);
 }
 
-@media screen and (min-width: 320px) and (max-width: 639px) {
+@media screen and (width >= 320px) and (width <= 639px) {
   .item {
     width: 100%;
   }

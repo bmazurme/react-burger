@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 export function filterObject(obj) {
   const newObj = {};
 

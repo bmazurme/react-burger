@@ -16,13 +16,11 @@ import { userApi } from './api/user-api/create-api';
 
 export * from './api/ingredient-api/endpoints';
 
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
+const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+  : compose;
 
 export const enhancer = composeEnhancers(applyMiddleware(thunk));
-
 
 export const store = configureStore({
   reducer: {
@@ -33,15 +31,14 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
-      ingredientApi.middleware,
-      userApi.middleware,
-      orderApi.middleware,
-    ),
-  devTools:[ enhancer({ realtime: true }) ]
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
+    ingredientApi.middleware,
+    userApi.middleware,
+    orderApi.middleware,
+  ),
+  devTools: [enhancer({ realtime: true })],
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
 // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);

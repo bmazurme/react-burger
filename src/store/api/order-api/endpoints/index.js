@@ -1,7 +1,7 @@
 import { orderApi } from '../create-api';
 
 const headers = new Headers();
-headers.append("Content-Type", "application/json");
+headers.append('Content-Type', 'application/json');
 
 const userApiEndpoints = orderApi
   .enhanceEndpoints({

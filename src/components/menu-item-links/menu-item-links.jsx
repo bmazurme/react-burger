@@ -14,7 +14,7 @@ export default function MenuItemLinks({ links }) {
           className={({ isActive }) => classNames(
             style.sublink,
             'text text_type_main-default',
-            { [style.inactive]: !isActive }
+            { [style.inactive]: !isActive },
           )}
           key={id}
         >

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';

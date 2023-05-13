@@ -14,7 +14,7 @@ const mainLinks = [
     label: 'Лента заказов',
     extraClass: '',
     icon: ListIcon,
-    url: Urls.QUEUE,
+    url: Urls.QUEUE.INDEX,
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const mainLinks = [
     extraClass: '',
     icon: ProfileIcon,
     links: [
-      { id: 'l01', label: 'Профиль', url: Urls.PROFILE.INDEX, },
+      { id: 'l01', label: 'Профиль', url: Urls.PROFILE.INDEX },
       { id: 'l02', label: 'История заказов', url: Urls.HISTORY },
       { id: 'l03', label: 'Выход', url: Urls.SIGN.OUT },
     ],

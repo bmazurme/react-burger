@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Preloader from '../../components/preloader';
+import Orders from '../../components/orders';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import { useGetIngredientsQuery } from '../../store';
@@ -15,5 +16,13 @@ export default function Queue() {
   const { data: rawData } = data;
   const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
-  return (isLoading ? <Preloader /> : <>data</>);
+  return (isLoading
+    ? <Preloader />
+    : (
+      <main className={style.main}>
+        <Orders />
+        {/* {(blocks === 2) && (<BurgerConstructor />)} */}
+      </main>
+    )
+  );
 }

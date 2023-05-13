@@ -16,60 +16,62 @@ export default function Profile() {
   const { data: rawData } = data;
   const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
-  const [value, setValue] = useState('')
-  const inputRef = useRef(null)
+  const [value, setValue] = useState('');
+  const inputRef = useRef(null);
   const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0)
-    alert('Icon Click Callback')
-  }
+    setTimeout(() => inputRef.current.focus(), 0);
+    alert('Icon Click Callback');
+  };
 
   return (isLoading
-    ? <Preloader /> 
-    : <div className={style.container}>
+    ? <Preloader />
+    : (
+      <div className={style.container}>
         <h2 className="text text_type_main-large mb-6">Профиль</h2>
         <Input
-          type={'text'}
-          placeholder={'Имя'}
-          onChange={e => setValue(e.target.value)}
+          type="text"
+          placeholder="Имя"
+          onChange={(e) => setValue(e.target.value)}
           // icon={'CurrencyIcon'}
           value={value}
-          name={'name'}
+          name="name"
           error={false}
           ref={inputRef}
           onIconClick={onIconClick}
-          errorText={'Ошибка'}
-          size={'default'}
+          errorText="Ошибка"
+          size="default"
           extraClass="ml-1 mb-6"
         />
         <Input
-          type={'text'}
-          placeholder={'E-mail'}
-          onChange={e => setValue(e.target.value)}
+          type="text"
+          placeholder="E-mail"
+          onChange={(e) => setValue(e.target.value)}
           // icon={'CurrencyIcon'}
           value={value}
-          name={'name'}
+          name="name"
           error={false}
           ref={inputRef}
           onIconClick={onIconClick}
-          errorText={'Ошибка'}
-          size={'default'}
+          errorText="Ошибка"
+          size="default"
           extraClass="ml-1 mb-6"
         />
         <Input
-          type={'text'}
-          placeholder={'Пароль'}
-          onChange={e => setValue(e.target.value)}
-          icon={'ShowIcon'}
+          type="text"
+          placeholder="Пароль"
+          onChange={(e) => setValue(e.target.value)}
+          icon="ShowIcon"
           value={value}
-          name={'name'}
+          name="name"
           error={false}
           ref={inputRef}
           onIconClick={onIconClick}
-          errorText={'Ошибка'}
-          size={'default'}
+          errorText="Ошибка"
+          size="default"
           extraClass="ml-1 mb-6"
         />
-В этом разделе вы можете
-изменить свои персональные данные
-    </div>);
+        В этом разделе вы можете
+        изменить свои персональные данные
+      </div>
+    ));
 }
