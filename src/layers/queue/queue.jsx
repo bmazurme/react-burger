@@ -2,6 +2,7 @@ import React from 'react';
 
 import Preloader from '../../components/preloader';
 import Orders from '../../components/orders';
+import InfoBlock from '../../components/info-block';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import { useGetIngredientsQuery } from '../../store';
@@ -20,8 +21,8 @@ export default function Queue() {
     ? <Preloader />
     : (
       <main className={style.main}>
-        <Orders />
-        {/* {(blocks === 2) && (<BurgerConstructor />)} */}
+        <Orders title="Лента заказов" />
+        <InfoBlock />
       </main>
     )
   );

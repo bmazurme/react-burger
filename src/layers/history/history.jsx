@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Preloader from '../../components/preloader';
+import Orders from '../../components/orders';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import { useGetIngredientsQuery } from '../../store';
@@ -12,8 +13,12 @@ export default function History() {
   const isMobile = blocks === 1;
   // Using a query hook automatically fetches data and returns query values
   const { data = { data: [] }, error, isLoading } = useGetIngredientsQuery();
-  const { data: rawData } = data;
-  const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
-  return (isLoading ? <Preloader /> : <>history</>);
+  return (isLoading
+    ? <Preloader />
+    : (
+      <main className={style.main}>
+        <Orders />
+      </main>
+    ));
 }

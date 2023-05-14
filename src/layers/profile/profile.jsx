@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import Preloader from '../../components/preloader';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
@@ -13,8 +13,6 @@ export default function Profile() {
   const isMobile = blocks === 1;
   // Using a query hook automatically fetches data and returns query values
   const { data = { data: [] }, error, isLoading } = useGetIngredientsQuery();
-  const { data: rawData } = data;
-  const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
   const [value, setValue] = useState('');
   const inputRef = useRef(null);
@@ -70,8 +68,12 @@ export default function Profile() {
           size="default"
           extraClass="ml-1 mb-6"
         />
-        В этом разделе вы можете
-        изменить свои персональные данные
+        <p className="text text_type_main-default text_color_inactive">
+          В этом разделе вы можете
+        </p>
+        <p className="text text_type_main-default text_color_inactive">
+          изменить свои персональные данные
+        </p>
       </div>
     ));
 }

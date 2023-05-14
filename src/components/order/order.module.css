@@ -26,6 +26,15 @@
   cursor: pointer;
 }
 
+.link {
+  text-decoration: none;
+  width: 100%;
+}
+
+.link:hover, .link:visited {
+  color: var(--color);
+}
+
 .header {
   display: flex;
   flex-direction: row;
