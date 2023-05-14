@@ -31,7 +31,6 @@ export default function Signup() {
         type="text"
         placeholder="Имя"
         onChange={(e) => setValue(e.target.value)}
-      // icon={'CurrencyIcon'}
         value={value}
         name="name"
         error={false}
@@ -45,7 +44,6 @@ export default function Signup() {
         type="text"
         placeholder="E-mail"
         onChange={(e) => setValue(e.target.value)}
-      // icon={'CurrencyIcon'}
         value={value}
         name="name"
         error={false}

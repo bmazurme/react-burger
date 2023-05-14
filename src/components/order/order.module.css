@@ -131,19 +131,3 @@
   position: absolute;
   z-index: 1000;
 }
-
-/* .item_last::after {
-  content: var(--content);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-  z-index: 1000;
-  font-family: 'Iceland';
-  font-weight: normal;
-  font-size: 24px;
-  line-height: .86;
-} */

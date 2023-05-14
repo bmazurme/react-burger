@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Order from '../order';
 
@@ -17,6 +18,6 @@ export default function Orders({ title }) {
   );
 }
 
-// BurgerIngredients.propTypes = {
-//   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
-// };
+Orders.propTypes = {
+  title: PropTypes.string,
+};

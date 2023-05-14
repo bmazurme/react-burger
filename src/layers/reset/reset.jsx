@@ -36,7 +36,6 @@ export default function Reset() {
         type="text"
         placeholder="Введите код из письма"
         onChange={(e) => setValue(e.target.value)}
-      // icon={'CurrencyIcon'}
         value={value}
         name="name"
         error={false}

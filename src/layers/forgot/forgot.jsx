@@ -22,7 +22,6 @@ export default function Forgot() {
         type="text"
         placeholder="Укажите e-mail"
         onChange={(e) => setValue(e.target.value)}
-        // icon={'CurrencyIcon'}
         value={value}
         name="name"
         error={false}

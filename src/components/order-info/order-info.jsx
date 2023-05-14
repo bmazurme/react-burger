@@ -1,5 +1,8 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import style from './order-info.module.css';
@@ -34,6 +37,6 @@ export default function OrderInfo({ currentOrder: order }) {
   );
 }
 
-// OrderInfo.propTypes = {
-//   currentIngredient: cardPropTypes,
-// };
+OrderInfo.propTypes = {
+  currentOrder: PropTypes.any.isRequired,
+};

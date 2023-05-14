@@ -31,7 +31,6 @@ export default function Signin() {
         type="text"
         placeholder="E-mail"
         onChange={(e) => setValue(e.target.value)}
-        // icon={'CurrencyIcon'}
         value={value}
         name="name"
         error={false}

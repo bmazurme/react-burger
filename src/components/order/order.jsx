@@ -1,24 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-// import PropTypes from 'prop-types';
 
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import cards from '../../mocks/data';
+import { RANGE, mockData } from '../../mocks/order';
 
 import style from './order.module.css';
-
-const RANGE = 5;
-const mockData = {
-  number: '034535',
-  time: ' Сегодня, 16:20',
-  name: 'Death Star Starship Main бургер',
-  price: 480,
-  icons: cards.slice(0, RANGE),
-  count: cards.length - RANGE,
-  cards,
-};
 
 export default function Order() {
   const location = useLocation();
@@ -58,7 +46,3 @@ export default function Order() {
     </Link>
   );
 }
-
-// BurgerIngredients.propTypes = {
-//   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
-// };
