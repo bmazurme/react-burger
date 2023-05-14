@@ -6,9 +6,9 @@ import style from './list.module.css';
 export default function List({ list, extraClass }) {
   return (
     <ul className={style.list}>
-      {list.map((x) => (
+      {list.map((x, i) => (
         <li
-          key={x}
+          key={i}
           className={
           classNames(
             'text text_type_digits-default',

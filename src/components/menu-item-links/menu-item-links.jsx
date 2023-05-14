@@ -10,13 +10,10 @@ export default function MenuItemLinks({ links }) {
     <ul className={style.sublinks}>
       {links.map(({ id, label, url }) => (
         <NavLink
-          to={url}
-          className={({ isActive }) => classNames(
-            style.sublink,
-            'text text_type_main-default',
-            { [style.inactive]: !isActive },
-          )}
           key={id}
+          to={url}
+          className={({ isActive }) => classNames(style.sublink, 'text text_type_main-default', { [style.inactive]: !isActive })}
+          end
         >
           {label}
         </NavLink>

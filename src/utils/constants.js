@@ -20,6 +20,7 @@ export const Urls = {
   HISTORY: '/history',
   PROFILE: {
     INDEX: '/profile',
+    ORDERS: 'orders',
   },
   404: '*',
 };
