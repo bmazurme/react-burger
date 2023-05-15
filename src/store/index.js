@@ -10,8 +10,10 @@ import burgerSlice from './slices/burger-slice';
 // import orderSlice from './slices/order-slice';
 import userSlice from './slices/user-slice';
 
+import { authApi } from './api/auth-api/create-api';
 import { ingredientApi } from './api/ingredient-api/create-api';
 import { orderApi } from './api/order-api/create-api';
+import { passwordApi } from './api/password-api/create-api';
 import { userApi } from './api/user-api/create-api';
 
 export * from './api/ingredient-api/endpoints';
@@ -27,12 +29,16 @@ export const store = configureStore({
     burger: burgerSlice,
     user: userSlice,
     // Add the generated reducer as a specific top-level slice
+    [authApi.reducerPath]: authApi.reducer,
     [ingredientApi.reducerPath]: ingredientApi.reducer,
+    [passwordApi.reducerPath]: passwordApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
+    authApi.middleware,
     ingredientApi.middleware,
+    passwordApi.middleware,
     userApi.middleware,
     orderApi.middleware,
   ),
