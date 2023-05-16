@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable no-restricted-globals */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import ForgotPage from './pages/forgot';
 import IngredientPage from './pages/ingredient';
@@ -15,12 +17,23 @@ import ResetPage from './pages/reset';
 import SigninPage from './pages/signin';
 import SignupPage from './pages/signup';
 
+import IngredientModal from './layers/ingredient-modal/ingredient-modal';
+
+import { selectUser } from './store/slices/user-slice';
+
 import ErrorBoundary from './components/error-boundary';
 
 import { Urls } from './utils';
 
+// https://dev.to/devmdmamun/create-contextual-modal-navigation-with-react-router-v6-28k2
 export default function App() {
   const location = useLocation();
+  const user = useSelector(selectUser);
+  console.log(user);
+
+  useEffect(() => {
+    location.state = null;
+  }, []);
 
   return (
     <ErrorBoundary>
@@ -41,6 +54,7 @@ export default function App() {
       {location.state?.pathname
         && (
         <Routes>
+          <Route path={Urls.INGREDIENT} element={(<IngredientModal />)} />
           <Route path={Urls.QUEUE.ID} element={(<OrderInfoPage />)} />
         </Routes>
         )}

@@ -45,6 +45,5 @@ const groupPropTypes = PropTypes.shape({
 Groups.propTypes = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
   groups: PropTypes.arrayOf(groupPropTypes),
-  onClick: PropTypes.func.isRequired,
   setCurrent: PropTypes.func.isRequired,
 };

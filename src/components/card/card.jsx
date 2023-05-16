@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unused-prop-types */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
 import { useSelector } from 'react-redux';
@@ -20,11 +19,10 @@ export default function Card(card) {
     name,
     price,
     type,
-    onClick,
   } = card;
 
+  const location = useLocation();
   const { bun = null, mainOrSauce = [] } = useSelector(selectBurger);
-  const onClickCard = () => onClick(card);
   const count = [bun, ...mainOrSauce].filter((x) => x?._id === _id).length;
 
   const [{ opacity }, dragRef] = useDrag(() => ({
@@ -34,24 +32,21 @@ export default function Card(card) {
   }));
 
   return (
-    <li
-      ref={dragRef}
-      style={{ opacity }}
-      className={`${style.card} pl-4`}
-      onClick={onClickCard}
-    >
-      <img
-        className={`${style.image}`}
-        src={image}
-        alt={name}
-        loading="lazy"
-      />
-      <div className={`${style.price} pt-1 pb-2`}>
-        <p className="text text_type_digits-default pr-2">{price}</p>
-        <CurrencyIcon type="primary" />
-      </div>
-      <p className={`${style.name} text text_type_main-default pb-10`}>{name}</p>
-      {count > 0 && <Counter count={count} size="default" />}
+    <li ref={dragRef} style={{ opacity }} className={`${style.card} pl-4`}>
+      <Link to={`/ingredient/${_id}`} state={{ pathname: location.pathname }} className={style.link}>
+        <img
+          className={`${style.image}`}
+          src={image}
+          alt={name}
+          loading="lazy"
+        />
+        <div className={`${style.price} pt-1 pb-2`}>
+          <p className="text text_type_digits-default pr-2">{price}</p>
+          <CurrencyIcon type="primary" />
+        </div>
+        <p className={`${style.name} text text_type_main-default pb-10`}>{name}</p>
+        {count > 0 && <Counter count={count} size="default" />}
+      </Link>
     </li>
   );
 }

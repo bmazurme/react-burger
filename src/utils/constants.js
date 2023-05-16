@@ -6,7 +6,7 @@ export const COLUMN = 'column';
 export const Urls = {
   BASE: '/',
   FORGOT: '/forgot',
-  INGREDIENT: '/ingredient',
+  INGREDIENT: '/ingredient/:id',
   SIGN: {
     IN: '/signin',
     UP: '/signup',

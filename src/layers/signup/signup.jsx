@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { useSignUpMutation } from '../../store/api/auth-api/endpoints';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
+import useUser from '../../hooks/use-user';
 
 import { Urls } from '../../utils';
 
@@ -12,6 +13,7 @@ import style from './signup.module.css';
 
 export default function Signup() {
   const navigate = useNavigate();
+  const userData = useUser();
   const [show, setShow] = useState(false);
   const [signUp, { isError, isLoading }] = useSignUpMutation();
   const {
@@ -20,7 +22,7 @@ export default function Signup() {
 
   const toggleShow = () => setShow(!show);
   // for debug
-  console.log(isError, isLoading, values);
+  // console.log(isError, isLoading, values);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +37,12 @@ export default function Signup() {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      navigate('/');
+    }
+  });
 
   // need form validation....
 

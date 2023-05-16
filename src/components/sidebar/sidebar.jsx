@@ -1,23 +1,40 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 
+import { useSignOutMutation } from '../../store';
+import { setUser } from '../../store/slices/user-slice';
+import { Urls } from '../../utils';
+
 import style from './sidebar.module.css';
 
-const links = [
-  { id: uuidv4(), name: 'Профиль', to: '' },
-  { id: uuidv4(), name: 'История заказов', to: 'orders' },
-  { id: uuidv4(), name: 'Выход', to: 'signout' },
-];
-
 export default function Profile() {
+  const dispatch = useDispatch();
+  const [signOut, { isError, isLoading }] = useSignOutMutation();
   const getStyle = ({ isActive }) => (classNames('text text_type_main-medium mb-6', style.link, { [style.link_active]: isActive }));
+  const logout = async () => {
+    await signOut();
+    dispatch(setUser(null));
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('accessToken');
+  };
+
+  const links = [
+    { id: uuidv4(), name: 'Профиль', to: '' },
+    { id: uuidv4(), name: 'История заказов', to: 'orders' },
+    {
+      id: uuidv4(), name: 'Выход', to: Urls.SIGN.IN, handler: logout,
+    },
+  ];
 
   return (
     <div className={style.sidebar}>
-      {links.map(({ id, name, to }) => (
-        <NavLink key={id} to={to} end className={getStyle}>
+      {links.map(({
+        id, name, to, handler,
+      }) => (
+        <NavLink key={id} to={to} end className={getStyle} onClick={handler}>
           {name}
         </NavLink>
       ))}

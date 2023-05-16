@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ConstructorBlock from '../constructor-block';
@@ -11,11 +12,16 @@ import Modal from '../modal';
 import { selectBurger, setNumber } from '../../store/slices/burger-slice';
 import { usePostOrderMutation } from '../../store/api/order-api/endpoints';
 import { useModal } from '../../hooks/use-modal';
+import useUser from '../../hooks/use-user';
+
+import { Urls } from '../../utils';
 
 import style from './burger-constructor.module.css';
 
 export default function BurgerConstructor() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userData = useUser();
   const { bun, mainOrSauce, number } = useSelector(selectBurger);
   const [postOrder, { isLoading, isError }] = usePostOrderMutation();
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -28,9 +34,13 @@ export default function BurgerConstructor() {
     };
 
     if (data.ingredients.length > 0) {
-      const { data: result } = await postOrder(data);
-      openModal();
-      dispatch(setNumber(result?.order?.number));
+      if (userData) {
+        const { data: result } = await postOrder(data);
+        openModal();
+        dispatch(setNumber(result?.order?.number));
+      } else {
+        navigate(Urls.SIGN.IN);
+      }
     }
   };
 

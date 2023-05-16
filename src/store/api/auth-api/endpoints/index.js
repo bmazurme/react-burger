@@ -1,5 +1,6 @@
 import { authApi } from '../create-api';
 
+const refreshToken = localStorage.getItem('refreshToken');
 const headers = new Headers();
 headers.append('Content-Type', 'application/json');
 
@@ -18,19 +19,21 @@ const authApiEndpoints = authApi
         }),
       }),
       signIn: builder.mutation({
-        query: (data) => ({
+        query: (body) => ({
           url: '/auth/login',
           method: 'POST',
           headers,
-          body: data,
+          body,
         }),
       }),
       signOut: builder.mutation({
-        query: (data) => ({
+        query: () => ({
           url: '/auth/logout',
           method: 'POST',
           headers,
-          body: data,
+          body: {
+            token: refreshToken,
+          },
         }),
       }),
       refreshToken: builder.mutation({
@@ -41,6 +44,20 @@ const authApiEndpoints = authApi
           body: data,
         }),
       }),
+      getUser: builder.mutation({
+        query: () => {
+          const token = localStorage.getItem('accessToken');
+
+          return {
+            url: 'auth/user',
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          };
+        },
+        invalidatesTags: ['user'],
+      }),
     }),
   });
 
@@ -49,4 +66,5 @@ export const {
   useSignInMutation,
   useSignOutMutation,
   useRefreshTokenMutation,
+  useGetUserMutation,
 } = authApiEndpoints;

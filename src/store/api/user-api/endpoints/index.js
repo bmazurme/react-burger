@@ -9,19 +9,22 @@ const userApiEndpoints = userApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getUser: builder.query({
-        query: () => '/auth/user',
-        providesTags: ['user'],
-      }),
       updateUser: builder.mutation({
-        query: (data) => ({
-          url: '/auth/user',
-          method: 'PATCH',
-          headers,
-          body: data,
-        }),
+        query: (data) => {
+          const token = localStorage.getItem('accessToken');
+          return {
+            url: '/auth/user',
+            method: 'PATCH',
+            headers: {
+              Authorization: `token ${token}`,
+            },
+            body: data,
+          };
+        },
       }),
     }),
   });
 
-export const { useGetUserQuery, useUpdateUserMutation } = userApiEndpoints;
+export const {
+  useUpdateUserMutation,
+} = userApiEndpoints;

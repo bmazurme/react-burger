@@ -6,7 +6,9 @@ import ProfileOrders from '../../layers/profile-orders';
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import { useGetIngredientsQuery } from '../../store';
 
-export default function ProfileOrdersPage() {
+import withUser from '../../hocs/with-user';
+
+function ProfileOrdersPage() {
   const { blocks } = getVisualProps(useWindowDimensions());
   const isMobile = blocks === 1;
   // Using a query hook automatically fetches data and returns query values
@@ -14,3 +16,5 @@ export default function ProfileOrdersPage() {
 
   return (isLoading ? <Preloader /> : (<ProfileOrders />));
 }
+
+export default withUser(ProfileOrdersPage, true);

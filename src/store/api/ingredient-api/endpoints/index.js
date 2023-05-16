@@ -7,7 +7,11 @@ const ingredientApiEndpoints = ingredientApi
   .injectEndpoints({
     endpoints: (builder) => ({
       getIngredients: builder.query({
-        query: () => '/ingredients',
+        query: () => ({
+          url: 'ingredients',
+          method: 'GET',
+        }),
+
         providesTags: ['ingredient'],
       }),
     }),

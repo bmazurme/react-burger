@@ -1,38 +1,55 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import Preloader from '../../components/preloader';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
-import { useGetIngredientsQuery } from '../../store';
+import useFormWithValidation from '../../hooks/use-form-with-validation';
+import useUser from '../../hooks/use-user';
+import { useUpdateUserMutation } from '../../store/api/user-api/endpoints';
 
 import style from './profile-index.module.css';
 
 export default function ProfileIndex() {
+  const [updateUser, { isLoading, isError, data }] = useUpdateUserMutation();
+  const userData = useUser();
   const { blocks } = getVisualProps(useWindowDimensions());
   const isMobile = blocks === 1;
-  // Using a query hook automatically fetches data and returns query values
-  const { data = { data: [] }, error, isLoading } = useGetIngredientsQuery();
-  const [value, setValue] = useState('');
-  const inputRef = useRef(null);
-  const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0);
-    alert('Icon Click Callback');
+
+  const {
+    values, handleChange, errors, isValid, resetForm, setIsValid, setValues,
+  } = useFormWithValidation({
+    name: userData?.name || '',
+    email: userData?.email || '',
+    password: '',
+  });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await updateUser(values);
+    } catch (err) {
+      // need modal...
+      console.log(err);
+    }
   };
+
+  // need form validation....
 
   return (isLoading
     ? <Preloader />
     : (
-      <div className={style.main}>
+      <form className={style.main} onSubmit={onSubmit}>
         <Input
           type="text"
           placeholder="Имя"
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
+          onChange={handleChange}
+          icon="EditIcon"
+          value={values.name || ''}
           name="name"
           error={false}
-          ref={inputRef}
-          onIconClick={onIconClick}
+          onIconClick={onSubmit}
           errorText="Ошибка"
           size="default"
           extraClass="ml-1 mb-6"
@@ -40,30 +57,29 @@ export default function ProfileIndex() {
         <Input
           type="text"
           placeholder="E-mail"
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
-          name="name"
+          onChange={handleChange}
+          icon="EditIcon"
+          value={values.email || ''}
+          name="email"
           error={false}
-          ref={inputRef}
-          onIconClick={onIconClick}
+          onIconClick={onSubmit}
           errorText="Ошибка"
           size="default"
           extraClass="ml-1 mb-6"
         />
         <Input
-          type="text"
+          type="password"
           placeholder="Пароль"
-          onChange={(e) => setValue(e.target.value)}
-          icon="ShowIcon"
-          value={value}
-          name="name"
+          onChange={handleChange}
+          icon="EditIcon"
+          value={values.password || ''}
+          name="password"
           error={false}
-          ref={inputRef}
-          onIconClick={onIconClick}
+          onIconClick={onSubmit}
           errorText="Ошибка"
           size="default"
           extraClass="ml-1 mb-6"
         />
-      </div>
+      </form>
     ));
 }

@@ -24,7 +24,7 @@ const mainLinks = [
     links: [
       { id: 'l01', label: 'Профиль', url: Urls.PROFILE.INDEX },
       { id: 'l02', label: 'История заказов', url: `${Urls.PROFILE.INDEX}/orders` },
-      { id: 'l03', label: 'Выход', url: Urls.SIGN.OUT },
+      { id: 'l03', label: 'Выход', url: Urls.SIGN.IN },
     ],
   },
 ];
