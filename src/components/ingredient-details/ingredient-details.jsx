@@ -1,8 +1,6 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
-import getComponents from '../../utils/get-components';
-import { cardPropTypes } from '../../utils/types';
+import { cardPropTypes, getComponents } from '../../utils';
 
 import style from './ingredient-details.module.css';
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -10,10 +11,12 @@ import Preloader from '../../components/preloader';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import { useGetIngredientsQuery } from '../../store';
+import { setIngredient } from '../../store/slices/ingredient-slice';
 
 import style from './main.module.css';
 
 export default function Main() {
+  const dispatch = useDispatch();
   const { blocks } = getVisualProps(useWindowDimensions());
   const isMobile = blocks === 1;
   // Using a query hook automatically fetches data and returns query values
@@ -21,13 +24,21 @@ export default function Main() {
   const { data: rawData } = data;
   const cards = rawData.map((x) => ({ ...x, thumbnail: x.image, text: x.name }));
 
+  useEffect(() => {
+    if (cards.length > 0) {
+      dispatch(setIngredient(cards));
+    }
+  }, [isLoading]);
+
   return (isLoading
     ? <Preloader />
-    : (<DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+    : (
+      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
         <main className={style.main}>
           <BurgerIngredients cards={cards} />
           {(blocks === 2) && (<BurgerConstructor />)}
         </main>
-      </DndProvider>)
+      </DndProvider>
+    )
   );
 }

@@ -1,0 +1,13 @@
+.main {
+  display: grid;
+  grid-template-areas: "sidebar left right";
+  grid-template-columns: 1fr 1fr minmax(1fr, 200px);
+  gap: 0;
+  column-gap: 40px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 10px;
+  max-width: var(--width-xl);
+  max-height: calc(100vh - 88px);
+  height: 100%;
+}

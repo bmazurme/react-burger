@@ -6,11 +6,14 @@ const userApiEndpoints = userApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getUser: builder.query({
-        query: () => '/user',
-        providesTags: ['user'],
+      updateUser: builder.mutation({
+        query: (data) => ({
+          url: '/auth/user',
+          method: 'PATCH',
+          body: data,
+        }),
       }),
     }),
   });
 
-export const { useGetUserQuery } = userApiEndpoints;
+export const { useUpdateUserMutation } = userApiEndpoints;

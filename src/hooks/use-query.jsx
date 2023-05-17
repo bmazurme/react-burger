@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import buildProperties from '../utils/build-properties';
-
-import { propsTypes } from '../utils/types';
-import { BASE_URL } from '../utils/config';
+import { buildProperties, BASE_URL, propsTypes } from '../utils';
 
 export default function useQuery(props) {
   const [state, setState] = useState({ data: [], hasError: true, isLoading: true });

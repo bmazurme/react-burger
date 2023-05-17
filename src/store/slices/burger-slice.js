@@ -22,7 +22,8 @@ const slice = createSlice({
         ...state.data,
         bun: data,
         price: data.price + state.data.mainOrSauce.reduce((sumPrice, x) => (sumPrice + x.price), 0),
-      }}),
+      },
+    }),
     setMainOrSauce: (
       state,
       { payload: data },
@@ -63,7 +64,7 @@ const slice = createSlice({
 });
 
 export const {
-  setBun, setMainOrSauce, removeIngredient, setItems, setNumber
+  setBun, setMainOrSauce, removeIngredient, setItems, setNumber,
 } = slice.actions;
 
 export default slice.reducer;

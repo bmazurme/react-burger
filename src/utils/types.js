@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import PropTypes from 'prop-types';
 
 const cardPropTypes = PropTypes.shape({
@@ -25,7 +26,6 @@ const profileLinkTypes = PropTypes.shape({
 const linkPropTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
-  active: PropTypes.bool,
   extraClass: PropTypes.string,
   icon: PropTypes.any.isRequired,
   links: PropTypes.arrayOf(profileLinkTypes),
