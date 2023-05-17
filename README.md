@@ -13,6 +13,7 @@
 - react-dnd
 - uuidv4
 - classnames
+- framer-motion
 
 ### About
 - [X] Sprint 1
@@ -56,11 +57,14 @@ $ npm run clear
 
 #### Implemented features:
 - [X] Drag-n-drop
-- [ ] Routing
-- [ ] API
+- [X] Routing
+- [X] API
   - [X] BurgerIngredients
-- [ ] Store
+- [X] Store
   - [X] Burger
+  - [X] User
+- [X] LocalStorage
+- [X] AnimatePresence
 
 #### Components:
 ##### Sprint 1 / Step 1
@@ -77,15 +81,22 @@ $ npm run clear
 - [X] IngredientDetails
 - [X] OrderDetails
 
+##### Sprint 3
+- [X] Profile, ProfileData, ProfileFeed
+- [X] SignIn, SignUp, SignOut, Forgot, Reset
+- [X] Ingredient
+
 #### hocs:
 - [X] withExtraClass
-- [ ] withUser
+- [X] withUser
 
 ### hooks:
 - [X] useWindowDimensions
+- [X] useFormValidation
+- [X] useModal
 - [X] useQuery - > rtk
 - [X] useMutation - > rtk
-- [ ] useUser
+- [X] useUser
 
 Webpack dev, prod config
 

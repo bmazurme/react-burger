@@ -1,9 +1,9 @@
-/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
 import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -14,11 +14,7 @@ import style from './card.module.css';
 
 export default function Card(card) {
   const {
-    _id,
-    image,
-    name,
-    price,
-    type,
+    _id, image, name, price, type,
   } = card;
 
   const location = useLocation();
@@ -32,8 +28,8 @@ export default function Card(card) {
   }));
 
   return (
-    <li ref={dragRef} style={{ opacity }} className={`${style.card} pl-4`}>
-      <Link to={`/ingredient/${_id}`} state={{ pathname: location.pathname }} className={style.link}>
+    <li ref={dragRef} style={{ opacity }} className={classNames(style.card, 'pl-4')}>
+      <Link to={`/ingredients/${_id}`}state={{ pathname: location.pathname }} className={style.link}>
         <img
           className={`${style.image}`}
           src={image}
@@ -44,7 +40,7 @@ export default function Card(card) {
           <p className="text text_type_digits-default pr-2">{price}</p>
           <CurrencyIcon type="primary" />
         </div>
-        <p className={`${style.name} text text_type_main-default pb-10`}>{name}</p>
+        <p className={classNames('text text_type_main-default pb-10', style.name)}>{name}</p>
         {count > 0 && <Counter count={count} size="default" />}
       </Link>
     </li>

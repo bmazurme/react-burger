@@ -6,5 +6,5 @@ import Signin from '../../layers/signin';
 function SigninPage() {
   return (<Content header children={<Signin />} />);
 }
-// hoc
+
 export default SigninPage;

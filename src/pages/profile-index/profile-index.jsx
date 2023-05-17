@@ -3,7 +3,6 @@ import React from 'react';
 import ProfileIndex from '../../layers/profile-index';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
-
 import withUser from '../../hocs/with-user';
 
 function ProfileIndexPage() {

@@ -1,8 +1,5 @@
 import { userApi } from '../create-api';
 
-const headers = new Headers();
-headers.append('Content-Type', 'application/json');
-
 const userApiEndpoints = userApi
   .enhanceEndpoints({
     addTagTypes: ['user'],
@@ -10,21 +7,13 @@ const userApiEndpoints = userApi
   .injectEndpoints({
     endpoints: (builder) => ({
       updateUser: builder.mutation({
-        query: (data) => {
-          const token = localStorage.getItem('accessToken');
-          return {
-            url: '/auth/user',
-            method: 'PATCH',
-            headers: {
-              Authorization: `token ${token}`,
-            },
-            body: data,
-          };
-        },
+        query: (data) => ({
+          url: '/auth/user',
+          method: 'PATCH',
+          body: data,
+        }),
       }),
     }),
   });
 
-export const {
-  useUpdateUserMutation,
-} = userApiEndpoints;
+export const { useUpdateUserMutation } = userApiEndpoints;

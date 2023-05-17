@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import Preloader from '../components/preloader';
 
 import useUser from '../hooks/use-user';
-import { setUser } from '../store/slices/user-slice';
-import { useGetUserMutation } from '../store/api/auth-api/endpoints';
+
+import { Urls } from '../utils';
+
+import { useGetUserMutation } from '../store';
 
 export default function withUser(Page, shouldBeAuthorized = true) {
   return function WithUser(pageProps) {
-    const dispatch = useDispatch();
     let userData = useUser();
     const [getUser, {
       isUninitialized,
@@ -23,8 +23,6 @@ export default function withUser(Page, shouldBeAuthorized = true) {
         getUser().then((res) => {
           if (res.data?.user && !isError) {
             userData = res.data.user;
-            // moved to store
-            dispatch(setUser(res.data.user));
           }
         });
       }
@@ -40,6 +38,6 @@ export default function withUser(Page, shouldBeAuthorized = true) {
       return <Page {...pagePropsWithUser} />;
     }
 
-    return <Navigate to="/signin" />;
+    return <Navigate to={Urls.SIGN.IN} />;
   };
 }

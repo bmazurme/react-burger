@@ -1,9 +1,5 @@
 import { authApi } from '../create-api';
 
-const refreshToken = localStorage.getItem('refreshToken');
-const headers = new Headers();
-headers.append('Content-Type', 'application/json');
-
 const authApiEndpoints = authApi
   .enhanceEndpoints({
     addTagTypes: ['auth'],
@@ -14,7 +10,6 @@ const authApiEndpoints = authApi
         query: (data) => ({
           url: '/auth/register',
           method: 'POST',
-          headers,
           body: data,
         }),
       }),
@@ -22,15 +17,13 @@ const authApiEndpoints = authApi
         query: (body) => ({
           url: '/auth/login',
           method: 'POST',
-          headers,
           body,
         }),
       }),
       signOut: builder.mutation({
-        query: () => ({
+        query: (refreshToken) => ({
           url: '/auth/logout',
           method: 'POST',
-          headers,
           body: {
             token: refreshToken,
           },
@@ -40,22 +33,14 @@ const authApiEndpoints = authApi
         query: (data) => ({
           url: '/auth/token',
           method: 'POST',
-          headers,
           body: data,
         }),
       }),
       getUser: builder.mutation({
-        query: () => {
-          const token = localStorage.getItem('accessToken');
-
-          return {
-            url: 'auth/user',
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          };
-        },
+        query: () => ({
+          url: 'auth/user',
+          method: 'GET',
+        }),
         invalidatesTags: ['user'],
       }),
     }),

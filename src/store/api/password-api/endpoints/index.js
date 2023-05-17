@@ -1,8 +1,5 @@
 import { passwordApi } from '../create-api';
 
-const headers = new Headers();
-headers.append('Content-Type', 'application/json');
-
 const authApiEndpoints = passwordApi
   .enhanceEndpoints({
     addTagTypes: ['password'],
@@ -13,7 +10,6 @@ const authApiEndpoints = passwordApi
         query: (data) => ({
           url: '/password-reset',
           method: 'POST',
-          headers,
           body: data,
         }),
       }),
@@ -21,7 +17,6 @@ const authApiEndpoints = passwordApi
         query: (data) => ({
           url: '/password-reset/reset',
           method: 'POST',
-          headers,
           body: data,
         }),
       }),

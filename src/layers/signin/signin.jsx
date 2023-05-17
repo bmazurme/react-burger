@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { useSignInMutation } from '../../store/api/auth-api/endpoints';
+import { useSignInMutation } from '../../store';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import useUser from '../../hooks/use-user';
 
@@ -44,7 +44,6 @@ export default function Signin() {
       navigate('/');
     }
   });
-
   // need form validation....
 
   return (
@@ -84,11 +83,21 @@ export default function Signin() {
       </Button>
       <span className="text text_type_main-default pl-2 mb-4 text_color_inactive">
         Вы — новый пользователь?
-        <NavLink to={Urls.SIGN.UP}>Зарегистрироваться</NavLink>
+        <NavLink
+          className="text text_type_main-default pl-2 ml-2"
+          to={Urls.SIGN.UP}
+        >
+          Зарегистрироваться
+        </NavLink>
       </span>
       <span className="text text_type_main-default pl-2 text_color_inactive">
         Забыли пароль?
-        <NavLink to={Urls.FORGOT}>Восстановить пароль</NavLink>
+        <NavLink
+          className="text text_type_main-default pl-2 ml-2"
+          to={Urls.FORGOT}
+        >
+          Восстановить пароль
+        </NavLink>
       </span>
     </form>
   );

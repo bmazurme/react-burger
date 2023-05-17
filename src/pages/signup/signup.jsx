@@ -6,5 +6,5 @@ import Signup from '../../layers/signup';
 function SignupPage() {
   return (<Content header children={<Signup />} />);
 }
-// hoc
+
 export default SignupPage;

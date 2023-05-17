@@ -6,7 +6,7 @@ import Preloader from '../../components/preloader';
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import useUser from '../../hooks/use-user';
-import { useUpdateUserMutation } from '../../store/api/user-api/endpoints';
+import { useUpdateUserMutation } from '../../store';
 
 import style from './profile-index.module.css';
 
@@ -34,7 +34,6 @@ export default function ProfileIndex() {
       console.log(err);
     }
   };
-
   // need form validation....
 
   return (isLoading

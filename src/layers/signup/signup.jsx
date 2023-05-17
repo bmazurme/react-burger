@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { useSignUpMutation } from '../../store/api/auth-api/endpoints';
+import { useSignUpMutation } from '../../store';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import useUser from '../../hooks/use-user';
 
@@ -28,10 +28,10 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      console.log(values);
       const result = await signUp(values);
-      navigate(Urls.SIGN.IN);
+      // for debug
       console.log(result);
+      navigate(Urls.SIGN.IN);
     } catch (err) {
       // need modal...
       console.log(err);
@@ -43,7 +43,6 @@ export default function Signup() {
       navigate('/');
     }
   });
-
   // need form validation....
 
   return (
@@ -94,7 +93,12 @@ export default function Signup() {
       </Button>
       <span className="text text_type_main-default pl-2 mb-4 text_color_inactive">
         Уже зарегистрированы?
-        <NavLink to={Urls.SIGN.IN}>Войти</NavLink>
+        <NavLink
+          to={Urls.SIGN.IN}
+          className="text text_type_main-default pl-2 ml-2"
+        >
+          Войти
+        </NavLink>
       </span>
     </form>
   );

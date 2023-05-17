@@ -6,5 +6,5 @@ import NotFound from '../../layers/not-found';
 function NotFoundPage() {
   return (<Content header children={<NotFound />} />);
 }
-// hoc
+
 export default NotFoundPage;

@@ -5,14 +5,14 @@ export const COLUMN = 'column';
 
 export const Urls = {
   BASE: '/',
-  FORGOT: '/forgot',
-  INGREDIENT: '/ingredient/:id',
+  FORGOT: '/forgot-password',
+  INGREDIENT: '/ingredients/:id',
   SIGN: {
-    IN: '/signin',
-    UP: '/signup',
+    IN: '/login',
+    UP: '/register',
     OUT: '/signout',
   },
-  RESET: '/reset',
+  RESET: '/reset-password',
   QUEUE: {
     INDEX: '/queue',
     ID: '/queue/:id',

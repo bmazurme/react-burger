@@ -10,7 +10,7 @@ import Preloader from '../preloader';
 import Modal from '../modal';
 
 import { selectBurger, setNumber } from '../../store/slices/burger-slice';
-import { usePostOrderMutation } from '../../store/api/order-api/endpoints';
+import { usePostOrderMutation } from '../../store';
 import { useModal } from '../../hooks/use-modal';
 import useUser from '../../hooks/use-user';
 
@@ -26,6 +26,8 @@ export default function BurgerConstructor() {
   const [postOrder, { isLoading, isError }] = usePostOrderMutation();
   const { isModalOpen, openModal, closeModal } = useModal();
 
+  // console.log(isLoading, isError);
+
   const onClick = async () => {
     const data = {
       ingredients: [bun, ...mainOrSauce]
@@ -35,9 +37,14 @@ export default function BurgerConstructor() {
 
     if (data.ingredients.length > 0) {
       if (userData) {
-        const { data: result } = await postOrder(data);
-        openModal();
-        dispatch(setNumber(result?.order?.number));
+        try {
+          const { data: result } = await postOrder(data);
+          openModal();
+          dispatch(setNumber(result?.order?.number));
+        } catch (e) {
+          // need modal
+          console.log(e);
+        }
       } else {
         navigate(Urls.SIGN.IN);
       }
@@ -62,7 +69,7 @@ export default function BurgerConstructor() {
           onClose={closePopup}
           children={<OrderDetails number={number} />}
         />
-        )}
+      )}
       {isLoading && <Preloader />}
     </section>
   );
