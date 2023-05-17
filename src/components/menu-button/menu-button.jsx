@@ -42,8 +42,7 @@ export default function MenuButton({ links }) {
     }
   };
 
-  const userLinks = { ...links[2], links: links[2].links.map((x) => x.id === 'l03' ? { ...x, handler: logout} : x) };
-  console.log(userLinks);
+  const userLinks = { ...links[2], links: links[2].links.map((x) => (x.id === 'l03' ? { ...x, handler: logout } : x)) };
 
   return (
     <>

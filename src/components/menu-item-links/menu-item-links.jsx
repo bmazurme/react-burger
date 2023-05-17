@@ -8,7 +8,9 @@ import style from './menu-item-links.module.css';
 export default function MenuItemLinks({ links }) {
   return (
     <ul className={style.sublinks}>
-      {links.map(({ id, label, url, handler }) => (
+      {links.map(({
+        id, label, url, handler,
+      }) => (
         <NavLink
           key={id}
           to={url}

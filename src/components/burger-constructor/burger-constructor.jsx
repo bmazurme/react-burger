@@ -69,7 +69,7 @@ export default function BurgerConstructor() {
           onClose={closePopup}
           children={<OrderDetails number={number} />}
         />
-      )}
+        )}
       {isLoading && <Preloader />}
     </section>
   );

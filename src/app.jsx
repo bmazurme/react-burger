@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <Routes location={location.state || location}>
+      <Routes location={location.state?.pathname || location}>
         <Route index element={(<MainPage />)} />
         <Route path={Urls.FORGOT} element={(<ForgotPage />)} />
         <Route path={Urls.INGREDIENT} element={(<IngredientPage />)} />

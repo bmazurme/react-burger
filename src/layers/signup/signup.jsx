@@ -40,9 +40,9 @@ export default function Signup() {
 
   useEffect(() => {
     if (userData) {
-      navigate('/');
+      navigate(Urls.BASE);
     }
-  });
+  }, []);
   // need form validation....
 
   return (

@@ -6,7 +6,7 @@ const ingredientApiEndpoints = ingredientApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getIngredients: builder.query({
+      getIngredients: builder.mutation({
         query: () => ({
           url: 'ingredients',
           method: 'GET',
@@ -17,4 +17,4 @@ const ingredientApiEndpoints = ingredientApi
     }),
   });
 
-export const { useGetIngredientsQuery } = ingredientApiEndpoints;
+export const { useGetIngredientsMutation } = ingredientApiEndpoints;

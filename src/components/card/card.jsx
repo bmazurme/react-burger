@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -29,7 +30,7 @@ export default function Card(card) {
 
   return (
     <li ref={dragRef} style={{ opacity }} className={classNames(style.card, 'pl-4')}>
-      <Link to={`/ingredients/${_id}`}state={{ pathname: location.pathname }} className={style.link}>
+      <Link to={`/ingredients/${_id}`} state={{ pathname: location.pathname }} className={style.link}>
         <img
           className={`${style.image}`}
           src={image}

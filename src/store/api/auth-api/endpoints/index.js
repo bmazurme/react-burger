@@ -30,10 +30,10 @@ const authApiEndpoints = authApi
         }),
       }),
       refreshToken: builder.mutation({
-        query: (data) => ({
+        query: ({ token }) => ({
           url: '/auth/token',
           method: 'POST',
-          body: data,
+          body: { token },
         }),
       }),
       getUser: builder.mutation({

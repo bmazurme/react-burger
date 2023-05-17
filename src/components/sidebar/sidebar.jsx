@@ -39,22 +39,24 @@ export default function Profile() {
 
   return (
     isLoading
-    ? <Preloader />
-    : <div className={style.sidebar}>
-        {links.map(({
-          id, name, to, handler,
-        }) => (
-          <NavLink key={id} to={to} end className={getStyle} onClick={handler}>
-            {name}
-          </NavLink>
-        ))}
+      ? <Preloader />
+      : (
+        <div className={style.sidebar}>
+          {links.map(({
+            id, name, to, handler,
+          }) => (
+            <NavLink key={id} to={to} end className={getStyle} onClick={handler}>
+              {name}
+            </NavLink>
+          ))}
 
-        <p className="text text_type_main-default text_color_inactive mt-20">
-          В этом разделе вы можете
-        </p>
-        <p className="text text_type_main-default text_color_inactive">
-          изменить свои персональные данные
-        </p>
-      </div>
+          <p className="text text_type_main-default text_color_inactive mt-20">
+            В этом разделе вы можете
+          </p>
+          <p className="text text_type_main-default text_color_inactive">
+            изменить свои персональные данные
+          </p>
+        </div>
+      )
   );
 }

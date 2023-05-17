@@ -5,3 +5,4 @@ export * from './filter-object';
 export * from './get-background-color';
 export * from './get-components';
 export * from './types';
+export * from './get-new-token';

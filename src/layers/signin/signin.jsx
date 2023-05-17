@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -12,6 +12,7 @@ import { Urls } from '../../utils';
 import style from './signin.module.css';
 
 export default function Signin() {
+  const location = useLocation();
   const navigate = useNavigate();
   const userData = useUser();
   const [show, setShow] = useState(false);
@@ -28,22 +29,28 @@ export default function Signin() {
     e.preventDefault();
 
     try {
-      const { data } = await signIn(values);
+      const res = await signIn(values);
+      console.log('error message', res?.error?.data?.message);
+      const { data } = res;
       const { accessToken, refreshToken } = data;
-      localStorage.setItem('accessToken', accessToken.split(' ')[1]);
-      localStorage.setItem('refreshToken', refreshToken);
-      navigate(Urls.BASE);
+
+      if (accessToken && refreshToken) {
+        localStorage.setItem('accessToken', accessToken.split(' ')[1]);
+        localStorage.setItem('refreshToken', refreshToken);
+        navigate(location?.state?.from || Urls.BASE);
+      }
     } catch (err) {
       // need modal...
       console.log(err);
     }
   };
 
+  console.log(location?.state?.from);
   useEffect(() => {
     if (userData) {
-      navigate('/');
+      navigate(Urls.BASE);
     }
-  });
+  }, []);
   // need form validation....
 
   return (
