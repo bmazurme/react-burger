@@ -1,16 +1,13 @@
-/* eslint-disable max-len */
 import React, { useCallback, useLayoutEffect, useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import classNames from 'classnames';
 
 import Modal from '../../components/modal';
+import IngredientDetails from '../../components/ingredient-details';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
-import { getComponents, Urls } from '../../utils';
 import { selectIngredient } from '../../store/slices/ingredient-slice';
-
-import style from './ingredient.module.css';
+import { getComponents, Urls } from '../../utils';
 
 export default function IngredientModal() {
   const [card, setCard] = useState(null);
@@ -24,6 +21,7 @@ export default function IngredientModal() {
   useLayoutEffect(() => {
     if (cards.length > 0) {
       const ingredient = cards.find((x) => x._id === id);
+      // move to detail
       const components = getComponents(ingredient) || [];
       setCard({ ingredient, components });
     }
@@ -34,29 +32,11 @@ export default function IngredientModal() {
   }, [location.state, navigate]);
 
   return (
-    <Modal
-      isOpen
-      onClose={handleClose}
-      children={(
-        <div className={style.main}>
-          <div className={classNames(style.container, 'pb-20')}>
-            <img className={style.image} src={card?.ingredient?.image} alt={card?.ingredient?.name} />
-            <p className="text text_type_main-medium pr-25 pl-25 pb-2 pt-6">{card?.ingredient?.name}</p>
-            <ul className={classNames(style.list, 'pt-8')}>
-              {card?.components.map((x) => (
-                <li key={x.id} className={classNames(style.item, 'pr-6 pl-6')}>
-                  <p className={classNames(style.text, 'text text_type_main-default text_color_inactive pb-2')}>
-                    {x.name}
-                  </p>
-                  <p className="text text_type_digits-default text_color_inactive">
-                    {x.value}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
-    />
+    card &&
+      <Modal
+        isOpen
+        onClose={handleClose}
+        children={(<IngredientDetails currentIngredient={card} />)}
+      />
   );
 }

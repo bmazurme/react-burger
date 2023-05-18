@@ -5,9 +5,10 @@ import {
 } from 'react-router-dom';
 
 import Modal from '../../components/modal';
+import Order from '../../components/order-info';
+
 import cards from '../../mocks/data';
 import { Urls } from '../../utils';
-import Order from '../../components/order-info';
 
 export default function OrderInfo() {
   const location = useLocation();

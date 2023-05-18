@@ -17,7 +17,6 @@ import style from './profile-index.module.css';
 export default function ProfileIndex() {
   const [updateUser, { isLoading, isError, data }] = useUpdateUserMutation();
   const [refreshToken, { isLoading: loading, isError: error }] = useRefreshTokenMutation();
-
   const userData = useUser();
   const { blocks } = getVisualProps(useWindowDimensions());
   const isMobile = blocks === 1;

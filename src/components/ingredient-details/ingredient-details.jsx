@@ -1,12 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { cardPropTypes, getComponents } from '../../utils';
+import { cardPropTypes } from '../../utils';
 
 import style from './ingredient-details.module.css';
+import PropTypes from "prop-types";
 
-export default function IngredientDetails({ currentIngredient: ingredient }) {
-  const components = getComponents(ingredient);
+export default function IngredientDetails({ currentIngredient }) {
+  const { ingredient, components } = currentIngredient;
 
   return (
     <div className={classNames(style.container, 'pb-20')}>
@@ -28,6 +29,14 @@ export default function IngredientDetails({ currentIngredient: ingredient }) {
   );
 }
 
+const componentPropTypes = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+});
+
 IngredientDetails.propTypes = {
-  currentIngredient: cardPropTypes,
+  ingredient: cardPropTypes,
+  components: PropTypes.arrayOf(componentPropTypes),
 };
+
