@@ -2,13 +2,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import style from './modal-overlay.module.css';
 
 export default function ModalOverlay({ children, closeModal, isOpen }) {
   return (
     <div
-      className={`${style.overlay} ${isOpen && style.overlay_open}`}
+      className={classNames(style.overlay, { [style.overlay_open]: isOpen })}
       onClick={closeModal}
     >
       {children}

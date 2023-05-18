@@ -26,7 +26,7 @@ export default function BurgerIngredients({ cards }) {
   };
 
   return (
-    <section className={`${style.main}`}>
+    <section className={style.main}>
       <h2 className="text text_type_main-large">Соберите бургер</h2>
       <Tabs tabs={tabs} current={current} setCurrent={onToggleTab} />
       <Groups groups={groups} cards={cards} setCurrent={setCurrent} />

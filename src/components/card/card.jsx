@@ -32,12 +32,12 @@ export default function Card(card) {
     <li ref={dragRef} style={{ opacity }} className={classNames(style.card, 'pl-4')}>
       <Link to={`/ingredients/${_id}`} state={{ pathname: location.pathname }} className={style.link}>
         <img
-          className={`${style.image}`}
+          className={style.image}
           src={image}
           alt={name}
           loading="lazy"
         />
-        <div className={`${style.price} pt-1 pb-2`}>
+        <div className={classNames(style.price, 'pt-1 pb-2')}>
           <p className="text text_type_digits-default pr-2">{price}</p>
           <CurrencyIcon type="primary" />
         </div>

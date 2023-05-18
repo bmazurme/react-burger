@@ -66,7 +66,7 @@ export default function MenuButton({ links }) {
         {isOpen
           && (
             <div className={style.menu} onClick={(e) => e.preventDefault()}>
-              <h2 className={`${style.title} text text_type_main-medium`}>Меню</h2>
+              <h2 className={classNames(style.title, 'text text_type_main-medium')}>Меню</h2>
               <UserMenu links={[...links].reverse()} onClick={toggleMenu} />
             </div>
           )}

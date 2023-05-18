@@ -30,7 +30,6 @@ export default function Signin() {
 
     try {
       const res = await signIn(values);
-      console.log('error message', res?.error?.data?.message);
       const { data } = res;
       const { accessToken, refreshToken } = data;
 
@@ -45,7 +44,27 @@ export default function Signin() {
     }
   };
 
-  console.log(location?.state?.from);
+  const inputs = [
+    {
+      type: 'text', placeholder: 'E-mail', value: values.email || '', name: 'email',
+    },
+    {
+      type: show ? 'text' : 'password',
+      placeholder: 'Пароль',
+      value: values.password || '',
+      name: 'password',
+      onIconClick: toggleShow,
+      icon: show ? 'HideIcon' : 'ShowIcon',
+    },
+  ];
+  const common = {
+    onChange: handleChange,
+    error: false,
+    errorText: 'Ошибка',
+    size: 'default',
+    extraClass: 'ml-1 mb-6',
+  };
+
   useEffect(() => {
     if (userData) {
       navigate(Urls.BASE);
@@ -56,30 +75,7 @@ export default function Signin() {
   return (
     <form className={style.container} onSubmit={onSubmit}>
       <h2 className="text text_type_main-large mb-6">Вход</h2>
-      <Input
-        type="text"
-        placeholder="E-mail"
-        onChange={handleChange}
-        value={values.email || ''}
-        name="email"
-        error={false}
-        errorText="Ошибка"
-        size="default"
-        extraClass="ml-1 mb-6"
-      />
-      <Input
-        type={show ? 'text' : 'password'}
-        placeholder="Пароль"
-        onChange={handleChange}
-        icon={show ? 'HideIcon' : 'ShowIcon'}
-        value={values.password || ''}
-        name="password"
-        error={false}
-        onIconClick={toggleShow}
-        errorText="Ошибка"
-        size="default"
-        extraClass="ml-1 mb-6"
-      />
+      {inputs.map((input) => (<Input {...input} {...common} key={input.name} />))}
       <Button
         htmlType="submit"
         type="primary"
@@ -90,19 +86,13 @@ export default function Signin() {
       </Button>
       <span className="text text_type_main-default pl-2 mb-4 text_color_inactive">
         Вы — новый пользователь?
-        <NavLink
-          className="text text_type_main-default pl-2 ml-2"
-          to={Urls.SIGN.UP}
-        >
+        <NavLink className="text text_type_main-default pl-2 ml-2" to={Urls.SIGN.UP}>
           Зарегистрироваться
         </NavLink>
       </span>
       <span className="text text_type_main-default pl-2 text_color_inactive">
         Забыли пароль?
-        <NavLink
-          className="text text_type_main-default pl-2 ml-2"
-          to={Urls.FORGOT}
-        >
+        <NavLink className="text text_type_main-default pl-2 ml-2" to={Urls.FORGOT}>
           Восстановить пароль
         </NavLink>
       </span>

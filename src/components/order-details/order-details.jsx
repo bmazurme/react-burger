@@ -6,7 +6,7 @@ import style from './order-details.module.css';
 
 export default function OrderDetails({ number }) {
   return (
-    <div className={`${style.container}`}>
+    <div className={style.container}>
       <h2 className="text text_type_digits-large mt-20 pt-15 pb-8">
         {number}
       </h2>

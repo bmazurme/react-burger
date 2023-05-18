@@ -86,10 +86,7 @@ export default function Reset() {
           </Button>
           <span className="text text_type_main-default pl-2 text_color_inactive">
             Вспомнили пароль?
-            <NavLink
-              className="text text_type_main-default pl-2 ml-2"
-              to={Urls.SIGN.IN}
-            >
+            <NavLink className="text text_type_main-default pl-2 ml-2" to={Urls.SIGN.IN}>
               Войти
             </NavLink>
           </span>

@@ -14,10 +14,10 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(authApi.endpoints.getUser.matchPending, (state, action) => {
-        // for debug...
-        console.log('pending', action);
-      })
+      // .addMatcher(authApi.endpoints.getUser.matchPending, (state, action) => {
+      //   // for debug...
+      //   console.log('pending', action);
+      // })
       .addMatcher(authApi.endpoints.getUser.matchFulfilled, (state, action) => {
         // for debug...
         console.log('fulfilled', action);

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
 
 import ConstructorBlock from '../constructor-block';
 
@@ -35,7 +36,7 @@ export default function ConstructorBlocks() {
 
   return (
     <ul
-      className={`${style.items} ${items.length === 0 && style.border}`}
+      className={classNames(style.items, { [style.border]: items.length === 0 })}
       style={{ backgroundColor: getBackgroundColor(isOver, canDrop), border: getBorder() }}
       ref={refMain}
     >

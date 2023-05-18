@@ -9,7 +9,7 @@ import style from './order-info.module.css';
 
 export default function OrderInfo({ currentOrder: order }) {
   return (
-    <div className={`${style.container} pb-20`}>
+    <div className={classNames(style.container, 'pb-20')}>
       <span className="text text_type_digits-default mt-20">{`#${order?.number}`}</span>
       <h2 className={classNames('text text_type_main-medium mt-10 mb-3', style.title)}>{order.name}</h2>
       <span className={classNames('text text_type_main-default', style.status)}>Выполнен</span>

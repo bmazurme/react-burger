@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import Card from '../card';
 import { cardPropTypes } from '../../utils';
@@ -13,7 +14,7 @@ export default function Group({
 }) {
   return (
     <li className={style.group} ref={refCurr}>
-      <h2 className={`${style.title} text text_type_main-medium pb-6 pt-6`} id={id}>{label}</h2>
+      <h2 className={classNames(style.title, 'text text_type_main-medium pb-6 pt-6')} id={id}>{label}</h2>
       <ul className={style.ingredients}>
         {cards.filter((x) => x.type === id).map((card) => <Card key={card._id} {...card} />)}
       </ul>

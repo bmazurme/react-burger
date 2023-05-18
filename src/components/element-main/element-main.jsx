@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop, useDrag } from 'react-dnd';
+import classNames from 'classnames';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { removeIngredient, selectBurger, setItems } from '../../store/slices/burger-slice';
@@ -81,7 +82,7 @@ export default function ElementMain(props) {
 
   return (
     <li className={style.item} style={{ opacity }} ref={ref}>
-      <div className={`${style.drag} mr-2`}>
+      <div className={classNames(style.drag, 'mr-2')}>
         <DragIcon type="primary" />
       </div>
       <ConstructorElement {...props} handleClose={() => removeElement(index)} />
