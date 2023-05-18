@@ -10,7 +10,7 @@
 .container {
   display: grid;
   grid-template-areas: "menu-main logo menu-user";
-  grid-template-columns: minmax(auto, 40%) minmax(290px, 20%) minmax(auto, 40%);
+  grid-template-columns: 40% 20% 40%;
   gap: 0;
 	width: 100%;
   max-width: var(--width-xl);
@@ -52,10 +52,6 @@
   .mainmenu {
     display: none;
   }
-
-  .user_menu {
-    display: none;
-  }
 }
 
 @media screen and (width >= 320px) and (width <= 1023px) {
@@ -73,10 +69,6 @@
   }
 
   .main_menu {
-    display: none;
-  }
-
-  .user_menu {
     display: none;
   }
 }

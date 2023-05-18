@@ -1,0 +1,48 @@
+.container {
+  grid-area: right;
+  display: flex;
+	flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 40px 0 0;
+  overflow: hidden;
+  max-height: calc(100% - 60px);
+}
+
+.frames {
+  display: grid;
+  grid-template-areas: "done backlog" "total total"  "day day";
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  column-gap: 36px;
+}
+
+.done {
+  grid-area: done;
+  margin: 0;
+  padding: 0;
+}
+
+.done_list {
+  color: #0cc;
+  margin: 0;
+  padding: 0;
+}
+
+.backlog {
+  grid-area: backlog;
+  margin: 0;
+  padding: 0;
+}
+
+.total {
+  grid-area: total;
+  margin: 0;
+  padding: 0;
+}
+
+.total_day {
+  grid-area: day;
+  margin: 0;
+  padding: 0;
+}

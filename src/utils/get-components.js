@@ -5,10 +5,11 @@ const componentDictionary = [
   { name: 'carbohydrates', label: 'Углеводы,г' },
 ];
 
-export default function getComponents(current) {
+export function getComponents(current) {
   return componentDictionary
     .map(({ label, name }, i) => ({
-      id: `ingredient-${current[name]}-${i}`,
-      name: label, value: current ? current[name] : '-',
+      id: `ingredients-${current[name]}-${i}`,
+      name: label,
+      value: current ? current[name] : '-',
     }));
 }

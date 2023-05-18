@@ -1,44 +1,43 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink, useLocation } from 'react-router-dom';
+import classNames from 'classnames/bind';
 
 import { ArrowUpIcon, ArrowDownIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import MenuItemLinks from '../menu-item-links';
+import Icon from '../icon';
 
 import style from './menu-item.module.css';
 
-function Icon({ component: Component, active }) {
-  return <Component type={active ? 'primary' : 'secondary'} />;
-}
-
 export default function MenuItem({
-  id, label, extraClass, active, icon, links, onClick,
+  id, label, extraClass, icon, links, url,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = (currId, e) => {
-    e.preventDefault();
-    onClick(currId);
-    setIsOpen(!isOpen);
-  };
-
-  useEffect(() => {
-    if (!isOpen) {
-      setIsOpen(true);
-    }
-  }, [active]);
+  const { pathname } = useLocation();
+  const [isOpen, setIsOpen] = useState(null);
+  const handleClick = (currId) => setIsOpen(currId !== isOpen ? currId : null);
+  // eslint-disable-next-line max-len
+  const active = useMemo(() => (links?.some((x) => x.url === pathname) ? true : pathname === url), [pathname]);
 
   return (
-    <li className={`${style.item} ${extraClass && extraClass}`}>
+    <li className={`${style.item} ${extraClass && extraClass}`} onClick={() => handleClick(id)}>
       <div className={style.container}>
-        <a href="/" className={style.link} onClick={(e) => handleClick(id, e)}>
+        <NavLink to={url} className={style.link}>
           <Icon active={active} component={icon} />
-          <span className={`text text_type_main-default pl-2 ${!active && 'text_color_inactive'}`}>
+          <span
+            className={classNames(
+              'text text_type_main-default pl-2',
+              { text_color_inactive: !active },
+            )}
+          >
             {label}
           </span>
-        </a>
-        {links && active && (isOpen ? <ArrowUpIcon type="primary" /> : <ArrowDownIcon type="primary" />)}
+        </NavLink>
+        {links?.length && (isOpen === id ? <ArrowUpIcon type="primary" /> : <ArrowDownIcon type="primary" />)}
       </div>
-      {links && isOpen && active && <MenuItemLinks links={links} />}
+      {links && (isOpen === id) && <MenuItemLinks links={links} />}
     </li>
   );
 }
@@ -46,8 +45,8 @@ export default function MenuItem({
 MenuItem.propTypes = {
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
-  active: PropTypes.bool,
   extraClass: PropTypes.string,
   icon: PropTypes.any.isRequired,
-  onClick: PropTypes.func.isRequired,
+  links: PropTypes.arrayOf(PropTypes.object),
+  url: PropTypes.string,
 };

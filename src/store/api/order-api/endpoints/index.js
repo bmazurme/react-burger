@@ -1,8 +1,5 @@
 import { orderApi } from '../create-api';
 
-const headers = new Headers();
-headers.append("Content-Type", "application/json");
-
 const userApiEndpoints = orderApi
   .enhanceEndpoints({
     addTagTypes: ['order'],
@@ -13,7 +10,6 @@ const userApiEndpoints = orderApi
         query: (data) => ({
           url: '/orders',
           method: 'POST',
-          headers,
           body: data,
         }),
       }),

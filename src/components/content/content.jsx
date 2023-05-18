@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AppHeader from '../app-header';
 
-function Content({ header, children }) {
+export default function Content({ header, children }) {
   return (
     <>
       {header && <AppHeader />}
@@ -16,5 +16,3 @@ Content.propTypes = {
   header: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
-
-export default Content;

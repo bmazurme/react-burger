@@ -1,23 +1,26 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 
 import style from './error-boundary.module.css';
+import { Urls } from '../../utils';
 
 function ErrorMessageBox() {
   return (
-    <div className={`${style.container}`}>
-      <h2 className={`${style.title} text text_type_digits-large`}>
+    <div className={style.container}>
+      <h2 className={classNames(style.title, 'text text_type_digits-large')}>
         APP
-        <span className={`${style.span} text text_type_digits-large pb-8`}>
+        <span className={classNames(style.span, 'text text_type_digits-large pb-8')}>
           ERROR
         </span>
       </h2>
       <p className="text text_type_main-medium pb-8">
-        Something went wrong.
+        Something went wrong. Try to reload App.
       </p>
-      <p className="text text_type_main-default text_color_inactive pb-2">
-        Try to reload App
-      </p>
+      <NavLink to={Urls.BASE} className="text text_type_main-default text_color_inactive pb-2">
+        Go to main
+      </NavLink>
     </div>
   );
 }

@@ -2,16 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
 
 import ConstructorBlock from '../constructor-block';
 
 import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
-import getBackgroundColor from '../../utils/get-background-color';
-import filterObject from '../../utils/filter-object';
-
 import {
-  MAIN, BUN, SAUCE, COLUMN,
-} from '../../utils/constants';
+  MAIN, BUN, SAUCE, COLUMN, filterObject, getBackgroundColor,
+} from '../../utils';
 
 import style from './constructor-blocks.module.css';
 
@@ -38,7 +36,7 @@ export default function ConstructorBlocks() {
 
   return (
     <ul
-      className={`${style.items} ${items.length === 0 && style.border}`}
+      className={classNames(style.items, { [style.border]: items.length === 0 })}
       style={{ backgroundColor: getBackgroundColor(isOver, canDrop), border: getBorder() }}
       ref={refMain}
     >

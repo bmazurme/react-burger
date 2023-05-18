@@ -11,5 +11,6 @@
   --color: #fff;
 
   height: 100vh;
+  color: var(--color);
   background-color: var(--background-color);
 }

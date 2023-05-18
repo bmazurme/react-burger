@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { propsTypes } from './types';
 
-export default function buildProperties({ baseUrl, props }) {
+export function buildProperties({ baseUrl, props }) {
   const currentUrl = props?.url ? `${baseUrl}/${props.url}` : baseUrl;
   const options = {};
 

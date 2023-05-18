@@ -8,7 +8,7 @@ import style from './tabs.module.css';
 export default function Tabs({ tabs, current, setCurrent }) {
   return (
     <div className={style.tabs}>
-      {tabs.map(({ id, label }, i) => (
+      {tabs.map(({ id, label }) => (
         <Tab
           key={id}
           value={id}

@@ -1,10 +1,13 @@
+/* eslint-disable no-param-reassign */
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop, useDrag } from 'react-dnd';
+import classNames from 'classnames';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { removeIngredient, selectBurger, setItems } from '../../store/slices/burger-slice';
+import { COLUMN } from '../../utils';
 
 import style from './element-main.module.css';
 // https://react-dnd.github.io/react-dnd/about
@@ -28,7 +31,7 @@ export default function ElementMain(props) {
   };
 
   const [, drop] = useDrop({
-    accept: ['column'],
+    accept: [COLUMN],
     hover(item, monitor) {
       if (!ref.current) {
         return;
@@ -70,7 +73,7 @@ export default function ElementMain(props) {
   });
 
   const [{ opacity }, drag] = useDrag({
-    type: 'column',
+    type: COLUMN,
     item: { index, name },
     collect: (monitor) => ({ opacity: monitor.isDragging() ? 0.1 : 1 }),
   });
@@ -79,7 +82,7 @@ export default function ElementMain(props) {
 
   return (
     <li className={style.item} style={{ opacity }} ref={ref}>
-      <div className={`${style.drag} mr-2`}>
+      <div className={classNames(style.drag, 'mr-2')}>
         <DragIcon type="primary" />
       </div>
       <ConstructorElement {...props} handleClose={() => removeElement(index)} />

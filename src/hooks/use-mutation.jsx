@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import buildProperties from '../utils/build-properties';
-
-import { propsTypes } from '../utils/types';
-import { BASE_URL } from '../utils/config';
+import { BASE_URL, propsTypes, buildProperties } from '../utils';
 
 export default function useMutation(props) {
   const [state, setState] = useState({ data: [], hasError: false, isLoading: false });
@@ -26,7 +23,6 @@ export default function useMutation(props) {
       console.log('error api query', e);
       setState({ data: [], hasError: true, isLoading: false });
     }
-
   };
 
   const clear = () => setState({ data: [], hasError: false, isLoading: false });

@@ -27,6 +27,11 @@
   color: var(--color);
   display: flex;
   flex-direction: row;
+  cursor: pointer;
+}
+
+.inactive {
+  color: #8585ad;
 }
 
 .link:active, .link:hover {

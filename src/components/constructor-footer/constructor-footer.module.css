@@ -5,6 +5,7 @@
   align-items: center;
   margin-top: 40px;
   margin-right: 16px;
+  font: var(--color);
 }
 
 .price {

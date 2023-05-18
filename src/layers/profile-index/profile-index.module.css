@@ -1,0 +1,31 @@
+.main {
+  grid-area: left;
+  display: flex;
+	flex-direction: column;
+  justify-content: center;
+  margin: 108px 0 auto;
+  padding: 0;
+  overflow: hidden;
+  max-height: calc(100% - 60px);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: calc(100vh - 208px);
+  grid-area: main;
+}
+
+.footer {
+  display: flex;
+	flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 480px;
+  margin: 0;
+  padding: 0;
+}

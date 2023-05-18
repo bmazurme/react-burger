@@ -1,0 +1,131 @@
+.main {
+  grid-area: left;
+  display: flex;
+	flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 40px 0 0;
+  width: auto;
+  overflow: hidden;
+  max-height: calc(100% - 60px);
+  scroll-behavior: smooth;
+  background-color: #222;
+}
+
+.order {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  background-color: #1c1c21;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 4%), 0 0 2px rgb(0 0 0 / 6%), 0 0 1px rgb(0 0 0 / 4%);
+  border-radius: 40px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color);
+  width: 100%;
+}
+
+.link:hover, .link:visited {
+  color: var(--color);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 64px;
+}
+
+.icon {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 56px;
+  width: 56px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 8px;
+  height: 64px;
+  width: 64px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(#000, #000) padding-box, linear-gradient(to right, #801ab2, #4c4cff) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+}
+
+.item_last {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 8px;
+  height: 64px;
+  width: 64px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(#000, #000) padding-box, linear-gradient(to right, #801ab2, #4c4cff) border-box;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.item_last::before {
+  content: '';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  background-color: #000;
+  opacity: 0.6;
+  z-index: 999;
+}
+
+.counter {
+  position: absolute;
+  z-index: 1000;
+}

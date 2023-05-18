@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
 
 import Group from '../group';
-import { cardPropTypes } from '../../utils/types';
+import { cardPropTypes } from '../../utils';
 
 import style from './groups.module.css';
 
@@ -46,6 +45,5 @@ const groupPropTypes = PropTypes.shape({
 Groups.propTypes = {
   cards: PropTypes.arrayOf(cardPropTypes).isRequired,
   groups: PropTypes.arrayOf(groupPropTypes),
-  onClick: PropTypes.func.isRequired,
   setCurrent: PropTypes.func.isRequired,
 };
