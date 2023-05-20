@@ -1,3 +1,4 @@
+/* eslint-disable implicit-arrow-linebreak */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -5,9 +6,10 @@ import classNames from 'classnames';
 
 import Preloader from '../preloader';
 
+import { logOut } from '../../store/slices/user-slice';
 import { useSignOutMutation } from '../../store';
 import { useAppDispatch } from '../../hooks';
-import { logOut } from '../../store/slices/user-slice';
+
 import { Urls } from '../../utils';
 
 import style from './sidebar.module.css';
@@ -15,7 +17,8 @@ import style from './sidebar.module.css';
 export default function Profile() {
   const dispatch = useAppDispatch();
   const [signOut, { isError, isLoading }] = useSignOutMutation();
-  const getStyle = ({ isActive }: { isActive: boolean}) => (classNames('text text_type_main-medium mb-6', style.link, { [style.link_active]: isActive }));
+  const getStyle = ({ isActive }: { isActive: boolean}) =>
+    (classNames('text text_type_main-medium mb-6', style.link, { [style.link_active]: isActive }));
   const logout = async () => {
     const refreshToken = localStorage.getItem('refreshToken');
     try {
@@ -49,7 +52,6 @@ export default function Profile() {
               {name}
             </NavLink>
           ))}
-
           <p className="text text_type_main-default text_color_inactive mt-20">
             В этом разделе вы можете
           </p>

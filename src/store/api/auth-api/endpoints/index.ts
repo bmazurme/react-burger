@@ -1,10 +1,8 @@
 import { authApi } from '../create-api';
 
 type ResponseToken = {
-  // data: {
-    accessToken: string;
-    refreshToken: string;
-  // }
+  accessToken: string;
+  refreshToken: string;
 };
 
 const authApiEndpoints = authApi

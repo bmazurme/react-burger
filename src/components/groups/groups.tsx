@@ -1,19 +1,21 @@
-/* eslint-disable max-len */
 import React, { useRef, UIEvent, RefObject } from 'react';
 
 import Group from '../group';
 
 import style from './groups.module.css';
 
+type TypeGroup = { id: string, label: string, refCurr: RefObject<HTMLLIElement> };
+
 export default function Groups(props: {
   groups: { id: string, label: string }[],
   setCurrent: (id: string) => void,
   cards: TypeCard[] }) {
-  const { groups, setCurrent } = props;
+  const { groups, setCurrent, cards } = props;
   const refs1 = useRef<HTMLLIElement | null>(null);
   const refs2 = useRef<HTMLLIElement | null>(null);
   const refs3 = useRef<HTMLLIElement | null>(null);
   const refs = [refs1, refs2, refs3];
+  // eslint-disable-next-line max-len
   const groupsWithRef = groups.map((x: { id: string, label: string }, i: number) => ({ ...x, refCurr: refs[i] }));
 
   const onScroll = (e: UIEvent) => {
@@ -34,7 +36,7 @@ export default function Groups(props: {
 
   return (
     <ul className={style.groups} onScroll={onScroll}>
-      {groupsWithRef.map((group: { id: string, label: string, refCurr: RefObject<HTMLLIElement> }) => <Group {...group} cards={props.cards} key={group.id} />)}
+      {groupsWithRef.map((group: TypeGroup) => <Group {...group} cards={cards} key={group.id} />)}
     </ul>
   );
 }

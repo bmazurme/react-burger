@@ -6,16 +6,6 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 
 import style from './order-info.module.css';
 
-type TypeOrder = {
-  cards: TypeCard[];
-  count: number;
-  icons: TypeCard[];
-  name: string;
-  number: string;
-  price: number;
-  time: string;
-};
-
 export default function OrderInfo({ currentOrder: order }: { currentOrder: TypeOrder }) {
   console.log(order);
   return (

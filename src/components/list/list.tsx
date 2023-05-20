@@ -12,13 +12,7 @@ export default function List({ list, extraClass, title }
         {list.map((x: string, i: number) => (
           <li
             key={i}
-            className={
-              classNames(
-                'text text_type_digits-default',
-                style.item,
-                extraClass,
-              )
-            }
+            className={classNames('text text_type_digits-default', style.item, extraClass)}
           >
             {x}
           </li>

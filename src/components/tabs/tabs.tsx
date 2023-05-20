@@ -12,7 +12,7 @@ export default function Tabs({ tabs, current, setCurrent }: {
 }) {
   return (
     <div className={style.tabs}>
-      {tabs.map(({ id, label }: { id: string, label: string }) => (
+      {tabs.map(({ id, label }: Record<string, string>) => (
         <Tab
           key={id}
           value={id}

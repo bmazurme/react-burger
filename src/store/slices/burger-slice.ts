@@ -1,6 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+import { RootState } from '../index';
+
+type TypeBurger = {
+  data: {
+    bun: TypeCard | null,
+    mainOrSauce: TypeCard[],
+    price: number,
+    number: string | null,
+  },
+};
+
+const initialState: TypeBurger = {
   data: {
     bun: null,
     mainOrSauce: [],
@@ -78,5 +89,5 @@ export const {
 } = slice.actions;
 
 export default slice.reducer;
-// @ts-ignore
-export const selectBurger = (state) => state.burger.data;
+
+export const selectBurger = (state: RootState) => state.burger.data;

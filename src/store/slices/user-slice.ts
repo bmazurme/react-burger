@@ -2,8 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { authApi } from '../api/auth-api/create-api';
 import { userApi } from '../api/user-api/create-api';
 
+import { RootState } from '../index';
+
 // https://redux-toolkit.js.org/rtk-query/usage/examples
-const initialState = {
+const initialState: { data: TypeUser | null } = {
   data: null,
 };
 
@@ -39,5 +41,5 @@ const slice = createSlice({
 export const { logOut } = slice.actions;
 
 export default slice.reducer;
-// @ts-ignore
-export const selectUser = (state) => state.user.data;
+
+export const selectUser = (state: RootState) => state.user.data;

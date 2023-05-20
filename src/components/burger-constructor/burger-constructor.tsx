@@ -74,7 +74,7 @@ export default function BurgerConstructor() {
         <Modal
           isOpen={isModalOpen}
           onClose={closePopup}
-          children={<OrderDetails number={number} />}
+          children={<OrderDetails number={number!} />}
         />
         )}
       {isLoading && <Preloader />}

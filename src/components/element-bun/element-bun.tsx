@@ -11,7 +11,17 @@ import {
 
 import style from './element-bun.module.css';
 
-export default function ElementBun(props: { position: string }) {
+type TypeConstructor = {
+  text: string;
+  thumbnail: string;
+  price: number;
+  type?: 'top' | 'bottom' | undefined;
+  isLocked?: boolean | undefined;
+  extraClass?: string | undefined;
+  handleClose?: (() => void) | undefined;
+};
+
+export default function ElementBun(props: { position: 'top' | 'bottom' | undefined }) {
   const { position } = props;
   const dispatch = useAppDispatch();
   const { bun = null } = useAppSelector(selectBurger);
@@ -40,7 +50,7 @@ export default function ElementBun(props: { position: string }) {
     >
       {!bun?.name
         ? (<span className={getClass()}>+ булку</span>)
-        : (<ConstructorElement {...bun} type={position} text={getName} />)}
+        : (<ConstructorElement {...bun as TypeConstructor} type={position} text={getName} />)}
     </div>
   );
 }

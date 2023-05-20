@@ -1,5 +1,4 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
+/* eslint-disable max-len */
 import React, { useEffect, useState, FormEvent } from 'react';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -21,10 +20,14 @@ type TypeResponseError = {
   },
 };
 
+interface GenericObject {
+  [key: string]: string | number,
+}
+
 export default function ProfileIndex() {
   const [updateUser, { isLoading, isError, data }] = useUpdateUserMutation();
   const [refreshToken, { isLoading: loading, isError: error }] = useRefreshTokenMutation();
-  const userData = useUser();
+  const userData = useUser()!;
   const getNewToken = useToken();
   const { blocks } = getVisualProps(useWindowDimensions());
   const isMobile = blocks === 1;
@@ -66,11 +69,12 @@ export default function ProfileIndex() {
   useEffect(() => {
     let flag = false;
 
-    for (const key in values) {
-      if ((values[key] && userData[key]) && (values[key] !== userData[key])) {
+    Object.keys(values as GenericObject).forEach((key) => {
+      if ((values[key] && (userData as GenericObject)[key]) && (values[key] !== (userData as GenericObject)[key])) {
         flag = true;
       }
-    }
+    });
+
     setShow(flag);
   }, [handleChange]);
 

@@ -2,9 +2,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ingredientApi } from '../api/ingredient-api/create-api';
 
+import { RootState } from '../index';
+
+type TypeIngredient = {
+  data: TypeCard[],
+};
+
+const initialState: TypeIngredient = {
+  data: [],
+};
+
 const slice = createSlice({
   name: 'ingredient',
-  initialState: { data: [] },
+  initialState,
   reducers: {
     setIngredient: (
       state,
@@ -13,7 +23,7 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    // @ts-ignore
+      // @ts-ignore
       .addMatcher(ingredientApi.endpoints.getIngredients.matchPending, (state, action) => {
         // for debug...
         console.log('pending', action);
@@ -39,5 +49,5 @@ const slice = createSlice({
 export const { setIngredient } = slice.actions;
 
 export default slice.reducer;
-// @ts-ignore
-export const selectIngredient = (state) => state.ingredient.data;
+
+export const selectIngredient = (state: RootState) => state.ingredient.data;

@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { RootState } from '../index';
+
 const slice = createSlice({
   name: 'order',
   initialState: { data: [] },
@@ -14,5 +16,5 @@ const slice = createSlice({
 export const { setOrder } = slice.actions;
 
 export default slice.reducer;
-// @ts-ignore
-export const selectOrder = (state) => state.order.data;
+
+export const selectOrder = (state: RootState) => state.order.data;

@@ -7,7 +7,7 @@ import { compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import burgerSlice from './slices/burger-slice';
-// import orderSlice from './slices/order-slice';
+import orderSlice from './slices/order-slice';
 import userSlice from './slices/user-slice';
 import ingredientSlice from './slices/ingredient-slice';
 
@@ -33,6 +33,7 @@ export const enhancer = composeEnhancers(applyMiddleware(thunk));
 export const store = configureStore({
   reducer: {
     burger: burgerSlice,
+    order: orderSlice,
     user: userSlice,
     ingredient: ingredientSlice,
     // Add the generated reducer as a specific top-level slice
