@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 import classNames from 'classnames';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { removeIngredient, selectBurger, setItems } from '../../store/slices/burger-slice';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { COLUMN } from '../../utils';
 
 import style from './element-main.module.css';
@@ -14,8 +14,8 @@ import style from './element-main.module.css';
 export default function ElementMain(props: TypeElementMain) {
   const { index, name } = props;
   const ref = useRef<HTMLLIElement>(null);
-  const dispatch = useDispatch();
-  const { mainOrSauce: items = [] } = useSelector(selectBurger);
+  const dispatch = useAppDispatch();
+  const { mainOrSauce: items = [] } = useAppSelector(selectBurger);
   const removeElement = (ind: number) => dispatch(removeIngredient(ind));
 
   const moveCardHandler = (dragIndex: number, hoverIndex: number) => {

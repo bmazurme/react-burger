@@ -1,14 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { selectBurger } from '../../store/slices/burger-slice';
+import { useAppSelector } from '../../hooks';
 
 import style from './constructor-footer.module.css';
 
 export default function ConstructorFooter({ onClick }: { onClick: () => void }) {
-  const { price = 0, bun, mainOrSauce } = useSelector(selectBurger);
+  const { price = 0, bun, mainOrSauce } = useAppSelector(selectBurger);
   const disabled = [bun, ...mainOrSauce].filter((x) => x?._id).map((x) => x?._id).length === 0;
 
   return (

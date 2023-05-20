@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
@@ -8,6 +7,7 @@ import classNames from 'classnames';
 import ConstructorBlock from '../constructor-block';
 
 import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import {
   MAIN, BUN, SAUCE, COLUMN, filterObject, getBackgroundColor,
 } from '../../utils';
@@ -15,8 +15,8 @@ import {
 import style from './constructor-blocks.module.css';
 
 export default function ConstructorBlocks() {
-  const dispatch = useDispatch();
-  const burger = useSelector(selectBurger);
+  const dispatch = useAppDispatch();
+  const burger = useAppSelector(selectBurger);
   const { mainOrSauce: items = [] } = burger;
   const [{ isOver, canDrop }, refMain] = useDrop({
     accept: [MAIN, SAUCE, BUN, COLUMN],

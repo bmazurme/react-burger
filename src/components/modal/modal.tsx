@@ -23,7 +23,7 @@ export default function Modal({
 }: TypeModal) {
   const reactModals = document.getElementById('modals');
 
-  const handleEscape = (e: Event & { code: string }) => {
+  const handleEscape = (e: KeyboardEvent) => {
     if (e.type === 'keydown' && e.code === 'Escape') {
       if (OVERLAY_CLOSE_ON) {
         onClose();

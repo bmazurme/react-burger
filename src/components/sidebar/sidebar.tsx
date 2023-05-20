@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
@@ -7,13 +6,14 @@ import classNames from 'classnames';
 import Preloader from '../preloader';
 
 import { useSignOutMutation } from '../../store';
+import { useAppDispatch } from '../../hooks';
 import { logOut } from '../../store/slices/user-slice';
 import { Urls } from '../../utils';
 
 import style from './sidebar.module.css';
 
 export default function Profile() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [signOut, { isError, isLoading }] = useSignOutMutation();
   const getStyle = ({ isActive }: { isActive: boolean}) => (classNames('text text_type_main-medium mb-6', style.link, { [style.link_active]: isActive }));
   const logout = async () => {

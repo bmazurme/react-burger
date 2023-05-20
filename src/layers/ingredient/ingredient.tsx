@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import Preloader from '../../components/preloader';
 import IngredientDetails from '../../components/ingredient-details';
@@ -10,9 +9,10 @@ import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dime
 import { getComponents } from '../../utils';
 import { selectIngredient } from '../../store/slices/ingredient-slice';
 import { useGetIngredientsMutation } from '../../store';
+import { useAppSelector } from '../../hooks';
 
 export default function Ingredient() {
-  let cards = useSelector(selectIngredient);
+  let cards = useAppSelector(selectIngredient);
   const [getIngredients, { isError, isLoading }] = useGetIngredientsMutation();
   const [card, setCard] = useState<{ ingredient: TypeCard, components: Record<string, string | number>[] } | null>(null);
   const { id } = useParams();

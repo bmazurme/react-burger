@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
 
 import ConstructorBlock from '../constructor-block';
 import ConstructorBlocks from '../constructor-blocks';
@@ -13,6 +12,7 @@ import { selectBurger, setNumber } from '../../store/slices/burger-slice';
 import { usePostOrderMutation } from '../../store';
 import { useModal } from '../../hooks/use-modal';
 import useUser from '../../hooks/use-user';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 
 import { Urls } from '../../utils';
 
@@ -28,12 +28,11 @@ type TypeResult = {
 
 export default function BurgerConstructor() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const userData = useUser();
-  const { bun, mainOrSauce, number } = useSelector(selectBurger);
+  const { bun, mainOrSauce, number } = useAppSelector(selectBurger);
   const [postOrder, { isLoading, isError }] = usePostOrderMutation();
   const { isModalOpen, openModal, closeModal } = useModal();
-
   // console.log(isLoading, isError);
 
   const onClick = async () => {

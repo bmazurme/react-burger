@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useMemo } from 'react';
-import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import classNames from 'classnames';
 
@@ -12,7 +11,7 @@ import Icon from '../icon';
 
 import { logOut } from '../../store/slices/user-slice';
 import withExtraClass from '../../hocs/with-extra-class';
-
+import { useAppDispatch } from '../../hooks';
 import { useSignOutMutation } from '../../store';
 import { TypeMainLink } from '../../mocks/main-links';
 
@@ -21,7 +20,7 @@ import style from './menu-button.module.css';
 const UserMenu = withExtraClass(style.mobile)(Menu);
 
 export default function MenuButton({ links }: { links: TypeMainLink[] }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [signOut, { isError, isLoading }] = useSignOutMutation();
   const { pathname } = useLocation();
