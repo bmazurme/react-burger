@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { selectBurger } from '../../store/slices/burger-slice';
+import { selectBurger } from '../../store/slices';
 import { useAppSelector } from '../../hooks';
 
 import style from './constructor-footer.module.css';

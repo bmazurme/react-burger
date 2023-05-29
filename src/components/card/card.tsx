@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { useAppSelector } from '../../hooks';
-import { selectBurger } from '../../store/slices/burger-slice';
+import { selectBurger } from '../../store/slices';
 
 import style from './card.module.css';
 

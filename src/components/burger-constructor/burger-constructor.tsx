@@ -8,7 +8,7 @@ import OrderDetails from '../order-details';
 import Preloader from '../preloader';
 import Modal from '../modal';
 
-import { selectBurger, setNumber } from '../../store/slices/burger-slice';
+import { selectBurger, setNumber } from '../../store/slices';
 import { usePostOrderMutation } from '../../store';
 import { useModal } from '../../hooks/use-modal';
 import useUser from '../../hooks/use-user';
@@ -31,7 +31,7 @@ export default function BurgerConstructor() {
   const dispatch = useAppDispatch();
   const userData = useUser();
   const { bun, mainOrSauce, number } = useAppSelector(selectBurger);
-  const [postOrder, { isLoading, isError }] = usePostOrderMutation();
+  const [postOrder, { isLoading }] = usePostOrderMutation();
   const { isModalOpen, openModal, closeModal } = useModal();
   // console.log(isLoading, isError);
 

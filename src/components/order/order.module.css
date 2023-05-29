@@ -111,8 +111,9 @@
   border: 2px solid transparent;
 }
 
-.item_last::before {
-  content: '';
+.counter {
+  position: absolute;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,9 +124,4 @@
   background-color: #000;
   opacity: 0.6;
   z-index: 999;
-}
-
-.counter {
-  position: absolute;
-  z-index: 1000;
 }

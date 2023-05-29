@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import Preloader from '../preloader';
 
-import { logOut } from '../../store/slices/user-slice';
+import { logOut } from '../../store/slices';
 import { useSignOutMutation } from '../../store';
 import { useAppDispatch } from '../../hooks';
 
@@ -16,7 +16,7 @@ import style from './sidebar.module.css';
 
 export default function Profile() {
   const dispatch = useAppDispatch();
-  const [signOut, { isError, isLoading }] = useSignOutMutation();
+  const [signOut, { isLoading }] = useSignOutMutation();
   const getStyle = ({ isActive }: { isActive: boolean}) =>
     (classNames('text text_type_main-medium mb-6', style.link, { [style.link_active]: isActive }));
   const logout = async () => {

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import ConstructorBlock from '../constructor-block';
 
-import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
+import { selectBurger, setMainOrSauce } from '../../store/slices';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import {
   MAIN, BUN, SAUCE, COLUMN, filterObject, getBackgroundColor,

@@ -1,4 +1,4 @@
-import { orderApi } from '../create-api';
+import orderApi from '..';
 
 const userApiEndpoints = orderApi
   .enhanceEndpoints({

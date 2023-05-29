@@ -3,9 +3,11 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithRetry } from '../base-query';
 
 // Define a service using a base URL and expected endpoints
-export const passwordApi = createApi({
-  reducerPath: 'passwordApi',
+const ingredientApi = createApi({
+  reducerPath: 'ingredientApi',
   baseQuery: baseQueryWithRetry,
-  tagTypes: ['password'],
+  tagTypes: ['ingredient'],
   endpoints: () => ({}),
 });
+
+export default ingredientApi;

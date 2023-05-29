@@ -1,4 +1,4 @@
-import { authApi } from '../create-api';
+import authApi from '..';
 
 type ResponseToken = {
   accessToken: string;
@@ -41,7 +41,7 @@ const authApiEndpoints = authApi
           body: { token },
         }),
       }),
-      getUser: builder.mutation({
+      getUser: builder.mutation<{ user: TypeUser }, void>({
         query: () => ({
           url: 'auth/user',
           method: 'GET',
@@ -58,3 +58,4 @@ export const {
   useRefreshTokenMutation,
   useGetUserMutation,
 } = authApiEndpoints;
+export { authApiEndpoints };

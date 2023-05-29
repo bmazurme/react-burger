@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Content from '../../components/content';
-import Forgot from '../../layers/forgot';
+import PasswordForgot from '../../layers/password-forgot';
 
 import withUser from '../../hocs/with-user';
 
 function ForgotPage() {
-  return (<Content header children={<Forgot />} />);
+  return (<Content header children={<PasswordForgot />} />);
 }
 
 export default withUser(ForgotPage, false);

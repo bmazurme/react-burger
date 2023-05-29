@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
-import ForgotPage from './pages/forgot';
+import ForgotPage from './pages/password-forgot';
 import IngredientPage from './pages/ingredient';
 import MainPage from './pages/main';
 import NotFoundPage from './pages/not-found';
@@ -9,12 +9,14 @@ import OrderInfoPage from './pages/order-info';
 import ProfilePage from './pages/profile';
 import ProfileIndexPage from './pages/profile-index';
 import ProfileOrdersPage from './pages/profile-orders';
+import ProfileOrdersInfoPage from './pages/profile-order-info';
 import QueuePage from './pages/queue';
-import ResetPage from './pages/reset';
+import ResetPage from './pages/password-reset';
 import SigninPage from './pages/signin';
 import SignupPage from './pages/signup';
 
-import IngredientModal from './layers/ingredient-modal/ingredient-modal';
+import IngredientModal from './pages/ingredient-modal';
+import OrderInfoModal from './pages/order-info-modal';
 
 import ErrorBoundary from './components/error-boundary';
 
@@ -37,8 +39,10 @@ export default function App() {
         <Route path={Urls.PROFILE.INDEX} element={<ProfilePage />}>
           <Route index element={(<ProfileIndexPage />)} />
           <Route path={Urls.PROFILE.ORDERS} element={(<ProfileOrdersPage />)} />
+          <Route path={Urls.PROFILE.ORDERSID} element={(<ProfileOrdersInfoPage />)} />
         </Route>
         <Route path={Urls.QUEUE.INDEX} element={(<QueuePage />)} />
+        <Route path={Urls.QUEUE.ID} element={(<OrderInfoPage />)} />
         <Route path={Urls.RESET} element={(<ResetPage />)} />
         <Route path={Urls.SIGN.IN} element={(<SigninPage />)} />
         <Route path={Urls.SIGN.UP} element={(<SignupPage />)} />
@@ -48,7 +52,10 @@ export default function App() {
         && (
         <Routes>
           <Route path={Urls.INGREDIENT} element={(<IngredientModal />)} />
-          <Route path={Urls.QUEUE.ID} element={(<OrderInfoPage />)} />
+          <Route path={Urls.QUEUE.ID} element={(<OrderInfoModal />)} />
+          <Route path={Urls.PROFILE.INDEX} element={<ProfilePage />}>
+            <Route path={Urls.PROFILE.ORDERSID} element={(<OrderInfoModal />)} />
+          </Route>
         </Routes>
         )}
     </ErrorBoundary>

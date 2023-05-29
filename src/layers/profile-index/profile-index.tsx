@@ -25,7 +25,7 @@ interface GenericObject {
 }
 
 export default function ProfileIndex() {
-  const [updateUser, { isLoading, isError, data }] = useUpdateUserMutation();
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [refreshToken, { isLoading: loading, isError: error }] = useRefreshTokenMutation();
   const userData = useUser()!;
   const getNewToken = useToken();
@@ -34,7 +34,7 @@ export default function ProfileIndex() {
   const [show, setShow] = useState(false);
 
   const {
-    values, handleChange, errors, isValid, resetForm, setIsValid, setValues,
+    values, handleChange, resetForm,
   } = useFormWithValidation({
     name: userData?.name || '',
     email: userData?.email || '',

@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import Preloader from '../preloader';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
-import { selectIngredient } from '../../store/slices/ingredient-slice';
-import { useGetIngredientsMutation } from '../../store';
 import { useAppSelector } from '../../hooks';
+import { selectIngredient } from '../../store/slices';
+import { useGetIngredientsMutation } from '../../store';
 
 import { getComponents } from '../../utils';
 
@@ -17,7 +17,7 @@ type TypeBox = { ingredient: TypeCard, components: Record<string, string | numbe
 
 export default function IngredientDetails() {
   let cards = useAppSelector(selectIngredient);
-  const [getIngredients, { isError, isLoading }] = useGetIngredientsMutation();
+  const [getIngredients, { isLoading }] = useGetIngredientsMutation();
   const [card, setCard] = useState<TypeBox>(null);
   const { id } = useParams();
   const { blocks } = getVisualProps(useWindowDimensions());
@@ -25,8 +25,7 @@ export default function IngredientDetails() {
 
   useEffect(() => {
     const getCards = async () => {
-      // @ts-ignore
-      const { data = { data: [] } } = await getIngredients();
+      const { data = { data: [] } } = await getIngredients() as { data: { data: TypeCard[] } };
       const { data: rawData } = data;
       cards = rawData.map((x: TypeCard) => ({ ...x, thumbnail: x.image, text: x.name }));
     };

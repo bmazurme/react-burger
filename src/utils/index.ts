@@ -5,3 +5,4 @@ export * from './filter-object';
 export * from './get-background-color';
 export * from './get-components';
 export * from '../hooks/use-token';
+export * from './get-formated-time';

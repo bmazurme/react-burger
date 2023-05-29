@@ -4,7 +4,7 @@ import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 import classNames from 'classnames';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { removeIngredient, selectBurger, setItems } from '../../store/slices/burger-slice';
+import { removeIngredient, selectBurger, setItems } from '../../store/slices';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { COLUMN } from '../../utils';
 
