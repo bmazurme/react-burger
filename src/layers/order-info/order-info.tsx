@@ -2,12 +2,16 @@ import React from 'react';
 
 import Order from '../../components/order-info';
 
+import withIngredient from '../../hocs/with-ingredient';
+
 import style from './order-info.module.css';
 
-export default function OrderInfo() {
+function OrderInfo() {
   return (
     <div className={style.container}>
-      <Order />
+      <Order path="all" />
     </div>
   );
 }
+
+export default withIngredient(OrderInfo);

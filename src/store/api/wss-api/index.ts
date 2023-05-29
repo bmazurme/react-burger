@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setOrders } from '../../slices/orders-slice';
 
-export type Channel = 'redux' | 'general';
+import { BASE_WSS_PATH } from '../../../utils';
 
-export interface Message {
+export type Channel = 'user' | 'all';
+
+export interface IOrders {
   success: boolean,
   orders: TypeOrder[],
   total: number,
@@ -15,8 +17,7 @@ export const wssApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   tagTypes: ['orders'],
   endpoints: (build) => ({
-    getMessages: build.query<Message[], Channel>({
-      // query: (channel) => `messages/${channel}`,
+    getOrders: build.query<IOrders[], Channel>({
       queryFn: () => ({ data: [] }),
       async onCacheEntryAdded(
         arg,
@@ -27,19 +28,21 @@ export const wssApi = createApi({
           dispatch,
         },
       ) {
+        const accessToken = localStorage.getItem('accessToken');
+        const url = arg.toString() === 'all'
+          ? `${BASE_WSS_PATH}/${arg}`
+          : `${BASE_WSS_PATH}?token=${accessToken}`;
         // create a websocket connection when the cache subscription starts
-        const ws = new WebSocket('wss://norma.nomoreparties.space/orders/all');
+        const ws = new WebSocket(url);
+
         try {
           // wait for the initial query to resolve before proceeding
           await cacheDataLoaded;
-
           // when data is received from the socket connection to the server,
           // if it is a message and for the appropriate channel,
           // update our query result with the received message
           const listener = (event: MessageEvent) => {
             const data = JSON.parse(event.data);
-            // console.log(data, arg);
-            // if (data.channel !== arg) return;
             dispatch(setOrders(data));
             updateCachedData((draft) => {
               draft.push(data);
@@ -55,9 +58,8 @@ export const wssApi = createApi({
         // perform cleanup steps once the `cacheEntryRemoved` promise resolves
         ws.close();
       },
-      // providesTags: ['orders'],
     }),
   }),
 });
 
-export const { useGetMessagesQuery } = wssApi;
+export const { useGetOrdersQuery } = wssApi;

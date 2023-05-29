@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect, FormEvent } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
@@ -100,7 +99,9 @@ export default function Signin() {
   return (
     <form className={style.container} onSubmit={onSubmit}>
       <h2 className="text text_type_main-large mb-6">Вход</h2>
-      {inputs.map((input: TInputInterface & { name: string }) => (<Input {...input} key={input.name} />))}
+      {inputs.map((input: TInputInterface & { name: string }) => (
+        <Input {...input} key={input.name} />
+      ))}
       <Button
         htmlType="submit"
         type="primary"

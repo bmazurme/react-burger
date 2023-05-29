@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useEffect, useState, FormEvent } from 'react';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,7 +7,7 @@ import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dime
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import useUser from '../../hooks/use-user';
 import { useToken } from '../../hooks/use-token';
-import { useUpdateUserMutation, useRefreshTokenMutation } from '../../store';
+import { useUpdateUserMutation } from '../../store';
 
 import style from './profile-index.module.css';
 
@@ -26,7 +25,6 @@ interface GenericObject {
 
 export default function ProfileIndex() {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
-  const [refreshToken, { isLoading: loading, isError: error }] = useRefreshTokenMutation();
   const userData = useUser()!;
   const getNewToken = useToken();
   const { blocks } = getVisualProps(useWindowDimensions());
@@ -68,9 +66,9 @@ export default function ProfileIndex() {
 
   useEffect(() => {
     let flag = false;
-
     Object.keys(values as GenericObject).forEach((key) => {
-      if ((values[key] && (userData as GenericObject)[key]) && (values[key] !== (userData as GenericObject)[key])) {
+      if ((values[key] && (userData as GenericObject)[key])
+      && (values[key] !== (userData as GenericObject)[key])) {
         flag = true;
       }
     });

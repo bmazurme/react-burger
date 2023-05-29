@@ -1,4 +1,5 @@
 const BASE_URL = 'https://norma.nomoreparties.space/api';
+const BASE_WSS_PATH = 'wss://norma.nomoreparties.space/orders';
 const ESC_CLOSE_ON = true;
 const OVERLAY_CLOSE_ON = true;
 
@@ -27,6 +28,7 @@ const MODAL_CONFIG = {
 
 export {
   BASE_URL,
+  BASE_WSS_PATH,
   ESC_CLOSE_ON,
   OVERLAY_CLOSE_ON,
   MODAL_CONFIG,

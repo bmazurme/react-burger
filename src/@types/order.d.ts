@@ -14,7 +14,7 @@ type TOrder = {
   name:string;
   number: number;
 
-  status: 'done'
+  status: 'done' | 'pending';
   updatedAt: string;
   _id: string;
 
@@ -28,7 +28,7 @@ type TMOrder = {
   name:string;
   number: number;
 
-  status: 'done'
+  status: 'done' | 'pending';
   updatedAt: string;
   _id: string;
 

@@ -23,11 +23,7 @@ import {
   wssApi,
 } from './api';
 
-export * from './api/auth-api/endpoints';
-export * from './api/ingredient-api/endpoints';
-export * from './api/order-api/endpoints';
-export * from './api/password-api/endpoints';
-export * from './api/user-api/endpoints';
+export * from './api';
 
 declare global {
   interface Window {

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
@@ -43,7 +42,9 @@ export default function ConstructorBlocks() {
     >
       {items.length === 0
         ? <span className={getClass()}>+ ингредиент</span>
-        : items.map((item: TypeElementMain, i: number) => (<ConstructorBlock key={item.uniqueId} {...item} index={i} />))}
+        : items.map((item: TypeElementMain, i: number) => (
+          <ConstructorBlock key={item.uniqueId} {...item} index={i} />
+        ))}
     </ul>
   );
 }

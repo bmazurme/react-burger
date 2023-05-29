@@ -9,7 +9,7 @@ import OrderInfoPage from './pages/order-info';
 import ProfilePage from './pages/profile';
 import ProfileIndexPage from './pages/profile-index';
 import ProfileOrdersPage from './pages/profile-orders';
-import ProfileOrdersInfoPage from './pages/profile-order-info';
+import ProfileOrderInfoPage from './pages/profile-order-info';
 import QueuePage from './pages/queue';
 import ResetPage from './pages/password-reset';
 import SigninPage from './pages/signin';
@@ -17,6 +17,7 @@ import SignupPage from './pages/signup';
 
 import IngredientModal from './pages/ingredient-modal';
 import OrderInfoModal from './pages/order-info-modal';
+import ProfileOrderInfoModal from './pages/profile-order-info-modal';
 
 import ErrorBoundary from './components/error-boundary';
 
@@ -39,7 +40,7 @@ export default function App() {
         <Route path={Urls.PROFILE.INDEX} element={<ProfilePage />}>
           <Route index element={(<ProfileIndexPage />)} />
           <Route path={Urls.PROFILE.ORDERS} element={(<ProfileOrdersPage />)} />
-          <Route path={Urls.PROFILE.ORDERSID} element={(<ProfileOrdersInfoPage />)} />
+          <Route path={Urls.PROFILE.ORDERSID} element={(<ProfileOrderInfoPage />)} />
         </Route>
         <Route path={Urls.QUEUE.INDEX} element={(<QueuePage />)} />
         <Route path={Urls.QUEUE.ID} element={(<OrderInfoPage />)} />
@@ -54,7 +55,7 @@ export default function App() {
           <Route path={Urls.INGREDIENT} element={(<IngredientModal />)} />
           <Route path={Urls.QUEUE.ID} element={(<OrderInfoModal />)} />
           <Route path={Urls.PROFILE.INDEX} element={<ProfilePage />}>
-            <Route path={Urls.PROFILE.ORDERSID} element={(<OrderInfoModal />)} />
+            <Route path={Urls.PROFILE.ORDERSID} element={(<ProfileOrderInfoModal />)} />
           </Route>
         </Routes>
         )}

@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import React from 'react';
@@ -16,7 +16,9 @@ export default function Order({ path, detail, ingredients }
   : { path?: boolean, detail: TOrder, ingredients: TypeCard[] }) {
   const { pathname } = useLocation();
   const ingredient = (x: string) => ingredients.find((c) => c._id === x);
-  const price = detail.ingredients.map((x) => (ingredients.find((c) => x === c._id))).reduce((x, r) => x += r!.price, 0);
+  const price = detail.ingredients
+    .map((x) => (ingredients.find((c) => x === c._id)))
+    .reduce((x, r) => x += r!.price, 0);
 
   return (
     <Link to={path ? `${detail.number}` : `/feed/${detail.number}`} state={{ pathname }} className={style.link}>
@@ -27,7 +29,19 @@ export default function Order({ path, detail, ingredients }
             {getFormatedTime(detail.createdAt)}
           </span>
         </div>
-        <h2 className="text text_type_main-medium mt-6 mb-6">{detail.name}</h2>
+        <h2 className="text text_type_main-medium mt-6 mb-3">{detail.name}</h2>
+        {path
+          && (
+          <span className={classNames(
+            'text text_type_main-default',
+            style.status,
+            { [style.done]: detail.status === 'done' },
+            { [style.canceled]: detail.status !== 'pending' && detail.status !== 'done' },
+          )}
+          >
+            {detail.status === 'done' ? 'Выполнен' : detail.status === 'pending' ? 'Готовится' : 'Отменён'}
+          </span>
+          )}
         <div className={style.footer}>
           <ul className={style.icons}>
             {detail.ingredients.slice(0, RANGE).map((x, i) => (
@@ -37,7 +51,8 @@ export default function Order({ path, detail, ingredients }
                 style={{ left: `${i * 50}px`, zIndex: 100 - i }}
               >
                 <img className={style.icon} src={ingredient(x)?.image} alt={ingredient(x)?.name} />
-                {(detail.ingredients.length > 0 && i === RANGE - 1 && detail.ingredients.length - RANGE > 0)
+                {(detail.ingredients.length > 0
+                && i === RANGE - 1 && detail.ingredients.length - RANGE > 0)
                 && (
                 <span className={classNames(style.counter, 'text text_type_main-small')}>
                   {`+${detail.ingredients.length - RANGE}`}

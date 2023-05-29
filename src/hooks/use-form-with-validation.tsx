@@ -1,4 +1,4 @@
-import React, { useCallback, useState, ChangeEvent } from 'react';
+import { useCallback, useState, ChangeEvent } from 'react';
 
 function useFormWithValidation(initData: Record<string, string>) {
   const [values, setValues] = useState<Record<string, string>>(initData);

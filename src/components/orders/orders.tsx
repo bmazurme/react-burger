@@ -4,22 +4,21 @@ import Order from '../order';
 import Preloader from '../preloader';
 
 import { useAppSelector } from '../../hooks';
-import { useGetIngredientsMutation } from '../../store';
+import { useGetOrdersQuery, useGetIngredientsMutation } from '../../store';
 import { selectIngredient, selectOrders } from '../../store/slices';
-import { useGetMessagesQuery } from '../../store/api';
 
 import style from './orders.module.css';
 
 export default function Orders({ title, path }: { title?: string, path?: boolean }) {
   const ingredients = useAppSelector(selectIngredient);
   const [getIngredients, { isLoading }] = useGetIngredientsMutation();
-  const { data = [] } = useGetMessagesQuery('redux');
+  const { data = [] } = useGetOrdersQuery(path ? 'user' : 'all');
   const ordersData = useAppSelector(selectOrders);
   const { orders = [] } = ordersData!;
 
   useEffect(() => {
     const getCards = async () => {
-      await getIngredients() as { data: { data: TypeCard[] } };
+      await getIngredients();
     };
 
     if (ingredients.length < 1) {

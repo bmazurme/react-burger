@@ -16,19 +16,6 @@ const slice = createSlice({
       { payload: data },
     ) => ({ ...state, data }),
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addMatcher(wssApi.endpoints.getMessages.matchFulfilled, (state, action) => {
-  //       console.log(action);
-  //       return {
-  //         ...state,
-  //         data: action,
-  //       };
-  //     })
-  //     .addMatcher(wssApi.endpoints.getMessages.matchRejected, (state, action) => {
-  //       console.log('rejected', state, action);
-  //     });
-  // },
 });
 
 export const { setOrders } = slice.actions;

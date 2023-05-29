@@ -18,8 +18,9 @@ export default function MenuItem({
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState<string | null>(null);
   const handleClick = (currId: string) => setIsOpen(currId !== isOpen ? currId : null);
-  // eslint-disable-next-line max-len
-  const active = useMemo(() => (links?.some((x: TypeSubLink) => x.url === pathname) ? true : pathname === url), [pathname]);
+  const active = useMemo(() => (links?.some((x: TypeSubLink) => x.url === pathname)
+    ? true
+    : pathname === url), [pathname]);
 
   return (
     <li className={`${style.item} ${extraClass && extraClass}`} onClick={() => handleClick(id)}>

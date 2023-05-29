@@ -8,7 +8,6 @@ export default function Tabs({ tabs, current, setCurrent }: {
   tabs: { id: string, label: string }[],
   current: string,
   setCurrent: (value: string) => void,
-
 }) {
   return (
     <div className={style.tabs}>

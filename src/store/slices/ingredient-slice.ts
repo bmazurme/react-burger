@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { createSlice } from '@reduxjs/toolkit';
 import { ingredientApiEndpoints } from '../api';
 
@@ -23,13 +22,19 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(ingredientApiEndpoints.endpoints.getIngredients.matchFulfilled, (state, action) => ({
-        ...state,
-        data: action.payload.data.map((x) => ({ ...x, thumbnail: x.image, text: x.name })),
-      }))
-      .addMatcher(ingredientApiEndpoints.endpoints.getIngredients.matchRejected, (state, action) => {
-        console.log('rejected', state, action);
-      });
+      .addMatcher(
+        ingredientApiEndpoints.endpoints.getIngredients.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload.data.map((x) => ({ ...x, thumbnail: x.image, text: x.name })),
+        }),
+      )
+      .addMatcher(
+        ingredientApiEndpoints.endpoints.getIngredients.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
+      );
   },
 });
 

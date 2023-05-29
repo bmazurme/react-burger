@@ -15,8 +15,10 @@ export default function Groups(props: {
   const refs2 = useRef<HTMLLIElement | null>(null);
   const refs3 = useRef<HTMLLIElement | null>(null);
   const refs = [refs1, refs2, refs3];
-  // eslint-disable-next-line max-len
-  const groupsWithRef = groups.map((x: { id: string, label: string }, i: number) => ({ ...x, refCurr: refs[i] }));
+
+  const groupsWithRef = groups.map((x: { id: string, label: string }, i: number) => (
+    { ...x, refCurr: refs[i] }
+  ));
 
   const onScroll = (e: UIEvent) => {
     const scroll = e.currentTarget.scrollTop;

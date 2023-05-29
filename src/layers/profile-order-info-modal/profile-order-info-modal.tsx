@@ -6,10 +6,10 @@ import Order from '../../components/order-info';
 
 import { Urls } from '../../utils';
 
-export default function OrderInfo() {
+export default function ProfileOrderInfoModal() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const handleClose = useCallback(() => navigate(state || Urls.BASE), [state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={(<Order path="all" />)} />);
+  return (<Modal isOpen onClose={handleClose} children={(<Order path="user" />)} />);
 }

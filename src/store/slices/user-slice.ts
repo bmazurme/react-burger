@@ -16,20 +16,32 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(authApiEndpoints.endpoints.getUser.matchFulfilled, (state, action) => ({
-        ...state,
-        data: action.payload.user,
-      }))
-      .addMatcher(authApiEndpoints.endpoints.getUser.matchRejected, (state, action) => {
-        console.log('rejected', state, action);
-      })
-      .addMatcher(userApiEndpoints.endpoints.updateUser.matchFulfilled, (state, action) => ({
-        ...state,
-        data: action.payload.user,
-      }))
-      .addMatcher(userApiEndpoints.endpoints.updateUser.matchRejected, (state, action) => {
-        console.log('rejected', state, action);
-      });
+      .addMatcher(
+        authApiEndpoints.endpoints.getUser.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload.user,
+        }),
+      )
+      .addMatcher(
+        authApiEndpoints.endpoints.getUser.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
+      )
+      .addMatcher(
+        userApiEndpoints.endpoints.updateUser.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload.user,
+        }),
+      )
+      .addMatcher(
+        userApiEndpoints.endpoints.updateUser.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
+      );
   },
 });
 
