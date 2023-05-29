@@ -111,8 +111,9 @@
   border: 2px solid transparent;
 }
 
-.item_last::before {
-  content: '';
+.counter {
+  position: absolute;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,7 +126,21 @@
   z-index: 999;
 }
 
-.counter {
-  position: absolute;
-  z-index: 1000;
+.status {
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0 0 30px;
+}
+
+.done {
+  color: #0cc;
+}
+
+.canceled {
+  color: red;
 }

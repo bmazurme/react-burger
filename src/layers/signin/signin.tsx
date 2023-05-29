@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect, FormEvent } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
@@ -37,10 +36,8 @@ export default function Signin() {
   const navigate = useNavigate();
   const userData = useUser();
   const [show, setShow] = useState(false);
-  const [signIn, { isError, isLoading }] = useSignInMutation();
-  const {
-    values, handleChange, errors, isValid, resetForm, setIsValid, setValues,
-  } = useFormWithValidation({ name: '', email: '', password: '' });
+  const [signIn] = useSignInMutation();
+  const { values, handleChange } = useFormWithValidation({ name: '', email: '', password: '' });
 
   const toggleShow = () => setShow(!show);
   // for debug
@@ -102,7 +99,9 @@ export default function Signin() {
   return (
     <form className={style.container} onSubmit={onSubmit}>
       <h2 className="text text_type_main-large mb-6">Вход</h2>
-      {inputs.map((input: TInputInterface & { name: string }) => (<Input {...input} key={input.name} />))}
+      {inputs.map((input: TInputInterface & { name: string }) => (
+        <Input {...input} key={input.name} />
+      ))}
       <Button
         htmlType="submit"
         type="primary"

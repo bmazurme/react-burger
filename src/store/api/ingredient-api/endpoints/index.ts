@@ -1,4 +1,4 @@
-import { ingredientApi } from '../create-api';
+import ingredientApi from '..';
 
 const ingredientApiEndpoints = ingredientApi
   .enhanceEndpoints({
@@ -6,16 +6,16 @@ const ingredientApiEndpoints = ingredientApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getIngredients: builder.mutation({
+      getIngredients: builder.mutation<{data: TypeCard[]}, void>({
         query: () => ({
           url: 'ingredients',
           method: 'GET',
         }),
-
-        // @ts-ignore
-        providesTags: ['ingredient'],
+        invalidatesTags: ['ingredient'],
       }),
     }),
+    overrideExisting: true,
   });
 
 export const { useGetIngredientsMutation } = ingredientApiEndpoints;
+export { ingredientApiEndpoints };

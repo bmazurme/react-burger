@@ -1,3 +1,3 @@
-import Ingredient from './ingredient-modal';
+import IngredientModal from './ingredient-modal';
 
-export default Ingredient;
+export default IngredientModal;

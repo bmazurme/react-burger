@@ -9,7 +9,7 @@ import MenuItemLinks from '../menu-item-links';
 import Menu from '../menu';
 import Icon from '../icon';
 
-import { logOut } from '../../store/slices/user-slice';
+import { logOut } from '../../store/slices';
 import withExtraClass from '../../hocs/with-extra-class';
 import { useAppDispatch } from '../../hooks';
 import { useSignOutMutation } from '../../store';
@@ -22,7 +22,7 @@ const UserMenu = withExtraClass(style.mobile)(Menu);
 export default function MenuButton({ links }: { links: TypeMainLink[] }) {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [signOut, { isError, isLoading }] = useSignOutMutation();
+  const [signOut, { isLoading }] = useSignOutMutation();
   const { pathname } = useLocation();
   const toggleMenu = () => setIsOpen(!isOpen);
   const active = useMemo(() => links[2]?.links?.some(({ url }) => url === pathname), [pathname]);

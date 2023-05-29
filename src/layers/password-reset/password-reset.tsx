@@ -1,25 +1,27 @@
-import React, { FormEvent, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import Preloader from '../../components/preloader';
 
-import { usePasswordForgotMutation } from '../../store';
+import { usePasswordResetMutation } from '../../store';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import useUser from '../../hooks/use-user';
 
 import { Urls } from '../../utils';
 
-import style from './forgot.module.css';
+import style from './password-reset.module.css';
 
-export default function Forgot() {
+export default function PasswordReset() {
   const navigate = useNavigate();
   const userData = useUser();
-  const [passwordForgot, { isError, isLoading }] = usePasswordForgotMutation();
+  const [show, setShow] = useState(false);
+  const [passwordReset, { isError, isLoading }] = usePasswordResetMutation();
   const {
-    values, handleChange, errors, isValid, resetForm, setIsValid, setValues,
-  } = useFormWithValidation({ email: '' });
+    values, handleChange,
+  } = useFormWithValidation({ password: '', token: '' });
 
+  const toggleShow = () => setShow(!show);
   // for debug
   console.log(isError, isLoading, values);
 
@@ -27,10 +29,10 @@ export default function Forgot() {
     e.preventDefault();
 
     try {
-      const result = await passwordForgot(values);
+      const result = await passwordReset(values);
       // for debug
       console.log(result);
-      navigate(Urls.RESET);
+      navigate(Urls.SIGN.IN);
     } catch (err) {
       // need modal...
       console.log(err);
@@ -51,11 +53,24 @@ export default function Forgot() {
         <form className={style.container} onSubmit={onSubmit}>
           <h2 className="text text_type_main-large mb-6">Восстановление пароля</h2>
           <Input
-            type="text"
-            placeholder="Укажите e-mail"
+            type={show ? 'text' : 'password'}
+            placeholder="Введите новый пароль"
             onChange={handleChange}
-            value={values.email || ''}
-            name="email"
+            icon={show ? 'HideIcon' : 'ShowIcon'}
+            value={values.password || ''}
+            name="password"
+            error={false}
+            onIconClick={toggleShow}
+            errorText="Ошибка"
+            size="default"
+            extraClass="ml-1 mb-6"
+          />
+          <Input
+            type="text"
+            placeholder="Введите код из письма"
+            onChange={handleChange}
+            value={values.token || ''}
+            name="token"
             error={false}
             errorText="Ошибка"
             size="default"
@@ -69,7 +84,6 @@ export default function Forgot() {
           >
             Восстановить
           </Button>
-
           <span className="text text_type_main-default pl-2 text_color_inactive">
             Вспомнили пароль?
             <NavLink className="text text_type_main-default pl-2 ml-2" to={Urls.SIGN.IN}>

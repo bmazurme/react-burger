@@ -1,6 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+import { RootState } from '../index';
+
+type TypeBurger = {
+  data: {
+    bun: TypeCard | null,
+    mainOrSauce: TypeCard[],
+    price: number,
+    number: string | null,
+  },
+};
+
+const initialState: TypeBurger = {
   data: {
     bun: null,
     mainOrSauce: [],
@@ -21,11 +32,9 @@ const slice = createSlice({
       data: {
         ...state.data,
         bun: data,
-        // @ts-ignore
         price: data.price + state.data.mainOrSauce.reduce((sumPrice, x) => (sumPrice + x.price), 0),
       },
     }),
-    // @ts-ignore
     setMainOrSauce: (
       state,
       { payload: data },
@@ -34,12 +43,10 @@ const slice = createSlice({
       data: {
         ...state.data,
         mainOrSauce: [data, ...state.data.mainOrSauce].map((x, i) => ({ ...x, index: i })),
-        // @ts-ignore
         price: (state.data.bun?.price ? state.data.bun.price : 0)
           + [data, ...state.data.mainOrSauce].reduce((sumPrice, x) => (sumPrice + x.price), 0),
       },
     }),
-    // @ts-ignore
     removeIngredient: (
       state,
       { payload: data },
@@ -48,20 +55,14 @@ const slice = createSlice({
       data: {
         ...state.data,
         mainOrSauce: state.data.mainOrSauce
-        // @ts-ignore
           .filter((x) => x.index !== data)
-          // @ts-ignore
           .map((x, i) => ({ ...x, index: i })),
-        // @ts-ignore
         price: (state.data.bun?.price ? state.data.bun.price : 0)
           + state.data.mainOrSauce
-            // @ts-ignore
             .filter((x) => x.index !== data)
-            // @ts-ignore
             .reduce((sumPrice, x) => (sumPrice + x.price), 0),
       },
     }),
-    // @ts-ignore
     setItems: (
       state,
       { payload: data },
@@ -78,5 +79,5 @@ export const {
 } = slice.actions;
 
 export default slice.reducer;
-// @ts-ignore
-export const selectBurger = (state) => state.burger.data;
+
+export const selectBurger = (state: RootState) => state.burger.data;

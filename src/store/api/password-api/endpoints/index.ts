@@ -1,4 +1,4 @@
-import { passwordApi } from '../create-api';
+import passwordApi from '..';
 
 const authApiEndpoints = passwordApi
   .enhanceEndpoints({

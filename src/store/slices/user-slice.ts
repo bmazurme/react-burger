@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authApi } from '../api/auth-api/create-api';
-import { userApi } from '../api/user-api/create-api';
+import { authApiEndpoints, userApiEndpoints } from '../api';
+
+import { RootState } from '../index';
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
-const initialState = {
+const initialState: { data: TypeUser | null } = {
   data: null,
 };
 
@@ -15,29 +16,37 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // @ts-ignore
-      .addMatcher(authApi.endpoints.getUser.matchFulfilled, (state, action) => {
-        console.log('fulfilled', action);
-        return { ...state, data: action.payload.user };
-      })
-      // @ts-ignore
-      .addMatcher(authApi.endpoints.getUser.matchRejected, (state, action) => {
-        console.log('rejected', action);
-      })
-      // @ts-ignore
-      .addMatcher(userApi.endpoints.updateUser.matchFulfilled, (state, action) => {
-        console.log('fulfilled', action);
-        return { ...state, data: action.payload.user };
-      })
-      // @ts-ignore
-      .addMatcher(userApi.endpoints.updateUser.matchRejected, (state, action) => {
-        console.log('rejected', action);
-      });
+      .addMatcher(
+        authApiEndpoints.endpoints.getUser.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload.user,
+        }),
+      )
+      .addMatcher(
+        authApiEndpoints.endpoints.getUser.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
+      )
+      .addMatcher(
+        userApiEndpoints.endpoints.updateUser.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload.user,
+        }),
+      )
+      .addMatcher(
+        userApiEndpoints.endpoints.updateUser.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
+      );
   },
 });
 
 export const { logOut } = slice.actions;
 
 export default slice.reducer;
-// @ts-ignore
-export const selectUser = (state) => state.user.data;
+
+export const selectUser = (state: RootState) => state.user.data;

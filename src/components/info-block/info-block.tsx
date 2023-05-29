@@ -2,25 +2,32 @@ import React from 'react';
 
 import List from '../list';
 import InfoBlockTotal from '../info-block-total';
-import infoBlock from '../../mocks/info-block';
+
+import { useAppSelector } from '../../hooks';
+import { selectOrders } from '../../store/slices';
 
 import style from './info-block.module.css';
 
 export default function InfoBlock() {
+  const ordersData = useAppSelector(selectOrders);
+  const { orders = [], total = 0, totalToday = 0 } = ordersData!;
+  const done = orders.filter((x) => x.status === 'done').map((x) => (x.number.toString()));
+  const backlog = orders.filter((x) => x.status !== 'done').map((x) => (x.number.toString()));
+
   return (
     <div className={style.container}>
       <div className={style.frames}>
         <div className={style.done}>
-          <List list={infoBlock.backlog} extraClass={style.done_list} title="Готовы:" />
+          <List list={done} extraClass={style.done_list} title="Готовы:" />
         </div>
         <div className={style.backlog}>
-          <List list={infoBlock.done} title="В работе:" />
+          <List list={backlog} title="В работе:" />
         </div>
         <div className={style.total}>
-          <InfoBlockTotal title="Выполнено за все время:" value={infoBlock.total} />
+          <InfoBlockTotal title="Выполнено за все время:" value={total} />
         </div>
         <div className={style.total_day}>
-          <InfoBlockTotal title="Выполнено за сегодня:" value={infoBlock.totalDay} />
+          <InfoBlockTotal title="Выполнено за сегодня:" value={totalToday} />
         </div>
       </div>
     </div>

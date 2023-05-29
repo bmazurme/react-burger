@@ -41,8 +41,7 @@ export default function withUser<P extends Record<string, unknown>>(
       const getUserData = async () => {
         if (isUninitialized && !userData && token) {
           try {
-            // @ts-ignore
-            const res: unknown = await getUser();
+            const res = await getUser();
 
             if ((res as TypeResponseError)?.error?.data?.message === 'jwt expired') {
               await getNewToken();

@@ -15,8 +15,6 @@ const baseQuery = fetchBaseQuery({
 
     return headers;
   },
-  // @ts-ignore
-  endpoints: () => ({}),
 });
 
 export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });

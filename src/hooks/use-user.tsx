@@ -1,7 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useAppSelector } from './index';
 
-import { selectUser } from '../store/slices/user-slice';
+import { selectUser } from '../store/slices';
 
 export default function useUser() {
-  return useSelector(selectUser);
+  return useAppSelector(selectUser);
 }

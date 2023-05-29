@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { RefObject } from 'react';
 import classNames from 'classnames';
 
@@ -15,7 +14,9 @@ export default function Group({
         {label}
       </h2>
       <ul className={style.ingredients}>
-        {cards.filter((x: TypeCard) => x.type === id).map((card: TypeCard) => <Card key={card._id} {...card} />)}
+        {cards.filter((x: TypeCard) => x.type === id).map((card: TypeCard) => (
+          <Card key={card._id} {...card} />
+        ))}
       </ul>
     </li>
   );

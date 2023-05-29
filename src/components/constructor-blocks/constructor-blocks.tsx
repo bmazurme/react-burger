@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,7 +5,7 @@ import classNames from 'classnames';
 
 import ConstructorBlock from '../constructor-block';
 
-import { selectBurger, setMainOrSauce } from '../../store/slices/burger-slice';
+import { selectBurger, setMainOrSauce } from '../../store/slices';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import {
   MAIN, BUN, SAUCE, COLUMN, filterObject, getBackgroundColor,
@@ -43,7 +42,9 @@ export default function ConstructorBlocks() {
     >
       {items.length === 0
         ? <span className={getClass()}>+ ингредиент</span>
-        : items.map((item: TypeElementMain, i: number) => (<ConstructorBlock key={item.uniqueId} {...item} index={i} />))}
+        : items.map((item: TypeElementMain, i: number) => (
+          <ConstructorBlock key={item.uniqueId} {...item} index={i} />
+        ))}
     </ul>
   );
 }
