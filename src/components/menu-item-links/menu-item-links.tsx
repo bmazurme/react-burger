@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
@@ -11,11 +12,15 @@ export default function MenuItemLinks({ links }: { links: TypeSubLink[], onClick
     <ul className={style.sublinks}>
       {links.map(({
         id, label, url, handler,
-      }: { id: string, label: string, url: string, handler?: () => void }) => (
+      }) => (
         <NavLink
           key={id}
           to={url}
-          className={({ isActive }) => classNames(style.sublink, 'text text_type_main-default', { [style.inactive]: !isActive })}
+          className={({ isActive }) => classNames(
+            style.sublink,
+            'text text_type_main-default',
+            { [style.inactive]: !isActive },
+          )}
           onClick={handler}
           end
         >

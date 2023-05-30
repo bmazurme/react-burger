@@ -6,6 +6,7 @@ export type TypeSubLink = {
   id: string;
   label: string;
   url: string;
+  handler?: () => void;
 };
 
 export type TypeMainLink = {

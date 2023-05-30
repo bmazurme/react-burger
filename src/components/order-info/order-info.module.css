@@ -40,13 +40,21 @@
 }
 
 .status {
-  color: #0cc;
+  color: #fff;
   display: flex;
   justify-content: flex-start;
   text-align: left;
   width: 100%;
   padding: 0;
   box-sizing: border-box;
+}
+
+.done {
+  color: #0cc;
+}
+
+.canceled {
+  color: red;
 }
 
 .title {

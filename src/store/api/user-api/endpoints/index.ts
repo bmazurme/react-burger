@@ -1,4 +1,4 @@
-import { userApi } from '../create-api';
+import userApi from '..';
 
 const userApiEndpoints = userApi
   .enhanceEndpoints({
@@ -6,7 +6,7 @@ const userApiEndpoints = userApi
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      updateUser: builder.mutation<Record<string, string>, Record<string, string>>({
+      updateUser: builder.mutation<{ user: TypeUser }, Record<string, string>>({
         query: (data) => ({
           url: '/auth/user',
           method: 'PATCH',
@@ -17,3 +17,4 @@ const userApiEndpoints = userApi
   });
 
 export const { useUpdateUserMutation } = userApiEndpoints;
+export { userApiEndpoints };

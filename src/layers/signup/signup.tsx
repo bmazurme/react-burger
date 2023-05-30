@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable max-len */
 import React, { useState, useEffect, FormEvent } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
@@ -39,9 +38,7 @@ export default function Signup() {
   const userData = useUser();
   const [show, setShow] = useState(false);
   const [signUp, { isError, isLoading }] = useSignUpMutation();
-  const {
-    values, handleChange, errors, isValid, resetForm, setIsValid, setValues,
-  } = useFormWithValidation({ name: '', email: '', password: '' });
+  const { values, handleChange } = useFormWithValidation({ name: '', email: '', password: '' });
   const toggleShow = () => setShow(!show);
   // for debug
   // console.log(isError, isLoading, values);
@@ -112,7 +109,9 @@ export default function Signup() {
   return (
     <form className={style.container} onSubmit={onSubmit}>
       <h2 className="text text_type_main-large mb-6">Регистрация</h2>
-      {inputs.map((input: TInputInterface & { name: string }) => (<Input {...input} key={input.name} />))}
+      {inputs.map((input: TInputInterface & { name: string }) => (
+        <Input {...input} key={input.name} />
+      ))}
       <Button
         htmlType="submit"
         type="primary"

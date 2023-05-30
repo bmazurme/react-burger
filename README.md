@@ -17,11 +17,14 @@
 
 ### About
 - [X] Sprint 1
-  - [X] Step 1, Step 2
+  - [X] Step 1
+  - [X] Step 2
 - [X] Sprint 2
-  - [X] Step 1, Step 2
+  - [X] Step 1
+  - [X] Step 2
 - [X] Sprint 3
 - [X] Sprint 4
+- [ ] Sprint 5
 
 ### Demo
 ...
@@ -59,12 +62,9 @@ $ npm run clear
 - [X] Routing
 - [X] API
   - [X] BurgerIngredients
-  - [X] User
-  - [X] Auth
 - [X] Store
   - [X] Burger
   - [X] User
-  - [X] Ingredients 
 - [X] LocalStorage
 - [X] AnimatePresence
 
@@ -72,17 +72,21 @@ $ npm run clear
 ##### Sprint 1 / Step 1
 - [X] App
   - [X] AppHeader
-    - [X] Menu, MenuButton
+    - [X] MenuButton
   - [X] BurgerConstructor
   - [X] BurgerIngredients
     - [X] CardGroup
     - [X] Card
-  - [X] Modal, ModalOverlay
-  - [X] IngredientDetails
-  - [X] OrderDetails
-  - [X] Profile, ProfileData, ProfileFeed
-  - [X] SignIn, SignUp, SignOut, Forgot, Reset
-  - [X] Ingredient
+##### Sprint 1 / Step 2
+- [X] Modal
+- [X] ModalOverlay
+- [X] IngredientDetails
+- [X] OrderDetails
+
+##### Sprint 3
+- [X] Profile, ProfileData, ProfileFeed
+- [X] SignIn, SignUp, SignOut, Forgot, Reset
+- [X] Ingredient
 
 #### hocs:
 - [X] withExtraClass

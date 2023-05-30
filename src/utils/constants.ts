@@ -14,13 +14,14 @@ export const Urls = {
   },
   RESET: '/reset-password',
   QUEUE: {
-    INDEX: '/queue',
-    ID: '/queue/:id',
+    INDEX: '/feed',
+    ID: '/feed/:id',
   },
   HISTORY: '/history',
   PROFILE: {
     INDEX: '/profile',
     ORDERS: 'orders',
+    ORDERSID: 'orders/:id',
   },
   404: '*',
 };

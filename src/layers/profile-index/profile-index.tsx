@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
 import React, { useEffect, useState, FormEvent } from 'react';
 
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -9,7 +7,7 @@ import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dime
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import useUser from '../../hooks/use-user';
 import { useToken } from '../../hooks/use-token';
-import { useUpdateUserMutation, useRefreshTokenMutation } from '../../store';
+import { useUpdateUserMutation } from '../../store';
 
 import style from './profile-index.module.css';
 
@@ -21,17 +19,20 @@ type TypeResponseError = {
   },
 };
 
+interface GenericObject {
+  [key: string]: string | number,
+}
+
 export default function ProfileIndex() {
-  const [updateUser, { isLoading, isError, data }] = useUpdateUserMutation();
-  const [refreshToken, { isLoading: loading, isError: error }] = useRefreshTokenMutation();
-  const userData = useUser();
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const userData = useUser()!;
   const getNewToken = useToken();
   const { blocks } = getVisualProps(useWindowDimensions());
   const isMobile = blocks === 1;
   const [show, setShow] = useState(false);
 
   const {
-    values, handleChange, errors, isValid, resetForm, setIsValid, setValues,
+    values, handleChange, resetForm,
   } = useFormWithValidation({
     name: userData?.name || '',
     email: userData?.email || '',
@@ -65,12 +66,13 @@ export default function ProfileIndex() {
 
   useEffect(() => {
     let flag = false;
-
-    for (const key in values) {
-      if ((values[key] && userData[key]) && (values[key] !== userData[key])) {
+    Object.keys(values as GenericObject).forEach((key) => {
+      if ((values[key] && (userData as GenericObject)[key])
+      && (values[key] !== (userData as GenericObject)[key])) {
         flag = true;
       }
-    }
+    });
+
     setShow(flag);
   }, [handleChange]);
 

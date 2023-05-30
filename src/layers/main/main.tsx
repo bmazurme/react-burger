@@ -10,7 +10,7 @@ import Preloader from '../../components/preloader';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
 import { useGetIngredientsMutation } from '../../store';
-import { selectIngredient } from '../../store/slices/ingredient-slice';
+import { selectIngredient } from '../../store/slices';
 
 import style from './main.module.css';
 
@@ -19,12 +19,11 @@ export default function Main() {
   const { blocks } = getVisualProps(useWindowDimensions());
   const isMobile = blocks === 1;
   // Using a query hook automatically fetches data and returns query values
-  const [getIngredients, { isError, isLoading }] = useGetIngredientsMutation();
+  const [getIngredients, { isLoading }] = useGetIngredientsMutation();
 
   useEffect(() => {
     const getCards = async () => {
-      // @ts-ignore
-      const { data = { data: [] } } = await getIngredients();
+      const { data = { data: [] } } = await getIngredients() as { data: { data: TypeCard[] } };
       const { data: rawData } = data;
       cards = rawData.map((x: TypeCard) => ({ ...x, thumbnail: x.image, text: x.name }));
     };
