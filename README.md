@@ -24,7 +24,8 @@
   - [X] Step 2
 - [X] Sprint 3
 - [X] Sprint 4
-- [ ] Sprint 5
+- [X] Sprint 5
+- [ ] Sprint 6
 
 ### Demo
 ...

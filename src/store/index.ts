@@ -10,18 +10,21 @@ import {
   burgerSlice,
   orderSlice,
   ordersSlice,
-  userSlice,
+  // userSlice,
   ingredientSlice,
 } from './slices';
+import userSlice from './slices/burger-slice';
 
 import {
-  authApi,
+  // authApi,
   ingredientApi,
   orderApi,
   passwordApi,
-  userApi,
+  // userApi,
   wssApi,
 } from './api';
+import authApi from './api/auth-api';
+import userApi from './api/user-api';
 
 export * from './api';
 

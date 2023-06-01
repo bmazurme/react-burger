@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authApiEndpoints, userApiEndpoints } from '../api';
+import { authApiEndpoints } from '../api/auth-api/endpoints';
+import { userApiEndpoints } from '../api/user-api/endpoints';
 
 import { RootState } from '../index';
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
-const initialState: { data: TypeUser | null } = {
+export const initialState: { data: TypeUser | null } = {
   data: null,
 };
 
