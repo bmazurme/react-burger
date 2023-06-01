@@ -47,6 +47,7 @@ export default function ElementBun(props: { position: 'top' | 'bottom' | undefin
       ref={refBunTop}
       className={`${position === 'top' ? style.top : style.bottom} ${!bun?.name && style.border}`}
       style={{ backgroundColor: getBackgroundColor(isOver, canDrop) }}
+      data-test={`constructor-${position}`}
     >
       {!bun?.name
         ? (<span className={getClass()}>+ булку</span>)

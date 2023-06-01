@@ -13,7 +13,7 @@ import {
   // userSlice,
   ingredientSlice,
 } from './slices';
-import userSlice from './slices/burger-slice';
+import userSlice from './slices/user-slice';
 
 import {
   // authApi,

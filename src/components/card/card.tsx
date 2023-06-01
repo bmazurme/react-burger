@@ -26,7 +26,7 @@ export default function Card(card: TypeCard) {
   }));
 
   return (
-    <li ref={dragRef} style={{ opacity }} className={classNames(style.card, 'pl-4')}>
+    <li ref={dragRef} style={{ opacity }} className={classNames(style.card, 'pl-4')} data-test="card">
       <Link to={`/ingredients/${_id}`} state={{ pathname: location.pathname }} className={style.link}>
         <img
           className={style.image}
