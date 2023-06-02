@@ -1,6 +1,6 @@
 import passwordApi from '..';
 
-const authApiEndpoints = passwordApi
+const passwordApiEndpoints = passwordApi
   .enhanceEndpoints({
     addTagTypes: ['password'],
   })
@@ -23,4 +23,5 @@ const authApiEndpoints = passwordApi
     }),
   });
 
-export const { usePasswordResetMutation, usePasswordForgotMutation } = authApiEndpoints;
+export const { usePasswordResetMutation, usePasswordForgotMutation } = passwordApiEndpoints;
+export { passwordApiEndpoints };

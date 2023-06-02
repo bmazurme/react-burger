@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ingredientApiEndpoints } from '../api';
+import { ingredientApiEndpoints } from '../api/ingredient-api/endpoints';
 
-import { RootState } from '../index';
+import { RootState } from '..';
 
 type TypeIngredient = {
   data: TypeCard[],

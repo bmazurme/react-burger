@@ -14,6 +14,8 @@
 - uuidv4
 - classnames
 - framer-motion
+- cypress
+- jest
 
 ### About
 - [X] Sprint 1
@@ -54,8 +56,20 @@ $ npm run eslint
 # run stylelint
 $ npm run stlint
 
+# run test
+$ npm run test
+
+# run cypress
+$ npm run cypress:open
+
 # clear
 $ npm run clear
+```
+
+#### .env
+```bash
+# CYPRESS_EMAIL=email@email.com
+# CYPRESS_PASSWORD=password
 ```
 
 #### Implemented features:

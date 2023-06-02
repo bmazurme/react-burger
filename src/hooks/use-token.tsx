@@ -1,4 +1,4 @@
-import { useRefreshTokenMutation } from '../store';
+import { useRefreshTokenMutation } from '../store/api/auth-api/endpoints';
 
 type ResponseToken = {
   data: {

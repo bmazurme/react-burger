@@ -12,7 +12,7 @@ import Icon from '../icon';
 import { logOut } from '../../store/slices';
 import withExtraClass from '../../hocs/with-extra-class';
 import { useAppDispatch } from '../../hooks';
-import { useSignOutMutation } from '../../store';
+import { useSignOutMutation } from '../../store/api/auth-api/endpoints';
 import { TypeMainLink } from '../../mocks/main-links';
 
 import style from './menu-button.module.css';
@@ -32,7 +32,7 @@ export default function MenuButton({ links }: { links: TypeMainLink[] }) {
     const refreshToken = localStorage.getItem('refreshToken');
     try {
       await signOut(refreshToken);
-      dispatch(logOut());
+      dispatch(logOut(null));
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('accessToken');
     } catch (e) {

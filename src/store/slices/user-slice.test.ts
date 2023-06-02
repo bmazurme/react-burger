@@ -1,15 +1,33 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-extraneous-dependencies */
-import { describe, expect, test } from '@jest/globals';
+import {
+  describe, expect, test, it,
+} from '@jest/globals';
+import fetchMock from 'jest-fetch-mock';
 
-import userSlice, { logOut } from './user-slice';
+import reducer, { logOut } from './user-slice';
+import { authApiEndpoints } from '../api/auth-api/endpoints';
+
+fetchMock.enableMocks();
 
 const expectedOrder = {
-  payload: ['x', 'y'],
-  type: 'order/setOrder',
+  payload: null,
+  type: 'user/logOut',
 };
 
-describe('order', () => {
-  test('set order', () => {
-    expect(logOut()).toEqual(expectedOrder);
+const initialState = { data: { name: 'name', email: 'email' } };
+
+describe('user', () => {
+  test('remove data', () => {
+    expect(logOut(null)).toEqual(expectedOrder);
+  });
+
+  it('...', async () => {
+    const action = {
+      type: authApiEndpoints.endpoints.getUser.matchFulfilled,
+      payload: {},
+    };
+
+    expect(reducer(initialState, action)).toEqual(initialState);
   });
 });

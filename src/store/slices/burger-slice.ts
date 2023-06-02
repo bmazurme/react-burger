@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from '../index';
+import { RootState } from '..';
 
 type TypeBurger = {
   data: {
