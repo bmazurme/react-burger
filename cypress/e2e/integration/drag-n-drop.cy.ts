@@ -6,11 +6,11 @@ let password;
 
 describe('drag-n-drop', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('/');
     cy.viewport(1800, 1200);
 
-    login = Cypress.env('CYPRESS_EMAIL');
-    password = Cypress.env('CYPRESS_PASSWORD');
+    login = Cypress.env('CYPRESS_EMAIL') || 'email@yandex.ru';
+    password = Cypress.env('CYPRESS_PASSWORD') || 'password';
   });
 
   describe('dnd', () => {
