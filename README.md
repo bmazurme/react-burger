@@ -30,7 +30,9 @@
 - [ ] Sprint 6
 
 ### Demo
-...
+
+[GH-Pages](https://bmazurme.github.io/react-burger/)
+
 
 ### Installation
 ```bash
