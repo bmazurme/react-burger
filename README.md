@@ -33,6 +33,8 @@
 
 [GH-Pages](https://bmazurme.github.io/react-burger/)
 
+[![Netlify](https://img.shields.io/badge/-Netlify-black?style=flat-square&logo=netlify)](https://bejewelled-youtiao-8f9817.netlify.app/)
+
 
 ### Installation
 ```bash
