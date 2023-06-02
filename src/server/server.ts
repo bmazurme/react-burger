@@ -1,18 +1,17 @@
-import express, { Request } from 'express';
 import path from 'path';
+import express from 'express';
 
 const app = express();
-const { PORT = 3001 } = process.env;
+const port = process.env.PORT ?? 3000;
 
-const distPath = path.join(__dirname, '..');
-const indexPath = path.join(distPath, 'index.html');
+app.use('/static', express.static(path.resolve(process.cwd(), 'static')));
 
-app.use(express.static(distPath));
+app.use(express.static(path.resolve(__dirname), { extensions: ['css', 'js', 'woff', 'woff2'] }));
 
-app.get('*', (req: Request, res: express.Response) => {
-  res.sendFile(path.resolve(indexPath));
+app.get('/:page', (_req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });

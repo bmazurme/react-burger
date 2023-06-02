@@ -18,8 +18,6 @@ export default function Order({ path, detail, ingredients }
   const ingredient = (x: string) => ingredients.find((c) => c._id === x);
   const time = getFormatedTime(detail.createdAt);
 
-  console.log('ingredient', detail);
-
   const price = useMemo(() => detail.ingredients
     .map((x) => (ingredients.find((c) => x === c._id)))
     .reduce((x, r) => x += r!.price, 0), [detail.number]);

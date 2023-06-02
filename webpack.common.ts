@@ -4,7 +4,7 @@ import type { Configuration } from 'webpack';
 const common: Configuration = {
   entry: './src/index.tsx',
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/build'),
     filename: 'bundle.js',
     publicPath: '/',
   },
