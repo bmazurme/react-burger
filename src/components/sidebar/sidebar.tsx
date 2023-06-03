@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import Preloader from '../preloader';
 
 import { logOut } from '../../store/slices';
-import { useSignOutMutation } from '../../store';
+import { useSignOutMutation } from '../../store/api/auth-api/endpoints';
 import { useAppDispatch } from '../../hooks';
 
 import { Urls } from '../../utils';
@@ -23,7 +23,7 @@ export default function Profile() {
     const refreshToken = localStorage.getItem('refreshToken');
     try {
       await signOut(refreshToken);
-      dispatch(logOut());
+      dispatch(logOut(null));
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('accessToken');
     } catch (e) {

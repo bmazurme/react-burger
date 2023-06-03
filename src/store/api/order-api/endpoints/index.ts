@@ -1,6 +1,6 @@
 import orderApi from '..';
 
-const userApiEndpoints = orderApi
+const orderApiEndpoints = orderApi
   .enhanceEndpoints({
     addTagTypes: ['order'],
   })
@@ -16,4 +16,5 @@ const userApiEndpoints = orderApi
     }),
   });
 
-export const { usePostOrderMutation } = userApiEndpoints;
+export const { usePostOrderMutation } = orderApiEndpoints;
+export { orderApiEndpoints };

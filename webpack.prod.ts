@@ -1,68 +1,80 @@
-import { merge } from 'webpack-merge';
-import type { Configuration } from 'webpack';
-
+/* eslint-disable import/no-extraneous-dependencies */
+import path from 'path';
+import nodeExternals from 'webpack-node-externals';
+import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import InterpolateHtmlPlugin from 'interpolate-html-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import { SourceMapDevToolPlugin } from 'webpack';
-import common from './webpack.common';
 
-const configuration = merge<Configuration>(common, {
+import type { Configuration } from 'webpack';
+
+const clientConfig: Configuration = {
   mode: 'production',
+  entry: './src/index.tsx',
+  output: {
+    path: path.join(__dirname, '/build'),
+    filename: 'bundle.js',
+  },
   module: {
     rules: [
       {
-        test: /\.js$|jsx/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: {
+          loader: 'ts-loader',
+        },
       },
       {
-        test: /\.ts$|tsx/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf|ico|json)$/,
         type: 'asset/resource',
       },
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        use: ['source-map-loader'],
-      },
     ],
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.svg'],
+  },
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      filename: './index.html',
-      favicon: './public/favicon.ico',
-      manifest: './public/manifest.json',
     }),
     new InterpolateHtmlPlugin({
-      PUBLIC_URL: 'static',
+      PUBLIC_URL: '.',
     }),
-    new MiniCssExtractPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: 'public', to: 'static' },
-        { from: 'src/server', to: 'server' },
+        { from: 'public/manifest.json', to: '.' },
+        { from: 'public/logo192.png', to: '.' },
+        { from: 'public/logo512.png', to: '.' },
+        { from: 'public/favicon.ico', to: '.' },
       ],
     }),
-    new SourceMapDevToolPlugin({
-      filename: '[file].map',
-    }),
   ],
+};
+
+const serverConfig: Configuration = {
+  target: 'node',
+  externals: [nodeExternals()],
+  entry: './src/server/server.ts',
+  mode: 'production',
+  output: {
+    filename: 'server.js',
+    path: path.resolve('build'),
+    publicPath: '/',
+  },
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
-});
+};
 
-export default configuration;
+export default [clientConfig, serverConfig];

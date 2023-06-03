@@ -39,6 +39,7 @@ export default function ConstructorBlocks() {
       className={classNames(style.items, { [style.border]: items.length === 0 })}
       style={{ backgroundColor: getBackgroundColor(isOver, canDrop), border: getBorder() }}
       ref={refMain}
+      data-test="constructor-middle"
     >
       {items.length === 0
         ? <span className={getClass()}>+ ингредиент</span>

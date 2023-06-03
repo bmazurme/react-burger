@@ -1,9 +1,3 @@
-export { default as authApi } from './auth-api';
-export { default as ingredientApi } from './ingredient-api';
-export { default as orderApi } from './order-api';
-export { default as passwordApi } from './password-api';
-export { default as userApi } from './user-api';
-export * from './auth-api/endpoints';
 export * from './ingredient-api/endpoints';
 export * from './order-api/endpoints';
 export * from './password-api/endpoints';

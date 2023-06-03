@@ -7,6 +7,7 @@
       "eslint:recommended",
       "plugin:react/recommended",
       "plugin:@typescript-eslint/recommended",
+      "plugin:cypress/recommended",
       "airbnb"
   ],
   "settings": {
@@ -26,7 +27,8 @@
   },
   "plugins": [
       "react",
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "cypress"
   ],
   "rules": {
       "no-undef": "off",
@@ -35,6 +37,7 @@
       "no-unused-vars": "off",
       "no-console": "off",
       "camelcase": "off",
+      "import/no-cycle": "error",
       "react/no-array-index-key": "off",
       "import/no-unresolved": "off",
       "react/no-children-prop": "off",
@@ -48,6 +51,7 @@
       "@typescript-eslint/no-var-requires": 0,
       "@typescript-eslint/ban-ts-comment": "off",
       "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+      // "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
       "import/extensions": [
           "error",
           "ignorePackages",

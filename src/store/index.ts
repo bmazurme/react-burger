@@ -6,22 +6,18 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import {
-  burgerSlice,
-  orderSlice,
-  ordersSlice,
-  userSlice,
-  ingredientSlice,
-} from './slices';
+import userSlice from './slices/user-slice';
+import burgerSlice from './slices/burger-slice';
+import orderSlice from './slices/order-slice';
+import ordersSlice from './slices/orders-slice';
+import ingredientSlice from './slices/ingredient-slice';
 
-import {
-  authApi,
-  ingredientApi,
-  orderApi,
-  passwordApi,
-  userApi,
-  wssApi,
-} from './api';
+import { authApiEndpoints as authApi } from './api/auth-api/endpoints';
+import { userApiEndpoints as userApi } from './api/user-api/endpoints';
+import { ingredientApiEndpoints as ingredientApi } from './api/ingredient-api/endpoints';
+import { orderApiEndpoints as orderApi } from './api/order-api/endpoints';
+import { passwordApiEndpoints as passwordApi } from './api/password-api/endpoints';
+import { wssApi } from './api/wss-api';
 
 export * from './api';
 

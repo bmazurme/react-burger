@@ -11,6 +11,7 @@ export default function ModalOverlay({ children, closeModal, isOpen }
     <div
       className={classNames(style.overlay, { [style.overlay_open]: isOpen })}
       onClick={closeModal}
+      data-test="modal"
     >
       {children}
     </div>

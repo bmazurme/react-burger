@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authApiEndpoints, userApiEndpoints } from '../api';
 
-import { RootState } from '../index';
+import { authApiEndpoints } from '../api/auth-api/endpoints';
+import { userApiEndpoints } from '../api/user-api/endpoints';
+
+import { RootState } from '..';
 
 // https://redux-toolkit.js.org/rtk-query/usage/examples
 const initialState: { data: TypeUser | null } = {
@@ -12,7 +14,10 @@ const slice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logOut: () => initialState,
+    logOut: (
+      state,
+      { payload: data },
+    ) => ({ ...state, data: null }),
   },
   extraReducers: (builder) => {
     builder
@@ -48,5 +53,6 @@ const slice = createSlice({
 export const { logOut } = slice.actions;
 
 export default slice.reducer;
+export { slice };
 
 export const selectUser = (state: RootState) => state.user.data;

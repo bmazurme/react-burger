@@ -4,7 +4,7 @@ import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { TICons } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons';
 
-import { useSignInMutation } from '../../store';
+import { useSignInMutation } from '../../store/api/auth-api/endpoints';
 import useFormWithValidation from '../../hooks/use-form-with-validation';
 import useUser from '../../hooks/use-user';
 

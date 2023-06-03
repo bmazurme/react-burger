@@ -1,8 +1,3 @@
-export { default as burgerSlice } from './burger-slice';
-export { default as ingredientSlice } from './ingredient-slice';
-export { default as orderSlice } from './order-slice';
-export { default as ordersSlice } from './orders-slice';
-export { default as userSlice } from './user-slice';
 export * from './burger-slice';
 export * from './ingredient-slice';
 export * from './order-slice';

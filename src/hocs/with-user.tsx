@@ -9,7 +9,7 @@ import { useToken } from '../hooks/use-token';
 
 import { Urls } from '../utils';
 
-import { useGetUserMutation } from '../store';
+import { useGetUserMutation } from '../store/api/auth-api/endpoints';
 
 type TypeResponse = {
   data: {
