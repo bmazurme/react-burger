@@ -18,10 +18,12 @@
 
 .items::-webkit-scrollbar-track {
   background-color: #2f2f37;
+  border-radius: 4px;
 }
 
 .items::-webkit-scrollbar-thumb {
   background-color: #8585ad;
+  border-radius: 4px;
 }
 
 .border {
