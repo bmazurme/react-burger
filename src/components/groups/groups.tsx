@@ -11,29 +11,23 @@ export default function Groups(props: {
   setCurrent: (id: string) => void,
   cards: TypeCard[] }) {
   const { groups, setCurrent, cards } = props;
-  const refs1 = useRef<HTMLLIElement | null>(null);
-  const refs2 = useRef<HTMLLIElement | null>(null);
-  const refs3 = useRef<HTMLLIElement | null>(null);
-  const refs = [refs1, refs2, refs3];
+  const refs = Array.from(Array(groups.length), () => useRef<HTMLLIElement | null>(null));
+  const groupsWithRef = groups.map((x, i) => ({ ...x, refCurr: refs[i] }));
 
-  const groupsWithRef = groups.map((x: { id: string, label: string }, i: number) => (
-    { ...x, refCurr: refs[i] }
-  ));
-
-  const onScroll = (e: UIEvent) => {
+  const onScroll = (e: UIEvent<HTMLElement>) => {
     const scroll = e.currentTarget.scrollTop;
-    const scrollViewHeight = e.currentTarget.clientHeight;
-    const groupBun = refs1.current!.scrollHeight!;
-    const groupMain = refs2.current!.scrollHeight!;
-    const groupSauce = refs3.current!.scrollHeight!;
+    const types = refs.map((ref) => (ref.current!.scrollHeight!));
+    let d = 0;
 
-    if (scroll < groupBun) {
-      setCurrent('0');
-    } else if (scroll >= groupBun && scroll + scrollViewHeight * 0.5 < groupBun + groupMain) {
-      setCurrent('1');
-    } else if (scroll + scrollViewHeight * 0.5 >= groupBun + groupMain) {
-      setCurrent('2');
-    }
+    types.forEach((x, i) => {
+      if (scroll < types[0]) {
+        setCurrent('0');
+      } else if (scroll < d + x && scroll >= d - 0.5 * x) {
+        setCurrent(i.toString());
+      }
+
+      d += x;
+    });
   };
 
   return (
