@@ -28,7 +28,7 @@ export default function Main() {
       cards = rawData.map((x: TypeCard) => ({ ...x, thumbnail: x.image, text: x.name }));
     };
 
-    if (cards.length < 1) {
+    if (cards.length < 1 && !isLoading) {
       getCards();
     }
   }, [isLoading]);
