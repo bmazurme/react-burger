@@ -52,7 +52,7 @@ export default function Modal({
             animate={MODAL_CONFIG.ANIMATE}
             exit={MODAL_CONFIG.EXIT}
           >
-            {title && <h2 className={"text text_type_main-large mt-10 ml-10 pt-3'}"}>{title}</h2>}
+            {title && <h2 className="text text_type_main-large mt-10 ml-10 pt-3">{title}</h2>}
             <button type="button" className={style.close} data-test="close-button">
               <CloseIcon type="primary" onClick={onClose} />
             </button>
