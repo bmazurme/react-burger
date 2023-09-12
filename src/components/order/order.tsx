@@ -20,7 +20,7 @@ export default function Order({ path, detail, ingredients }
 
   const price = useMemo(() => detail.ingredients
     .map((x) => (ingredients.find((c) => x === c._id)))
-    .reduce((x, r) => x += r!.price, 0), [detail.number]);
+    .reduce((x, r) => x += r?.price || 0, 0), [detail.number]);
 
   return (
     <Link to={path ? `${detail.number}` : `/feed/${detail.number}`} state={{ pathname }} className={style.link}>
