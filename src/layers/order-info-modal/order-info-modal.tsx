@@ -11,5 +11,5 @@ export default function OrderInfo() {
   const navigate = useNavigate();
   const handleClose = useCallback(() => navigate(state || Urls.BASE), [state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={(<Order path="all" />)} />);
+  return (<Modal onClose={handleClose} children={(<Order path="all" />)} />);
 }
