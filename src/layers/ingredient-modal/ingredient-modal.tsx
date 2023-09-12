@@ -13,5 +13,5 @@ export default function IngredientModal() {
     navigate(location.state || Urls.BASE);
   }, [location.state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={(<IngredientDetails />)} />);
+  return (<Modal onClose={handleClose} children={(<IngredientDetails />)} />);
 }
