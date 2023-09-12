@@ -8,11 +8,10 @@ import OrderDetails from '../order-details';
 import Preloader from '../preloader';
 import Modal from '../modal';
 
-import { selectBurger, setNumber } from '../../store/slices';
+import { setNumber } from '../../store/slices';
 import { usePostOrderMutation } from '../../store';
 import { useModal } from '../../hooks/use-modal';
-import useUser from '../../hooks/use-user';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppDispatch, useBurger, useUser } from '../../hooks';
 
 import { Urls } from '../../utils';
 
@@ -30,16 +29,13 @@ export default function BurgerConstructor() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const userData = useUser();
-  const { bun, mainOrSauce, number } = useAppSelector(selectBurger);
+  const { bun, mainOrSauce, number } = useBurger();
   const [postOrder, { isLoading }] = usePostOrderMutation();
   const { isModalOpen, openModal, closeModal } = useModal();
-  // console.log(isLoading, isError);
 
   const onClick = async () => {
     const data = {
-      ingredients: [bun, ...mainOrSauce]
-        .filter((x) => x?._id)
-        .map((x) => x?._id),
+      ingredients: [bun, ...mainOrSauce].filter((x) => x?._id).map((x) => x?._id),
     };
 
     if (data.ingredients.length > 0) {
@@ -69,14 +65,7 @@ export default function BurgerConstructor() {
       <ConstructorBlocks />
       <ConstructorBlock position="bottom" />
       <ConstructorFooter onClick={onClick} />
-      {isModalOpen
-        && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={closePopup}
-          children={<OrderDetails number={number!} />}
-        />
-        )}
+      {isModalOpen && (<Modal onClose={closePopup} children={<OrderDetails number={number!} />} />)}
       {isLoading && <Preloader />}
     </section>
   );
