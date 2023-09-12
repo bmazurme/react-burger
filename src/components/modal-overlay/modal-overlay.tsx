@@ -5,14 +5,10 @@ import classNames from 'classnames';
 
 import style from './modal-overlay.module.css';
 
-export default function ModalOverlay({ children, closeModal, isOpen }
-  : { children: ReactNode, closeModal: () => void, isOpen: boolean }) {
+export default function ModalOverlay({ children, closeModal }
+  : { children: ReactNode, closeModal: () => void }) {
   return (
-    <div
-      className={classNames(style.overlay, { [style.overlay_open]: isOpen })}
-      onClick={closeModal}
-      data-test="modal"
-    >
+    <div className={classNames(style.overlay)} onClick={closeModal} data-test="modal">
       {children}
     </div>
   );
