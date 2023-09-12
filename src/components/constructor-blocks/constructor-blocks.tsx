@@ -5,8 +5,8 @@ import classNames from 'classnames';
 
 import ConstructorBlock from '../constructor-block';
 
-import { selectBurger, setMainOrSauce } from '../../store/slices';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { setMainOrSauce } from '../../store/slices';
+import { useAppDispatch, useBurger } from '../../hooks';
 import {
   MAIN, BUN, SAUCE, COLUMN, filterObject, getBackgroundColor,
 } from '../../utils';
@@ -15,8 +15,7 @@ import style from './constructor-blocks.module.css';
 
 export default function ConstructorBlocks() {
   const dispatch = useAppDispatch();
-  const burger = useAppSelector(selectBurger);
-  const { mainOrSauce: items = [] } = burger;
+  const { mainOrSauce: items = [] } = useBurger();
   const [{ isOver, canDrop }, refMain] = useDrop({
     accept: [MAIN, SAUCE, BUN, COLUMN],
     drop: (c: TypeCard) => {
