@@ -2,11 +2,9 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDrag } from 'react-dnd';
 import classNames from 'classnames';
-
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { useAppSelector } from '../../hooks';
-import { selectBurger } from '../../store/slices';
+import { useBurger } from '../../hooks';
 
 import style from './card.module.css';
 
@@ -16,7 +14,7 @@ export default function Card(card: TypeCard) {
   } = card;
 
   const location = useLocation();
-  const { bun = null, mainOrSauce = [] } = useAppSelector(selectBurger);
+  const { bun = null, mainOrSauce = [] } = useBurger();
   const count = [bun, ...mainOrSauce].filter((x) => x?._id === _id).length;
 
   const [{ opacity }, dragRef] = useDrag(() => ({
