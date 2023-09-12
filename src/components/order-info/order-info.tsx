@@ -5,8 +5,7 @@ import classNames from 'classnames';
 
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { useAppSelector } from '../../hooks';
-import useIngredient from '../../hooks/use-ingredient';
+import { useAppSelector, useIngredient } from '../../hooks';
 import { useGetOrdersQuery } from '../../store';
 import { selectOrders } from '../../store/slices';
 
