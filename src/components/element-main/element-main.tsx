@@ -4,8 +4,8 @@ import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 import classNames from 'classnames';
 
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { removeIngredient, selectBurger, setItems } from '../../store/slices';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { removeIngredient, setItems } from '../../store/slices';
+import { useAppDispatch, useBurger } from '../../hooks';
 import { COLUMN } from '../../utils';
 
 import style from './element-main.module.css';
@@ -15,7 +15,7 @@ export default function ElementMain(props: TypeElementMain) {
   const { index, name } = props;
   const ref = useRef<HTMLLIElement>(null);
   const dispatch = useAppDispatch();
-  const { mainOrSauce: items = [] } = useAppSelector(selectBurger);
+  const { mainOrSauce: items = [] } = useBurger();
   const removeElement = (ind: number) => dispatch(removeIngredient(ind));
 
   const moveCardHandler = (dragIndex: number, hoverIndex: number) => {
