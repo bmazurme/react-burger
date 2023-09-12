@@ -6,11 +6,10 @@ import style from './groups.module.css';
 
 type TypeGroup = { id: string, label: string, refCurr: RefObject<HTMLLIElement> };
 
-export default function Groups(props: {
+export default function Groups({ groups, setCurrent, cards }: {
   groups: { id: string, label: string }[],
   setCurrent: (id: string) => void,
   cards: TypeCard[] }) {
-  const { groups, setCurrent, cards } = props;
   const refs = Array.from(Array(groups.length), () => useRef<HTMLLIElement | null>(null));
   const groupsWithRef = groups.map((x, i) => ({ ...x, refCurr: refs[i] }));
 
