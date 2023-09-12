@@ -3,18 +3,16 @@ import React, { useEffect } from 'react';
 import Order from '../order';
 import Preloader from '../preloader';
 
-import { useAppSelector } from '../../hooks';
+import { useIngredient, useOrders } from '../../hooks';
 import { useGetOrdersQuery, useGetIngredientsMutation } from '../../store';
-import { selectIngredient, selectOrders } from '../../store/slices';
 
 import style from './orders.module.css';
 
 export default function Orders({ title, path }: { title?: string, path?: boolean }) {
-  const ingredients = useAppSelector(selectIngredient);
+  const ingredients = useIngredient();
+  const { orders = [] } = useOrders();
   const [getIngredients, { isLoading }] = useGetIngredientsMutation();
   const { data = [] } = useGetOrdersQuery(path ? 'user' : 'all');
-  const ordersData = useAppSelector(selectOrders);
-  const { orders = [] } = ordersData!;
 
   useEffect(() => {
     const getCards = async () => {
