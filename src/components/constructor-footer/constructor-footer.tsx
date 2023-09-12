@@ -2,13 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { selectBurger } from '../../store/slices';
-import { useAppSelector } from '../../hooks';
+import { useBurger } from '../../hooks';
 
 import style from './constructor-footer.module.css';
 
 export default function ConstructorFooter({ onClick }: { onClick: () => void }) {
-  const { price = 0, bun, mainOrSauce } = useAppSelector(selectBurger);
+  const { price = 0, bun, mainOrSauce } = useBurger();
   const disabled = [bun, ...mainOrSauce].filter((x) => x?._id).map((x) => x?._id).length === 0;
 
   return (
