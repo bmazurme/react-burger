@@ -5,8 +5,7 @@ import classNames from 'classnames';
 import Preloader from '../preloader';
 
 import useWindowDimensions, { getVisualProps } from '../../hooks/use-window-dimensions';
-import { useAppSelector } from '../../hooks';
-import { selectIngredient } from '../../store/slices';
+import { useIngredient } from '../../hooks';
 import { useGetIngredientsMutation } from '../../store';
 
 import { getComponents } from '../../utils';
@@ -16,7 +15,7 @@ import style from './ingredient-details.module.css';
 type TypeBox = { ingredient: TypeCard, components: Record<string, string | number>[] } | null;
 
 export default function IngredientDetails() {
-  let cards = useAppSelector(selectIngredient);
+  let cards = useIngredient();
   const [getIngredients, { isLoading }] = useGetIngredientsMutation();
   const [card, setCard] = useState<TypeBox>(null);
   const { id } = useParams();
