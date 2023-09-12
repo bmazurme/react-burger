@@ -11,5 +11,5 @@ export default function ProfileOrderInfoModal() {
   const navigate = useNavigate();
   const handleClose = useCallback(() => navigate(state || Urls.BASE), [state, navigate]);
 
-  return (<Modal isOpen onClose={handleClose} children={(<OrderInfo path="user" />)} />);
+  return (<Modal onClose={handleClose} children={(<OrderInfo path="user" />)} />);
 }
