@@ -53,9 +53,9 @@ export default function MenuButton({ links }: { links: TypeMainLink[] }) {
           </span>
         </div>
         {isOpen && (
-        <div className={style.user_links}>
-          <MenuItemLinks links={userLinks.links!} onClick={toggleMenu} />
-        </div>
+          <div className={style.user_links}>
+            <MenuItemLinks links={userLinks.links!} onClick={toggleMenu} />
+          </div>
         )}
       </button>
       <div className={style.mobile}>
