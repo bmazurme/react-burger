@@ -9,13 +9,6 @@
 	left: 0;
 	background: var(--background-overlay);
 	z-index: 100;
-	visibility: hidden;
-	opacity: 0;
-	transition: 0.8s ease-out;
-	overflow: hidden;
-}
-
-.overlay_open {
 	visibility: visible;
 	opacity: 1;
 	transition: 0.8s ease-out;
