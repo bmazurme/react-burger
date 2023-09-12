@@ -15,12 +15,9 @@ type TypeModal = {
   title?: string;
   children: ReactNode;
   onClose: () => void;
-  isOpen: boolean;
 };
 
-export default function Modal({
-  title, children, onClose, isOpen,
-}: TypeModal) {
+export default function Modal({ title, children, onClose }: TypeModal) {
   const reactModals = document.getElementById('modals');
 
   const handleEscape = (e: KeyboardEvent) => {
@@ -43,22 +40,20 @@ export default function Modal({
 
   return ReactDOM.createPortal(
     <AnimatePresence>
-      <ModalOverlay isOpen={isOpen} closeModal={closeModal}>
-        {isOpen && (
-          <motion.div
-            className={style.container}
-            onClick={(e) => e.stopPropagation()}
-            initial={MODAL_CONFIG.INITIAL}
-            animate={MODAL_CONFIG.ANIMATE}
-            exit={MODAL_CONFIG.EXIT}
-          >
-            {title && <h2 className="text text_type_main-large mt-10 ml-10 pt-3">{title}</h2>}
-            <button type="button" className={style.close} data-test="close-button">
-              <CloseIcon type="primary" onClick={onClose} />
-            </button>
-            {children}
-          </motion.div>
-        )}
+      <ModalOverlay closeModal={closeModal}>
+        <motion.div
+          className={style.container}
+          onClick={(e) => e.stopPropagation()}
+          initial={MODAL_CONFIG.INITIAL}
+          animate={MODAL_CONFIG.ANIMATE}
+          exit={MODAL_CONFIG.EXIT}
+        >
+          {title && <h2 className="text text_type_main-large mt-10 ml-10 pt-3">{title}</h2>}
+          <button type="button" className={style.close} data-test="close-button">
+            <CloseIcon type="primary" onClick={onClose} />
+          </button>
+          {children}
+        </motion.div>
       </ModalOverlay>
     </AnimatePresence>,
     reactModals!,
