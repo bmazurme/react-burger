@@ -13,12 +13,7 @@ const initialState: { data: TypeUser | null } = {
 const slice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    logOut: (
-      state,
-      { payload: data },
-    ) => ({ ...state, data: null }),
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -46,13 +41,23 @@ const slice = createSlice({
         (state, action) => {
           console.log('rejected', state, action);
         },
+      )
+      .addMatcher(
+        authApiEndpoints.endpoints.signOut.matchFulfilled,
+        (state, action) => ({
+          ...state,
+          data: action.payload.user,
+        }),
+      )
+      .addMatcher(
+        authApiEndpoints.endpoints.signOut.matchRejected,
+        (state, action) => {
+          console.log('rejected', state, action);
+        },
       );
   },
 });
 
-export const { logOut } = slice.actions;
-
 export default slice.reducer;
 export { slice };
-
 export const selectUser = (state: RootState) => state.user.data;
