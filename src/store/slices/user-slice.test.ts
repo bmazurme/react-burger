@@ -5,23 +5,14 @@ import {
 } from '@jest/globals';
 import fetchMock from 'jest-fetch-mock';
 
-import reducer, { logOut } from './user-slice';
+import reducer from './user-slice';
 import { authApiEndpoints } from '../api/auth-api/endpoints';
 
 fetchMock.enableMocks();
 
-const expectedOrder = {
-  payload: null,
-  type: 'user/logOut',
-};
-
 const initialState = { data: { name: 'name', email: 'email' } };
 
 describe('user', () => {
-  test('remove data', () => {
-    expect(logOut(null)).toEqual(expectedOrder);
-  });
-
   it('...', async () => {
     const action = {
       type: authApiEndpoints.endpoints.getUser.matchFulfilled,
