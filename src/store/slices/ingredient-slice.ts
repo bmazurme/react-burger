@@ -39,7 +39,5 @@ const slice = createSlice({
 });
 
 export const { setIngredient } = slice.actions;
-
 export default slice.reducer;
-
 export const selectIngredient = (state: RootState) => state.ingredient.data;
