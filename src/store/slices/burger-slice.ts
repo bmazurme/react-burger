@@ -77,7 +77,5 @@ const slice = createSlice({
 export const {
   setBun, setMainOrSauce, removeIngredient, setItems, setNumber,
 } = slice.actions;
-
 export default slice.reducer;
-
 export const selectBurger = (state: RootState) => state.burger.data;
