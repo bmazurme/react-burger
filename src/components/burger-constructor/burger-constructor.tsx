@@ -17,14 +17,6 @@ import { Urls } from '../../utils';
 
 import style from './burger-constructor.module.css';
 
-type TypeResult = {
-  data: {
-    order: {
-      number: string;
-    }
-  }
-};
-
 export default function BurgerConstructor() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -41,9 +33,8 @@ export default function BurgerConstructor() {
     if (data.ingredients.length > 0) {
       if (userData) {
         try {
-          const result = await postOrder(data);
+          await postOrder(data);
           openModal();
-          dispatch(setNumber((result as TypeResult).data?.order?.number));
         } catch (e) {
           // need modal
           console.log(e);
