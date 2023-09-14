@@ -5,9 +5,8 @@ import classNames from 'classnames';
 
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { useAppSelector, useIngredient } from '../../hooks';
+import { useIngredient, useOrders } from '../../hooks';
 import { useGetOrdersQuery } from '../../store';
-import { selectOrders } from '../../store/slices';
 
 import { getFormatedTime } from '../../utils';
 
@@ -17,7 +16,7 @@ export default function OrderInfo({ path }: { path: 'user' | 'all' }) {
   const { id } = useParams();
   const { data = [] } = useGetOrdersQuery(path);
   const ingredientsCommon = useIngredient();
-  const { orders } = useAppSelector(selectOrders) as unknown as { orders: TOrder[] };
+  const { orders } = useOrders();
   // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const orderRaw = orders?.find((x: TOrder) => x.number.toString() === id)!;
   // eslint-disable-next-line max-len
