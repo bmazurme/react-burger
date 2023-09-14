@@ -12,11 +12,9 @@ export default function Card(card: TypeCard) {
   const {
     _id, image, name, price, type,
   } = card;
-
   const location = useLocation();
   const { bun = null, mainOrSauce = [] } = useBurger();
   const count = [bun, ...mainOrSauce].filter((x) => x?._id === _id).length;
-
   const [{ opacity }, dragRef] = useDrag(() => ({
     type,
     item: card,
