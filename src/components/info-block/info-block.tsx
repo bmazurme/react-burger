@@ -8,7 +8,7 @@ import { useOrders } from '../../hooks';
 import style from './info-block.module.css';
 
 export default function InfoBlock() {
-  const { orders = [], total = 0, totalToday = 0 } = useOrders();
+  const { orders, total = 0, totalToday = 0 } = useOrders();
   const done = orders.filter((x) => x.status === 'done').map((x) => (x.number.toString()));
   const backlog = orders.filter((x) => x.status !== 'done').map((x) => (x.number.toString()));
 
