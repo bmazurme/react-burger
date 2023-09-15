@@ -10,7 +10,6 @@ import Menu from '../menu';
 import Icon from '../icon';
 
 import withExtraClass from '../../hocs/with-extra-class';
-import { useAppDispatch } from '../../hooks';
 import { useSignOutMutation } from '../../store/api/auth-api/endpoints';
 import { TypeMainLink } from '../../mocks/main-links';
 
@@ -19,7 +18,6 @@ import style from './menu-button.module.css';
 const UserMenu = withExtraClass(style.mobile)(Menu);
 
 export default function MenuButton({ links }: { links: TypeMainLink[] }) {
-  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [signOut, { isLoading }] = useSignOutMutation();
   const { pathname } = useLocation();
