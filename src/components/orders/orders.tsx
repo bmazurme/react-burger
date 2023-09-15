@@ -10,7 +10,7 @@ import style from './orders.module.css';
 
 export default function Orders({ title, path }: { title?: string, path?: boolean }) {
   const ingredients = useIngredient();
-  const { orders = [] } = useOrders();
+  const { orders } = useOrders();
   const [getIngredients, { isLoading }] = useGetIngredientsMutation();
   const { data = [] } = useGetOrdersQuery(path ? 'user' : 'all');
 
