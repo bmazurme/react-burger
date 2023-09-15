@@ -7,14 +7,12 @@ import classNames from 'classnames';
 import Preloader from '../preloader';
 
 import { useSignOutMutation } from '../../store/api/auth-api/endpoints';
-import { useAppDispatch } from '../../hooks';
 
 import { Urls } from '../../utils';
 
 import style from './sidebar.module.css';
 
 export default function Profile() {
-  const dispatch = useAppDispatch();
   const [signOut, { isLoading }] = useSignOutMutation();
   const getStyle = ({ isActive }: { isActive: boolean}) =>
     (classNames('text text_type_main-medium mb-6', style.link, { [style.link_active]: isActive }));
